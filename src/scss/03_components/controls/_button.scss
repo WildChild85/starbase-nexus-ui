@@ -1,4 +1,5 @@
-@import "../../01_base/_variables.scss";
+@use "sass:math";
+@import '../../01_base/_variables.scss';
 
 .button {
     background: var(--color-secondary-darken-1);
@@ -9,7 +10,7 @@
     font-size: var(--font-size-default);
     font-weight: bold;
     height: $input-height;
-    padding: $spacing / 2 $spacing;
+    padding: math.div($spacing, 2) $spacing;
     position: relative;
     text-align: center;
     text-transform: uppercase;

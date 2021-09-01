@@ -1,9 +1,11 @@
-@import "../../01_base/variables";
+@use "sass:math";
+@import '../../01_base/variables';
 
-.text-field, .text-area {
+.text-field,
+.text-area {
     label {
         display: inline-block;
-        padding: $spacing / 4 $spacing;
+        padding: math.div($spacing, 4) $spacing;
     }
 
     &__input {
@@ -15,7 +17,8 @@
         --aug-tl1: 7px;
         --aug-tr1: 7px;
 
-        input, textarea {
+        input,
+        textarea {
             background: none;
             border: none;
             box-sizing: border-box;
@@ -32,7 +35,7 @@
         textarea {
             min-height: $input-height * 3;
             line-height: var(--line-height-default);
-            padding: $spacing / 2 $spacing;
+            padding: math.div($spacing, 2) $spacing;
         }
     }
 
@@ -42,13 +45,15 @@
     }
 
     &--focused {
-        .text-field__input, .text-area__input {
+        .text-field__input,
+        .text-area__input {
             --aug-border-all: 4px;
         }
     }
     &--error {
-        .text-field__input, .text-area__input {
-            margin-bottom: $spacing / 4;
+        .text-field__input,
+        .text-area__input {
+            margin-bottom: math.div($spacing, 4);
             --aug-border-bg: var(--color-error);
         }
     }
