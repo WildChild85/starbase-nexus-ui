@@ -1,0 +1,50 @@
+@import "../../01_base/_variables.scss";
+
+.button {
+    background: var(--color-secondary-darken-1);
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+    display: block;
+    font-size: var(--font-size-default);
+    font-weight: bold;
+    height: $input-height;
+    padding: $spacing / 2 $spacing;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+
+    --aug-border-bg: var(--color-secondary);
+    --aug-border-all: 2px;
+    --aug-bl1: 7px;
+    --aug-tr1: 7px;
+
+    &__loading-indicator {
+        align-items: center;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &:hover:not(.button--disabled):not(.button--loading) {
+        background: var(--focus-glow);
+    }
+
+    &--loading {
+        cursor: default;
+
+        .button__content {
+            opacity: 0.2;
+        }
+    }
+
+    &--disabled {
+        color: var(--color-disabled);
+        cursor: default;
+        --aug-border-bg: var(--color-disabled);
+    }
+}

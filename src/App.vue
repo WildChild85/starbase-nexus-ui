@@ -1,30 +1,30 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+<video autoplay="" muted="" loop="" id="bg-video">
+    <source src="https://starbasegame.com/videos/background.webm" type="video/mp4">
+    Your browser does not support HTML5 video.
+</video>
+<router-view/>
+<div id="dialogs"></div>
+<div id="loading-indicator-beam-wrapper"></div>
 </template>
 
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { JwtUser } from '@/interfaces/identity/user';
+
+export default defineComponent({
+    name: 'App',
+    computed: {
+        user(): JwtUser | null {
+            return this.$store.getters['authentication/user'];
+        },
+    },
+    created() {
+        this.$store.commit('authentication/setUser');
+    },
+});
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+    @import "scss/index";
 </style>

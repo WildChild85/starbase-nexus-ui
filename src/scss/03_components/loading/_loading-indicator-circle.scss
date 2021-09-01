@@ -1,0 +1,33 @@
+@import '../../01_base/variables';
+
+@keyframes loading-circle {
+    0% {
+        stroke-dasharray: 141;
+        stroke-dashoffset: 141;
+        transform: rotate(-90deg);
+    }
+
+    100% {
+        stroke-dasharray: 141;
+        stroke-dashoffset: -141;
+        transform: rotate(270deg);
+    }
+}
+
+.loading-indicator-circle {
+    height: 32px;
+    position: relative;
+    width: 32px;
+
+    &__path {
+        animation-name: loading-circle;
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+        fill: none;
+        stroke: var(--color-text);
+        stroke-width: 5px;
+        stroke-dasharray: 131;
+        stroke-dashoffset: 131;
+        transform-origin: center;
+    }
+}

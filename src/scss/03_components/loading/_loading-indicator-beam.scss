@@ -1,0 +1,45 @@
+@import '../../01_base/variables';
+
+@keyframes loading-beam {
+    0% {
+        left: -5px;
+        width: 0;
+    }
+    50% {
+        left: -5px;
+        width: calc(100% + 10px);
+    }
+    100% {
+        left: calc(100% + 10px);
+        width: 0;
+    }
+}
+
+#loading-indicator-beam-wrapper {
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+}
+
+.loading-indicator-beam {
+    height: 5px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: $z-index-loading-indicator;
+
+    &::after {
+        animation-iteration-count: infinite;
+        animation-duration: 1s;
+        animation-name: loading-beam;
+        background: var(--color-primary);
+        content: '';
+        display: block;
+        height: 100%;
+        position: absolute;
+        transform: skewX(30deg);
+        top: 0;
+    }
+}

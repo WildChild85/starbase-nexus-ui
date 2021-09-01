@@ -1,0 +1,55 @@
+@import "../../01_base/variables";
+
+.text-field, .text-area {
+    label {
+        display: inline-block;
+        padding: $spacing / 4 $spacing;
+    }
+
+    &__input {
+        background: var(--color-secondary-darken-1);
+
+        --aug-border-bg: var(--color-secondary);
+        --aug-border-all: 2px;
+        --aug-bl1: 7px;
+        --aug-tl1: 7px;
+        --aug-tr1: 7px;
+
+        input, textarea {
+            background: none;
+            border: none;
+            box-sizing: border-box;
+            display: block;
+            color: inherit;
+            font-family: inherit;
+            font-size: inherit;
+            height: $input-height;
+            line-height: $input-height;
+            padding: 0 $spacing;
+            outline: none;
+            width: 100%;
+        }
+        textarea {
+            min-height: $input-height * 3;
+            line-height: var(--line-height-default);
+            padding: $spacing / 2 $spacing;
+        }
+    }
+
+    &__error {
+        color: var(--color-error);
+        padding: 0 $spacing;
+    }
+
+    &--focused {
+        .text-field__input, .text-area__input {
+            --aug-border-all: 4px;
+        }
+    }
+    &--error {
+        .text-field__input, .text-area__input {
+            margin-bottom: $spacing / 4;
+            --aug-border-bg: var(--color-error);
+        }
+    }
+}

@@ -1,0 +1,12 @@
+@import "../../01_base/variables";
+
+.panel {
+    background: var(--color-primary-darken-1-transparent);
+    backdrop-filter: blur(15px);
+    padding: $spacing * 2 $spacing;
+
+    --aug-border-bg: var(--color-primary);
+    --aug-border-all: 2px;
+    // --aug-bl1: 7px;
+    // --aug-tr1: 7px;
+}

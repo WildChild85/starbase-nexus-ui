@@ -1,0 +1,45 @@
+
+$input-height: 50px;
+
+$spacing: 20px;
+
+$z-index-app-header: 10;
+$z-index-nav-bar: 10;
+$z-index-sticky: 2;
+$z-index-active-control: 3;
+$z-index-dialogs: 11;
+$z-index-loading-indicator: 12;
+
+:root {
+    --color-primary: hsl(183, 94%, 61%);
+    --color-primary-darken-1: hsl(183, 94%, 5%);
+    --color-primary-darken-1-transparent: hsla(183, 94%, 5%, 0.7);
+    --color-secondary: hsl(247, 55%, 59%);
+    --color-secondary-darken-1: hsl(247, 55%, 5%);
+    --color-secondary-darken-1: hsla(247, 55%, 5%, 0.7);
+
+    --color-background: hsl(0, 0%, 9%);
+    --color-text: hsl(0, 0%, 95%);
+
+    --color-error: hsl(345, 93%, 50%);
+    --color-success: hsl(147, 79%, 46%);
+    --color-disabled: hsl(0, 0%, 48%);
+    --color-info: hsl(214, 100%, 56%);
+    --color-warning: hsl(39, 100%, 56%);
+
+    --font-family-default: "Manrope", sans-serif;
+
+    --font-size-default: 16px;
+    --font-size-title: 20px;
+    --font-size-small: 14px;
+    --font-size-tiny: 12px;
+
+    --line-height-default: 26px;
+    --line-height-title: 30px;
+    --line-height-small: 24px;
+    --line-height-tiny: 22px;
+
+    --spacing: $spacing;
+
+    --focus-glow: linear-gradient(0deg, var(--color-secondary) 0%, var(--color-secondary-darken-1) 35%, var(--color-secondary-darken-1) 75%, var(--color-secondary) 100%);
+}
