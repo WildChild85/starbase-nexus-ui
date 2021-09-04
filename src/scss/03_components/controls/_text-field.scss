@@ -34,6 +34,10 @@
             line-height: var(--line-height-default);
             padding: $spacing / 2 $spacing;
         }
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+        }
     }
 
     &__error {

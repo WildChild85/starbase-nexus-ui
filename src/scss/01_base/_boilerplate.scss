@@ -14,8 +14,21 @@ body, h1, h2, h3, p, a, li, div {
     text-rendering: geometricPrecision;
 }
 h1, h2, h3 {
+    font-size: var(--font-size-title);
+    line-height: var(--line-height-title);
     margin: 0;
 }
+
+/* WebKit and Blink */
+::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+    cursor: pointer;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+  }
 
 #bg-video {
     position: fixed;
@@ -26,6 +39,9 @@ h1, h2, h3 {
     z-index: -1;
 }
 
+#page {
+    padding-top: $input-height;
+}
 
 #dialogs {
     z-index: $z-index-dialogs;
@@ -33,6 +49,10 @@ h1, h2, h3 {
 
 .padding-container {
     padding: $spacing !important;
+}
+
+.svg-icon {
+    height: var(--line-height-default);
 }
 
 .margin-bottom {
@@ -144,6 +164,9 @@ h1, h2, h3 {
 .text {
     &--primary {
         color: var(--color-primary) !important;
+    }
+    &--secondary {
+        color: var(--color-secondary) !important;
     }
     &--bold {
         font-weight: bold !important;

@@ -6,18 +6,18 @@ export interface ItemCategorySearchParameters extends SearchParameters {
 
 export interface ItemCategory extends UuidViewModel {
     name: string;
-    description: string;
+    description: string | null;
     parentId: string | null;
 }
 
 export interface CreateItemCategory {
     name: string;
-    description: string;
+    description?: string | null;
     parentId?: string | null;
 }
 
 export interface PatchItemCategory {
     name?: string;
-    description?: string;
+    description?: string | null;
     parentId?: string | null;
 }

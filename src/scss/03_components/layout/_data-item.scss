@@ -1,0 +1,61 @@
+@import "../../01_base/variables";
+
+.data-item {
+    background: var(--color-secondary-darken-1-transparent);
+    align-items: center;
+    display: flex;
+    min-height: $input-height;
+
+    --aug-border-bg: var(--color-secondary);
+    --aug-border-left: 2px;
+    --aug-border-right: 2px;
+    --aug-border-top: .1px;
+    --aug-border-bottom: .11px;
+    --aug-br1: 7px;
+    --aug-tl1: 7px;
+
+    &__spacer {
+        flex-grow: 1;
+    }
+
+    &__icon {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: $input-height;
+        width: $input-height;
+    }
+    &__name, &__property {
+        padding: 0 $spacing;
+    }
+    &__action {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        height: $input-height;
+        justify-content: center;
+        width: $input-height;
+
+        &--no-icon {
+            padding: 0 $spacing;
+            width: auto;
+        }
+
+        &:hover {
+            background: var(--focus-glow-transparent);
+        }
+    }
+
+    &--clickable {
+        cursor: pointer;
+
+        .data-item__action {
+            &:hover {
+                background: transparent;
+            }
+        }
+        &:hover {
+            background: var(--focus-glow-transparent);
+        }
+    }
+}

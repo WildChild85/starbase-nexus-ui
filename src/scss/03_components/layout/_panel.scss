@@ -9,4 +9,20 @@
     --aug-border-all: 2px;
     // --aug-bl1: 7px;
     // --aug-tr1: 7px;
+
+    &__actions {
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        margin-top: $spacing;
+        position: sticky;
+
+        & > * {
+            margin-left: $spacing;
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
 }

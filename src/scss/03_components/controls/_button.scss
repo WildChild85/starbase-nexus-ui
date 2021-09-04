@@ -3,15 +3,19 @@
 .button {
     background: var(--color-secondary-darken-1);
     border: none;
+    box-sizing: border-box;
     color: var(--color-text);
     cursor: pointer;
     display: block;
+    font-family: inherit;
     font-size: var(--font-size-default);
     font-weight: bold;
     height: $input-height;
+    line-height: var(--line-height-default);
     padding: $spacing / 2 $spacing;
     position: relative;
     text-align: center;
+    text-decoration: none;
     text-transform: uppercase;
 
     --aug-border-bg: var(--color-secondary);
@@ -46,5 +50,33 @@
         color: var(--color-disabled);
         cursor: default;
         --aug-border-bg: var(--color-disabled);
+    }
+    &--info {
+        --aug-border-bg: var(--color-info);
+        
+        &:hover:not(.button--disabled):not(.button--loading) {
+            background: var(--focus-glow-info);
+        }
+    }
+    &--success {
+        --aug-border-bg: var(--color-success);
+        
+        &:hover:not(.button--disabled):not(.button--loading) {
+            background: var(--focus-glow-success);
+        }
+    }
+    &--warning {
+        --aug-border-bg: var(--color-warning);
+        
+        &:hover:not(.button--disabled):not(.button--loading) {
+            background: var(--focus-glow-warning);
+        }
+    }
+    &--error {
+        --aug-border-bg: var(--color-error);
+        
+        &:hover:not(.button--disabled):not(.button--loading) {
+            background: var(--focus-glow-error);
+        }
     }
 }

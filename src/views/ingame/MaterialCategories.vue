@@ -6,20 +6,19 @@
             <div class="flex flex--end">
                 <TextField v-model.trim="searchTerm" :placeholder="$t('search')" @keyup.enter="refreshData"/>
                 <Button class="margin-left" :loading="isLoading" @click="refreshData">Refresh</Button>
-                <Button class="margin-left" @click="showCreate" v-if="isModerator">Create</Button>
+                <Button class="margin-left" v-if="isModerator" @click="showCreate">Create</Button>
             </div>
 
-            <DataItem v-for="item in items" :key="item.id" class="margin-top--f2">
-                <div class="data-item__icon" :style="{ backgroundImage: `url(${item.iconUri})`}"></div>
-                <div class="data-item__name">{{ item.name }}</div>
+            <DataItem v-for="materialCategory in materialCategories" :key="materialCategory.id" class="margin-top--f2">
+                <div class="data-item__name">{{ materialCategory.name }}</div>
                 <div class="data-item__spacer"></div>
-                <div class="data-item__action" v-if="isModerator" @click="showEdit(item.id)"><PencilIconSolid class="svg-icon"/></div>
+                <div class="data-item__action" v-if="isModerator" @click="showEdit(materialCategory.id)"><PencilIconSolid class="svg-icon"/></div>
             </DataItem>
         </Panel>
     </div>
     <Aside v-if="showEditDialog" @close="hideEditDialog">
-        <EditItem
-            :itemId="editId"
+        <EditMaterialCategory
+            :materialCategoryId="editId"
             @created="hideEditDialog(true)"
             @patched="hideEditDialog(true)"
             @cancelled="hideEditDialog"
@@ -35,9 +34,9 @@ import ViewMixin from '@/mixins/ViewMixin';
 import TextField from '@/components/controls/TextField.vue';
 import Button from '@/components/controls/Button';
 import Aside from '@/components/dialogs/Aside.vue';
-import EditItem from '@/components/ingame/item/EditItem.vue';
-import * as itemService from '@/services/ingame/itemService';
-import { Item } from '@/interfaces/ingame/item';
+import EditMaterialCategory from '@/components/ingame/materialCategory/EditMaterialCategory.vue';
+import * as materialCategoryService from '@/services/ingame/materialCategoryService';
+import { MaterialCategory } from '@/interfaces/ingame/materialCategory';
 import LoadingIndicatorBeam from '@/components/loading/LoadingIndicatorBeam.vue';
 import DataItem from '@/components/layout/DataItem.vue';
 import { ROLE_MODERATOR } from '@/constants/roles';
@@ -47,17 +46,17 @@ interface Data {
     showEditDialog: boolean;
     editId: string | null;
     isLoading: boolean;
-    items: Item[];
+    materialCategories: MaterialCategory[];
 }
 
 export default defineComponent({
-    name: 'Items',
+    name: 'MaterialCategories',
     components: {
         Aside,
         Button,
         Panel,
         TextField,
-        EditItem,
+        EditMaterialCategory,
         LoadingIndicatorBeam,
         DataItem,
     },
@@ -67,7 +66,7 @@ export default defineComponent({
         showEditDialog: false,
         editId: null,
         isLoading: false,
-        items: [],
+        materialCategories: [],
     }),
     computed: {
         isModerator(): boolean {
@@ -87,20 +86,20 @@ export default defineComponent({
             this.showEditDialog = false;
             this.editId = null;
             if (refreshData) {
-                this.loadItems();
+                this.loadMaterialCategories();
             }
         },
         async refreshData(): Promise<void> {
-            await this.loadItems();
+            await this.loadMaterialCategories();
         },
-        async loadItems(): Promise<void> {
+        async loadMaterialCategories(): Promise<void> {
             this.isLoading = true;
             try {
-                const response = await itemService.getMultiple({
+                const response = await materialCategoryService.getMultiple({
                     pageSize: -1,
                     searchQuery: this.searchTerm,
                 });
-                this.items = response.data;
+                this.materialCategories = response.data;
             } catch (_) {
                 // do nothing
             }
@@ -108,7 +107,7 @@ export default defineComponent({
         },
     },
     created(): void {
-        this.setPageTitle([this.$t('items'), this.$t('ingame')]);
+        this.setPageTitle([this.$t('materialCategories'), this.$t('ingame')]);
         this.refreshData();
     },
 });

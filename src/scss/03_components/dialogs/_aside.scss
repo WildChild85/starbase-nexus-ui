@@ -1,0 +1,21 @@
+@import "../../01_base/variables";
+
+.aside {
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+
+    &__content {
+        box-sizing: border-box;
+        height: 100vh;
+        margin: 0 auto;
+        max-width: 600px;
+        min-width: 320px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: $spacing * 2;
+        position: relative;
+        width: 50vw;
+    }
+}

@@ -1,0 +1,28 @@
+@import "../01_base/variables";
+
+.vue-notification {
+    // styling
+    font-size: inherit;
+    color: var(--color-text);
+    background: var(--color-primary-darken-1-transparent);
+    backdrop-filter: blur(15px);
+    padding: $spacing / 2 $spacing;
+
+    border-left-color: var(--color-info);
+  
+    // types (green, amber, red)
+    &.success {
+        background: var(--color-primary-darken-1-transparent);
+        border-left-color: var(--color-success);
+    }
+  
+    &.warn {
+        background: var(--color-primary-darken-1-transparent);
+      border-left-color: var(--color-warning);
+    }
+  
+    &.error {
+        background: var(--color-primary-darken-1-transparent);
+      border-left-color: var(--color-error);
+    }
+  }

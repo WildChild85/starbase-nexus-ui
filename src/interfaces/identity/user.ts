@@ -23,6 +23,7 @@ export interface User {
     aboutMe: string | number;
     avatarUri: string | null;
     discordId: string | null;
+    roles: string[];
 }
 
 export interface PatchUser {

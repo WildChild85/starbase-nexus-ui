@@ -1,11 +1,11 @@
 import { SearchParameters, UuidViewModel } from '@/interfaces/api';
 
-export interface MaterialSearchParameters extends SearchParameters {
+export interface ItemSearchParameters extends SearchParameters {
     itemCategoryIds?: string | null;
     primaryMaterialIds?: string | null;
 }
 
-export interface Material extends UuidViewModel {
+export interface Item extends UuidViewModel {
     name: string;
     description: string;
     iconUri: string | null;
@@ -39,13 +39,14 @@ export interface Material extends UuidViewModel {
     projectileMass: number | null;
     projectileEnergy: number | null;
     projectileLifetime: number | null;
+    warmupTime: number | null;
     researchPointsCube: number | null;
     researchPointsPower: number | null;
     researchPointsShield: number | null;
     researchPointsGear: number | null;
 }
 
-export interface CreateMaterial {
+export interface CreateItem {
     name: string;
     description: string;
     iconUri?: string | null;
@@ -79,13 +80,14 @@ export interface CreateMaterial {
     projectileMass?: number | null;
     projectileEnergy?: number | null;
     projectileLifetime?: number | null;
+    warmupTime?: number | null;
     researchPointsCube?: number | null;
     researchPointsPower?: number | null;
     researchPointsShield?: number | null;
     researchPointsGear?: number | null;
 }
 
-export interface PatchMaterial {
+export interface PatchItem {
     name?: string;
     description?: string;
     iconUri?: string | null;
@@ -119,6 +121,7 @@ export interface PatchMaterial {
     projectileMass?: number | null;
     projectileEnergy?: number | null;
     projectileLifetime?: number | null;
+    warmupTime?: number | null;
     researchPointsCube?: number | null;
     researchPointsPower?: number | null;
     researchPointsShield?: number | null;

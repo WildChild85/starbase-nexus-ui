@@ -7,19 +7,22 @@
                 <TextField v-model.trim="searchTerm" :placeholder="$t('search')" @keyup.enter="refreshData"/>
                 <Button class="margin-left" :loading="isLoading" @click="refreshData">Refresh</Button>
                 <Button class="margin-left" @click="showCreate" v-if="isModerator">Create</Button>
+                <Button class="margin-left" type="info" href="https://wiki.starbasegame.com/index.php/Materials">Wiki</Button>
             </div>
 
-            <DataItem v-for="item in items" :key="item.id" class="margin-top--f2">
-                <div class="data-item__icon" :style="{ backgroundImage: `url(${item.iconUri})`}"></div>
-                <div class="data-item__name">{{ item.name }}</div>
+            <DataItem v-for="material in materials" :key="material.id" class="margin-top--f2">
+                <div class="data-item__icon" :style="{ backgroundImage: `url(${material.iconUriRaw})`}"></div>
+                <div class="data-item__icon" :style="{ backgroundImage: `url(${material.iconUriRefined})`}"></div>
+                <div class="data-item__icon" :style="{ backgroundImage: `url(${material.iconUriOreChunk})`}"></div>
+                <div class="data-item__name">{{ material.name }}</div>
                 <div class="data-item__spacer"></div>
-                <div class="data-item__action" v-if="isModerator" @click="showEdit(item.id)"><PencilIconSolid class="svg-icon"/></div>
+                <div class="data-item__action" v-if="isModerator" @click="showEdit(material.id)"><PencilIconSolid class="svg-icon"/></div>
             </DataItem>
         </Panel>
     </div>
     <Aside v-if="showEditDialog" @close="hideEditDialog">
-        <EditItem
-            :itemId="editId"
+        <EditMaterial
+            :materialId="editId"
             @created="hideEditDialog(true)"
             @patched="hideEditDialog(true)"
             @cancelled="hideEditDialog"
@@ -35,9 +38,9 @@ import ViewMixin from '@/mixins/ViewMixin';
 import TextField from '@/components/controls/TextField.vue';
 import Button from '@/components/controls/Button';
 import Aside from '@/components/dialogs/Aside.vue';
-import EditItem from '@/components/ingame/item/EditItem.vue';
-import * as itemService from '@/services/ingame/itemService';
-import { Item } from '@/interfaces/ingame/item';
+import EditMaterial from '@/components/ingame/material/EditMaterial.vue';
+import * as materialService from '@/services/ingame/materialService';
+import { Material } from '@/interfaces/ingame/material';
 import LoadingIndicatorBeam from '@/components/loading/LoadingIndicatorBeam.vue';
 import DataItem from '@/components/layout/DataItem.vue';
 import { ROLE_MODERATOR } from '@/constants/roles';
@@ -47,17 +50,17 @@ interface Data {
     showEditDialog: boolean;
     editId: string | null;
     isLoading: boolean;
-    items: Item[];
+    materials: Material[];
 }
 
 export default defineComponent({
-    name: 'Items',
+    name: 'Materials',
     components: {
         Aside,
         Button,
         Panel,
         TextField,
-        EditItem,
+        EditMaterial,
         LoadingIndicatorBeam,
         DataItem,
     },
@@ -67,7 +70,7 @@ export default defineComponent({
         showEditDialog: false,
         editId: null,
         isLoading: false,
-        items: [],
+        materials: [],
     }),
     computed: {
         isModerator(): boolean {
@@ -87,20 +90,20 @@ export default defineComponent({
             this.showEditDialog = false;
             this.editId = null;
             if (refreshData) {
-                this.loadItems();
+                this.loadMaterials();
             }
         },
         async refreshData(): Promise<void> {
-            await this.loadItems();
+            await this.loadMaterials();
         },
-        async loadItems(): Promise<void> {
+        async loadMaterials(): Promise<void> {
             this.isLoading = true;
             try {
-                const response = await itemService.getMultiple({
+                const response = await materialService.getMultiple({
                     pageSize: -1,
                     searchQuery: this.searchTerm,
                 });
-                this.items = response.data;
+                this.materials = response.data;
             } catch (_) {
                 // do nothing
             }
@@ -108,7 +111,7 @@ export default defineComponent({
         },
     },
     created(): void {
-        this.setPageTitle([this.$t('items'), this.$t('ingame')]);
+        this.setPageTitle([this.$t('materials'), this.$t('ingame')]);
         this.refreshData();
     },
 });

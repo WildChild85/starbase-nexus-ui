@@ -24,7 +24,6 @@ export interface Material extends UuidViewModel {
 export interface CreateMaterial {
     name: string;
     description: string;
-    iconUri?: string | null;
     materialCategoryId: string;
     armor?: number | null;
     minArmor?: number | null;
@@ -42,8 +41,7 @@ export interface CreateMaterial {
 export interface PatchMaterial {
     name?: string;
     description?: string;
-    iconUri?: string | null;
-    materialCategoryId: string;
+    materialCategoryId?: string;
     armor?: number | null;
     minArmor?: number | null;
     voxelPenetrationMultiplier?: number | null;

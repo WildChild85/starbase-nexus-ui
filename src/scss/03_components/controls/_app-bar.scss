@@ -1,0 +1,65 @@
+@import "../../01_base/variables";
+
+.app-bar {
+    align-items: center;
+    background: var(--color-primary-darken-1-transparent);
+    backdrop-filter: blur(15px);
+    display: flex;
+    height: $input-height;
+    left: -2px;
+    padding: 0;
+    position: fixed;
+    right: -2px;
+    top: -2px;
+
+    --aug-border-bg: var(--color-primary);
+    --aug-border-all: 2px;
+    --aug-b1: 30%;
+    --aug-b1-height: 5px;
+    --aug-b2-height: 5px;
+    --aug-b1-width: 10px;
+    --aug-b2-width: 10px;
+
+    &__spacer {
+        flex-grow: 1;
+    }
+    &__user {
+        align-items: center;
+        display: flex;
+    }
+    &__user-avatar {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: $input-height - 15px;
+        width: $input-height - 15px;
+
+        --aug-border-bg: var(--color-primary);
+        --aug-border-all: 1px;
+        --aug-bl1: 3px;
+        --aug-br1: 3px;
+        --aug-tl1: 3px;
+        --aug-tr1: 3px;
+    }
+    &__user-name {
+        padding: 0 $spacing;
+    }
+    &__btn {
+        align-items: center;
+        background: none;
+        border: none;
+        color: inherit;
+        cursor: pointer;
+        display: flex;
+        font-family: inherit;
+        font-size: inherit;
+        height: 100%;
+        padding: 0 $spacing;
+        text-decoration: none;
+        text-transform: uppercase;
+
+        &:hover {
+            background: var(--focus-glow-transparent);
+        }
+    }
+}
