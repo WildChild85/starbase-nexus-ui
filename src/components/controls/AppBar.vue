@@ -64,6 +64,10 @@ export default defineComponent({
                     to: { name: 'ingame_items' },
                     label: this.$t('items'),
                 },
+                {
+                    to: { name: 'tools_engine-comparison' },
+                    label: this.$t('engineComparison'),
+                },
             ];
             if (this.isAdmin) {
                 navItems.push({

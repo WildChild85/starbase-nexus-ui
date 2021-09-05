@@ -6,6 +6,10 @@ import {
     ChevronRightIcon as ChevronRightIconSolid,
     XIcon as XIconSolid,
 } from '@heroicons/vue/solid';
+import {
+    ClipboardCopyIcon as ClipboardCopyIconOutline,
+    ExternalLinkIcon as ExternalLinkIconOutline,
+} from '@heroicons/vue/outline';
 import App from '@/App.vue';
 import router from '@/router';
 import store from '@/store';
@@ -19,4 +23,6 @@ createApp(App)
     .component('PencilIconSolid', PencilIconSolid)
     .component('ChevronRightIconSolid', ChevronRightIconSolid)
     .component('XIconSolid', XIconSolid)
+    .component('ClipboardCopyIconOutline', ClipboardCopyIconOutline)
+    .component('ExternalLinkIconOutline', ExternalLinkIconOutline)
     .mount('#app');

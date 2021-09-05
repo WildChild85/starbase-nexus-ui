@@ -13,9 +13,21 @@
                 <div class="data-item__icon" :style="{ backgroundImage: `url(${item.iconUri})`}"></div>
                 <div class="data-item__name">{{ item.name }}</div>
                 <div class="data-item__spacer"></div>
-                <div class="data-item__action" v-if="isModerator" @click="showEdit(item.id)"><PencilIconSolid class="svg-icon"/></div>
+
+                <template v-for="prop in Object.keys(item)">
+                    <div class="data-item__property" :key="prop" v-if="!excludedProperties.includes(prop) && item[prop] != null">
+                        <div class="data-item__property-label">{{ $t(prop) }}</div>
+                        <div class="data-item__property-value" v-html="numberToLocaleString(item[prop], 0, 6)"></div>
+                    </div>
+                </template>
+
+                <div class="data-item__spacer"></div>
+                <a class="data-item__action" :title="$t('wikiPage')" :href="item.wikiUri" target="_blank"><ExternalLinkIconOutline class="svg-icon"/></a>
+                <div class="data-item__action" :title="$t('copyIdToClipboard')" @click="copyToClipboard(item.id)"><ClipboardCopyIconOutline class="svg-icon"/></div>
+                <div class="data-item__action" :title="$t('edit')" v-if="isModerator" @click="showEdit(item.id)"><PencilIconSolid class="svg-icon"/></div>
             </DataItem>
         </Panel>
+        <input class="input-copy-to-clipboard" :id="clipboardInputId" :value="textToCopy" />
     </div>
     <Aside v-if="showEditDialog" @close="hideEditDialog">
         <EditItem
@@ -41,6 +53,7 @@ import { Item } from '@/interfaces/ingame/item';
 import LoadingIndicatorBeam from '@/components/loading/LoadingIndicatorBeam.vue';
 import DataItem from '@/components/layout/DataItem.vue';
 import { ROLE_MODERATOR } from '@/constants/roles';
+import { uniqueId, numberToLocaleString } from '@/helpers';
 
 interface Data {
     searchTerm: string;
@@ -48,6 +61,7 @@ interface Data {
     editId: string | null;
     isLoading: boolean;
     items: Item[];
+    textToCopy: string;
 }
 
 export default defineComponent({
@@ -68,13 +82,40 @@ export default defineComponent({
         editId: null,
         isLoading: false,
         items: [],
+        textToCopy: '',
     }),
     computed: {
+        clipboardInputId(): string {
+            return `clipboardInput_${uniqueId}}`;
+        },
         isModerator(): boolean {
             return this.$store.getters['authentication/hasOneRoles'](ROLE_MODERATOR);
         },
+        excludedProperties(): string[] {
+            return ['id', 'iconUri', 'createdAt', 'updatedAt', 'description', 'itemCategoryId', 'primaryMaterialId', 'name', 'wikiUri'];
+        },
     },
     methods: {
+        numberToLocaleString,
+        copyToClipboard(text: string): void {
+            this.textToCopy = text;
+            const input = document.getElementById(this.clipboardInputId) as HTMLInputElement;
+
+            this.$nextTick(() => {
+                /* Select the text field */
+                input.select();
+                /* For mobile devices */
+                input.setSelectionRange(0, 99999);
+
+                document.execCommand('copy');
+
+                this.$notify({
+                    title: this.$t('copied'),
+                    text: this.$t('idCopied'),
+                    type: 'success',
+                });
+            });
+        },
         showCreate(): void {
             this.editId = null;
             this.showEditDialog = true;

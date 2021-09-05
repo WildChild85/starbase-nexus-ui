@@ -22,16 +22,30 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
+        flex-shrink: 0;
         height: $input-height;
         width: $input-height;
     }
     &__name, &__property {
         padding: 0 $spacing;
     }
+    &__property-label {
+        color: var(--color-disabled);
+        font-size: var(--font-size-tiny);
+        font-weight: bold;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    &__property-value {
+        color: var(--color-primary);
+        font-size: var(--font-size-small);
+    }
     &__action {
         align-items: center;
+        color: inherit;
         cursor: pointer;
         display: flex;
+        flex-shrink: 0;
         height: $input-height;
         justify-content: center;
         width: $input-height;

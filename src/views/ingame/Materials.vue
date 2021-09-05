@@ -16,6 +16,15 @@
                 <div class="data-item__icon" :style="{ backgroundImage: `url(${material.iconUriOreChunk})`}"></div>
                 <div class="data-item__name">{{ material.name }}</div>
                 <div class="data-item__spacer"></div>
+
+                <template v-for="prop in Object.keys(material)">
+                    <div class="data-item__property" :key="prop" v-if="!excludedProperties.includes(prop) && material[prop] != null">
+                        <div class="data-item__property-label">{{ $t(prop) }}</div>
+                        <div class="data-item__property-value" v-html="numberToLocaleString(material[prop], 0, 6)"></div>
+                    </div>
+                </template>
+
+                <div class="data-item__spacer"></div>
                 <div class="data-item__action" v-if="isModerator" @click="showEdit(material.id)"><PencilIconSolid class="svg-icon"/></div>
             </DataItem>
         </Panel>
@@ -44,6 +53,7 @@ import { Material } from '@/interfaces/ingame/material';
 import LoadingIndicatorBeam from '@/components/loading/LoadingIndicatorBeam.vue';
 import DataItem from '@/components/layout/DataItem.vue';
 import { ROLE_MODERATOR } from '@/constants/roles';
+import { numberToLocaleString } from '@/helpers';
 
 interface Data {
     searchTerm: string;
@@ -76,8 +86,12 @@ export default defineComponent({
         isModerator(): boolean {
             return this.$store.getters['authentication/hasOneRoles'](ROLE_MODERATOR);
         },
+        excludedProperties(): string[] {
+            return ['id', 'iconUriRaw', 'iconUriRefined', 'iconUriOreChunk', 'createdAt', 'updatedAt', 'description', 'name', 'wikiUri', 'materialCategoryId', 'minArmor', 'transformability'];
+        },
     },
     methods: {
+        numberToLocaleString,
         showCreate(): void {
             this.editId = null;
             this.showEditDialog = true;

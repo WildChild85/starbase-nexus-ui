@@ -71,5 +71,17 @@
     "researchPointsShield": "Research points shield",
     "researchPointsGear": "Research points gear",
     "wikiUri": "Wiki uri",
-    "warmupTime": "Warmup time (in seconds)"
+    "warmupTime": "Warmup time (in seconds)",
+    "engineComparison": "Engine Comparison",
+    "optimized": "optimized",
+    "copied": "Copied",
+    "idCopied": "Id copied",
+    "copyIdToClipboard": "Copy id to clipboard",
+    "edit": "Edit",
+    "wikiPage": "Wiki Page",
+    "thrustPerElectricity": "Thrust per electricity",
+    "thrustPerPropellant": "Thrust per propellant",
+    "smallPropellantTankDepletionTime": "Small Propellant Tank Depletion Time",
+    "mediumPropellantTankDepletionTime": "Medium Propellant Tank Depletion Time",
+    "largePropellantTankDepletionTime": "Large Propellant Tank Depletion Time"
 }

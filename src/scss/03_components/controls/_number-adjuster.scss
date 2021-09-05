@@ -1,0 +1,50 @@
+@import "../../01_base/variables";
+
+.number-adjuster {
+    display: flex;
+
+    &__decrease, &__increase, &__value {
+        align-items: center;
+        background: none;
+        border: none;
+        color: inherit;
+        display: flex;
+        font-size: var(--font-size-title);
+        height: var(--line-height-default);
+        justify-content: center;
+        padding: 0 $spacing / 2;
+        text-align: center;
+        width: var(--line-height-default);
+
+        --aug-border-bg: var(--color-secondary);
+        --aug-border-all: 1px;
+    }
+    &__decrease, &__increase {
+        background: var(--color-secondary-transparent);
+        cursor: pointer;
+        
+        &:hover {
+            background: var(--color-secondary);
+        }
+    }
+    &__decrease {
+        --aug-bl1: 10px;
+        --aug-tl1: 10px;
+        --aug-br1: 4px;
+        --aug-tr1: 4px;
+    }
+    &__increase {
+        --aug-br1: 10px;
+        --aug-tr1: 10px;
+        --aug-bl1: 4px;
+        --aug-tl1: 4px;
+    }
+    &__value {
+        font-size: var(--font-size-default);
+        width: auto;
+        --aug-bl1: 7px;
+        --aug-tl1: 7px;
+        --aug-br1: 7px;
+        --aug-tr1: 7px;
+    }
+}

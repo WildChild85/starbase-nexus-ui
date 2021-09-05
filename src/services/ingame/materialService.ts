@@ -4,13 +4,14 @@ import {
     CreateMaterial,
     PatchMaterial,
     Material,
+    MaterialSearchParameters,
 } from '@/interfaces/ingame/material';
-import { PatchOperation, SearchParameters, ShapingParameters } from '@/interfaces/api';
+import { PatchOperation, ShapingParameters } from '@/interfaces/api';
 
 const BASE_PATH = '/ingame/material';
 
 export const getMultiple = async (
-    params?: SearchParameters,
+    params?: MaterialSearchParameters,
     cancelToken?: CancelTokenSource,
 ): Promise<AxiosResponse<Material[]>> => (
     authorizedApiClient.get(`${BASE_PATH}`, { params, cancelToken: cancelToken ? cancelToken.token : undefined })

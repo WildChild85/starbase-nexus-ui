@@ -4,13 +4,14 @@ import {
     CreateItem,
     PatchItem,
     Item,
+    ItemSearchParameters,
 } from '@/interfaces/ingame/item';
-import { PatchOperation, SearchParameters, ShapingParameters } from '@/interfaces/api';
+import { PatchOperation, ShapingParameters } from '@/interfaces/api';
 
 const BASE_PATH = '/ingame/item';
 
 export const getMultiple = async (
-    params?: SearchParameters,
+    params?: ItemSearchParameters,
     cancelToken?: CancelTokenSource,
 ): Promise<AxiosResponse<Item[]>> => (
     authorizedApiClient.get(`${BASE_PATH}`, { params, cancelToken: cancelToken ? cancelToken.token : undefined })
