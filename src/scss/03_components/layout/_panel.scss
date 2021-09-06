@@ -30,4 +30,12 @@
     &--no-padding {
         padding: 0;
     }
+
+    &--fit-to-screen {
+        height: calc(100vh - #{$input-height} - #{$spacing * 2});
+
+        & > * {
+            height: calc(100vh - #{$input-height} - #{$spacing * 2});
+        }
+    }
 }

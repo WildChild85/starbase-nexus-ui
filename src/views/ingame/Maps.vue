@@ -1,16 +1,22 @@
 <template>
 <div class="padding-container">
-    <Panel :noPadding="true">
-        <img class="full-width block" src="https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/maps/Origin_Layout.png"/>
-        <div div class="credit-bar">Credit: unknown (please contact WildChild85#2691)</div>
+    <Panel :noPadding="true" :fitToScreen="true">
+        <div class="flex flex--vertical full-height">
+            <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/maps/Origin_Layout.png')`}"></div>
+            <div div class="credit-bar">Credit: unknown (please contact WildChild85#2691)</div>
+        </div>
     </Panel>
-    <Panel :noPadding="true" class="margin-top">
-        <img class="full-width block" src="https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/maps/eos_belt.png"/>
-        <div div class="credit-bar">Credit: Arch#6267</div>
+    <Panel :noPadding="true" :fitToScreen="true" class="margin-top">
+        <div class="flex flex--vertical full-height">
+            <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/maps/eos_belt.png')`}"></div>
+            <div div class="credit-bar">Credit: Arch#6267</div>
+        </div>
     </Panel>
-    <Panel :noPadding="true" class="margin-top">
-        <img class="full-width block" src="https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/maps/elysium_belt.png"/>
-        <div div class="credit-bar">Credit: Arch#6267</div>
+    <Panel :noPadding="true" :fitToScreen="true" class="margin-top">
+        <div class="flex flex--vertical full-height">
+            <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/maps/elysium_belt.png')`}"></div>
+            <div div class="credit-bar">Credit: Arch#6267</div>
+        </div>
     </Panel>
 </div>
 </template>

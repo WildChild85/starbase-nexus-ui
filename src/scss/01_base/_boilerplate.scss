@@ -69,11 +69,23 @@ h1, h2, h3 {
     width: 100%;
 }
 
+.full-height {
+    height: 100%;
+}
+
 .block {
     display: block;
 }
 
 .credit-bar {
     background: var(--color-primary-darken-1);
+    box-sizing: border-box;
     padding: $spacing / 8 $spacing;
+    width: 100%;
+}
+
+.background-contain {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }

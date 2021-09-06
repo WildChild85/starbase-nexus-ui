@@ -16,11 +16,16 @@ export default defineComponent({
             type: Boolean,
             default: false,
         },
+        fitToScreen: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
         classes(): Record<string, boolean> {
             return {
                 'panel--no-padding': this.noPadding,
+                'panel--fit-to-screen': this.fitToScreen,
             };
         },
     },
