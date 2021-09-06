@@ -29,14 +29,14 @@
             </DataItem>
         </Panel>
     </div>
-    <Aside v-if="showEditDialog" @close="hideEditDialog">
+    <Dialog v-if="showEditDialog" @close="hideEditDialog">
         <EditMaterial
             :materialId="editId"
             @created="hideEditDialog(true)"
             @patched="hideEditDialog(true)"
             @cancelled="hideEditDialog"
         />
-    </Aside>
+    </Dialog>
 </div>
 </template>
 
@@ -46,7 +46,7 @@ import Panel from '@/components/layout/Panel.vue';
 import ViewMixin from '@/mixins/ViewMixin';
 import TextField from '@/components/controls/TextField.vue';
 import Button from '@/components/controls/Button';
-import Aside from '@/components/dialogs/Aside.vue';
+import Dialog from '@/components/dialogs/Dialog.vue';
 import EditMaterial from '@/components/ingame/material/EditMaterial.vue';
 import * as materialService from '@/services/ingame/materialService';
 import { Material } from '@/interfaces/ingame/material';
@@ -66,7 +66,7 @@ interface Data {
 export default defineComponent({
     name: 'Materials',
     components: {
-        Aside,
+        Dialog,
         Button,
         Panel,
         TextField,

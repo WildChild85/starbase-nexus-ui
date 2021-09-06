@@ -16,14 +16,14 @@
             </DataItem>
         </Panel>
     </div>
-    <Aside v-if="showEditDialog" @close="hideEditDialog">
+    <Dialog v-if="showEditDialog" @close="hideEditDialog">
         <EditMaterialCategory
             :materialCategoryId="editId"
             @created="hideEditDialog(true)"
             @patched="hideEditDialog(true)"
             @cancelled="hideEditDialog"
         />
-    </Aside>
+    </Dialog>
 </div>
 </template>
 
@@ -33,7 +33,7 @@ import Panel from '@/components/layout/Panel.vue';
 import ViewMixin from '@/mixins/ViewMixin';
 import TextField from '@/components/controls/TextField.vue';
 import Button from '@/components/controls/Button';
-import Aside from '@/components/dialogs/Aside.vue';
+import Dialog from '@/components/dialogs/Dialog.vue';
 import EditMaterialCategory from '@/components/ingame/materialCategory/EditMaterialCategory.vue';
 import * as materialCategoryService from '@/services/ingame/materialCategoryService';
 import { MaterialCategory } from '@/interfaces/ingame/materialCategory';
@@ -52,7 +52,7 @@ interface Data {
 export default defineComponent({
     name: 'MaterialCategories',
     components: {
-        Aside,
+        Dialog,
         Button,
         Panel,
         TextField,

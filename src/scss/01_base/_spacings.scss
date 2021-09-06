@@ -1,0 +1,107 @@
+@import "variables";
+
+.margin-bottom {
+    margin-bottom: $spacing !important;
+
+    &--x2 {
+        margin-bottom: $spacing * 2 !important;
+    }
+    &--f2 {
+        margin-bottom: $spacing / 2 !important;
+    }
+    &--no {
+        margin-bottom: 0 !important;
+    }
+}
+.margin-left {
+    margin-left: $spacing !important;
+
+    &--x2 {
+        margin-left: $spacing * 2 !important;
+    }
+    &--f2 {
+        margin-left: $spacing / 2 !important;
+    }
+    &--no {
+        margin-left: 0 !important;
+    }
+}
+.margin-right {
+    margin-right: $spacing !important;
+
+    &--x2 {
+        margin-right: $spacing * 2 !important;
+    }
+    &--f2 {
+        margin-right: $spacing / 2 !important;
+    }
+    &--no {
+        margin-right: 0 !important;
+    }
+}
+.margin-top {
+    margin-top: $spacing !important;
+
+    &--x2 {
+        margin-top: $spacing * 2 !important;
+    }
+    &--f2 {
+        margin-top: $spacing / 2 !important;
+    }
+    &--no {
+        margin-top: 0 !important;
+    }
+}
+
+.padding-bottom {
+    padding-bottom: $spacing !important;
+
+    &--x2 {
+        padding-bottom: $spacing * 2 !important;
+    }
+    &--f2 {
+        padding-bottom: $spacing / 2 !important;
+    }
+    &--no {
+        padding-bottom: 0 !important;
+    }
+}
+.padding-left {
+    padding-left: $spacing !important;
+
+    &--x2 {
+        padding-left: $spacing * 2 !important;
+    }
+    &--f2 {
+        padding-left: $spacing / 2 !important;
+    }
+    &--no {
+        padding-left: 0 !important;
+    }
+}
+.padding-right {
+    padding-right: $spacing !important;
+
+    &--x2 {
+        padding-right: $spacing * 2 !important;
+    }
+    &--f2 {
+        padding-right: $spacing / 2 !important;
+    }
+    &--no {
+        padding-right: 0 !important;
+    }
+}
+.padding-top {
+    padding-top: $spacing !important;
+
+    &--x2 {
+        padding-top: $spacing * 2 !important;
+    }
+    &--f2 {
+        padding-top: $spacing / 2 !important;
+    }
+    &--no {
+        padding-top: 0 !important;
+    }
+}

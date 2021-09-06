@@ -29,14 +29,14 @@
         </Panel>
         <input class="input-copy-to-clipboard" :id="clipboardInputId" :value="textToCopy" />
     </div>
-    <Aside v-if="showEditDialog" @close="hideEditDialog">
+    <Dialog v-if="showEditDialog" @close="hideEditDialog">
         <EditItem
             :itemId="editId"
             @created="hideEditDialog(true)"
             @patched="hideEditDialog(true)"
             @cancelled="hideEditDialog"
         />
-    </Aside>
+    </Dialog>
 </div>
 </template>
 
@@ -46,7 +46,7 @@ import Panel from '@/components/layout/Panel.vue';
 import ViewMixin from '@/mixins/ViewMixin';
 import TextField from '@/components/controls/TextField.vue';
 import Button from '@/components/controls/Button';
-import Aside from '@/components/dialogs/Aside.vue';
+import Dialog from '@/components/dialogs/Dialog.vue';
 import EditItem from '@/components/ingame/item/EditItem.vue';
 import * as itemService from '@/services/ingame/itemService';
 import { Item } from '@/interfaces/ingame/item';
@@ -67,7 +67,7 @@ interface Data {
 export default defineComponent({
     name: 'Items',
     components: {
-        Aside,
+        Dialog,
         Button,
         Panel,
         TextField,

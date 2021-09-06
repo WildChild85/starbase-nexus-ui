@@ -83,5 +83,9 @@
     "thrustPerPropellant": "Thrust per propellant",
     "smallPropellantTankDepletionTime": "Small Propellant Tank Depletion Time",
     "mediumPropellantTankDepletionTime": "Medium Propellant Tank Depletion Time",
-    "largePropellantTankDepletionTime": "Large Propellant Tank Depletion Time"
+    "largePropellantTankDepletionTime": "Large Propellant Tank Depletion Time",
+    "tools": "Tools",
+    "maps": "Maps",
+    "dataManagement": "Data Management",
+    "administration": "Administration"
 }

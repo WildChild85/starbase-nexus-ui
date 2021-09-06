@@ -9,6 +9,7 @@ import {
 import {
     ClipboardCopyIcon as ClipboardCopyIconOutline,
     ExternalLinkIcon as ExternalLinkIconOutline,
+    MenuIcon as MenuIconOutline,
 } from '@heroicons/vue/outline';
 import App from '@/App.vue';
 import router from '@/router';
@@ -25,4 +26,5 @@ createApp(App)
     .component('XIconSolid', XIconSolid)
     .component('ClipboardCopyIconOutline', ClipboardCopyIconOutline)
     .component('ExternalLinkIconOutline', ExternalLinkIconOutline)
+    .component('MenuIconOutline', MenuIconOutline)
     .mount('#app');

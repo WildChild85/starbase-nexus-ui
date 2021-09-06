@@ -9,6 +9,7 @@ const Materials = () => import('@/views/ingame/Materials.vue');
 const ItemCategories = () => import('@/views/ingame/ItemCategories.vue');
 const Items = () => import('@/views/ingame/Items.vue');
 const EngineComparison = () => import('@/views/tools/EngineComparison.vue');
+const Maps = () => import('@/views/ingame/Maps.vue');
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -50,6 +51,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/ingame/items',
         name: 'ingame_items',
         component: Items,
+    },
+    {
+        path: '/ingame/maps',
+        name: 'ingame_maps',
+        component: Maps,
     },
     {
         path: '/tools/engine-comparison',

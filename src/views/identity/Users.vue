@@ -3,11 +3,10 @@
     <LoadingIndicatorBeam v-if="isLoading" />
     <div class="padding-container">
         <Panel>
-            <div class="flex flex--end">
+            <div class="flex flex--end flex--wrap">
                 <TextField v-model.trim="searchTerm" :placeholder="$t('search')" @keyup.enter="refreshData"/>
                 <Button class="margin-left" :loading="isLoading" @click="refreshData">Refresh</Button>
             </div>
-
             <DataItem v-for="user in users" :key="user.id" class="margin-top--f2">
                 <div class="data-item__icon" :style="{ backgroundImage: `url(${user.avatarUri})`}"></div>
                 <div class="data-item__name">{{ user.userName }}</div>

@@ -1,0 +1,59 @@
+@import "../../01_base/variables";
+
+.main-nav {
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    z-index: $z-index-main-nav;
+
+    &__content {
+        background: var(--color-primary-darken-1-transparent);
+        backdrop-filter: blur(15px);
+        bottom: -2px;
+        box-sizing: border-box;
+        left: -2px;
+        padding: $spacing * 2 0;
+        position: relative;
+        position: fixed;
+        top: -2px;
+
+        --aug-border-bg: var(--color-primary);
+        --aug-border-all: 2px;
+        --aug-r-extend1: 50%;
+        --aug-r1: 7px;
+        --aug-r2: 7px;
+    }
+    &__items {
+        bottom: -2px;
+        left: -2px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        position: absolute;
+        top: -2px;
+    }
+    &__item {
+        color: inherit;
+        display: block;
+        padding: $spacing / 2 $spacing * 2;
+        text-decoration: none;
+
+        &:hover {
+            background: var(--focus-glow-transparent);
+        }
+    }
+    &__separator {
+        color: var(--color-secondary);
+        font-weight: bold;
+        margin: $spacing $spacing $spacing $spacing;
+        padding: $spacing / 2 $spacing;
+        text-transform: uppercase;
+
+        --aug-border-bg: var(--color-secondary);
+        --aug-border-all: 0px;
+        --aug-border-bottom: 2px;
+        --aug-bl1: 5px;
+        --aug-br1: 5px;
+    }
+}

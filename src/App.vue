@@ -7,6 +7,7 @@
     <router-view/>
 </div>
 <AppBar />
+<MainNav />
 <div id="dialogs"></div>
 <div id="loading-indicator-beam-wrapper"></div>
 <notifications position="bottom right">
@@ -15,12 +16,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import AppBar from '@/components/controls/AppBar.vue';
+import AppBar from '@/components/navigation/AppBar.vue';
+import MainNav from '@/components/navigation/MainNav.vue';
 
 export default defineComponent({
     name: 'App',
     components: {
         AppBar,
+        MainNav,
     },
     created() {
         this.$store.commit('authentication/setUser');

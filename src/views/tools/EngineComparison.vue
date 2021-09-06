@@ -2,215 +2,217 @@
 <div class="home">
     <LoadingIndicatorBeam v-if="isLoading" />
     <div class="padding-container">
-        <Panel class="flex flex--center-horizontal">
-            <table v-if="this.rawItems.length > 0" class="data-table">
-                <tr data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
-                    <td></td>
-                    <td>
-                        <img class="full-width" :src="items.maneuver.tier1.iconUri" />
-                    </td>
-                    <td>
-                        <img class="full-width" :src="items.maneuver.tier2.iconUri" />
-                    </td>
-                    <td>
-                        <img class="full-width" :src="items.maneuver.tier3.iconUri" />
-                    </td>
-                    <td>
-                        <img class="full-width" :src="items.triangle.tier1.body.iconUri" />
-                    </td>
-                    <td>
-                        <img class="full-width" :src="items.triangle.tier2.body.iconUri" />
-                    </td>
-                    <td>
-                        <img class="full-width" :src="items.triangle.tier3.body.iconUri" />
-                    </td>
-                    <td>
-                        <img class="full-width" :src="items.box.tier1.body.iconUri" />
-                    </td>
-                    <td>
-                        <img class="full-width" :src="items.box.tier2.body.iconUri" />
-                    </td>
-                    <td>
-                        <img class="full-width" :src="items.box.tier3.body.iconUri" />
-                    </td>
-                    <td>
-                        <img class="full-width" src="https://wiki.starbasegame.com/images/c/c6/Starbase_plasma_thruster.png" />
-                    </td>
-                </tr>
-                <tr data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
-                    <td></td>
-                    <td class="text--center">Maneuver</td>
-                    <td class="text--center">Maneuver</td>
-                    <td class="text--center">Maneuver</td>
-                    <td class="text--center">Triangle</td>
-                    <td class="text--center">Triangle</td>
-                    <td class="text--center">Triangle</td>
-                    <td class="text--center">Box</td>
-                    <td class="text--center">Box</td>
-                    <td class="text--center">Box</td>
-                    <td class="text--center">Plasma</td>
-                </tr>
-                <tr data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
-                    <td></td>
-                    <td class="text--center">Tier 1</td>
-                    <td class="text--center">Tier 2</td>
-                    <td class="text--center">Tier 3</td>
-                    <td class="text--center">Tier 1</td>
-                    <td class="text--center">Tier 2</td>
-                    <td class="text--center">Tier 3</td>
-                    <td class="text--center">Tier 1</td>
-                    <td class="text--center">Tier 2</td>
-                    <td class="text--center">Tier 3</td>
-                    <td>
-                        <div class="flex flex--center-horizontal">
-                            <NumberAdjuster v-model="rings"/>
-                        </div>
-                    </td>
-                </tr>
-                <tr data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
-                    <td>{{ $t('mass') }}</td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.mass)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.mass)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.mass)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.mass)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.mass)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.mass)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier1.mass)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier2.mass)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier3.mass)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.plasma.mass)"></td>
-                </tr>
-                <tr data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
-                    <td>{{ $t('electricInput') }}</td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.electricInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.electricInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.electricInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.electricInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.electricInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.electricInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier1.electricInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier2.electricInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier3.electricInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.plasma.electricInput)"></td>
-                </tr>
-                <tr data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
-                    <td>{{ $t('electricInput') }} {{ $t('optimized') }}</td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.electricInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.electricInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.electricInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.electricInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.electricInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.electricInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier1.electricInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier2.electricInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier3.electricInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.plasma.electricInputOptimized)"></td>
-                </tr>
-                <tr data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
-                    <td>{{ $t('propellantInput') }}</td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.propellantInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.propellantInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.propellantInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.propellantInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.propellantInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.propellantInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier1.propellantInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier2.propellantInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier3.propellantInput)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.plasma.propellantInput)"></td>
-                </tr>
-                <tr data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
-                    <td>{{ $t('propellantInput') }} {{ $t('optimized') }}</td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.propellantInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.propellantInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.propellantInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.propellantInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.propellantInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.propellantInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier1.propellantInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier2.propellantInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier3.propellantInputOptimized)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.plasma.propellantInputOptimized)"></td>
-                </tr>
-                <tr data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
-                    <td>{{ $t('thrustPower') }}</td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.thrustPower)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.thrustPower)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.thrustPower)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.thrustPower)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.thrustPower)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.thrustPower)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier1.thrustPower)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier2.thrustPower)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.box.tier3.thrustPower)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(calculated.plasma.thrustPower)"></td>
-                </tr>
-                <tr data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
-                    <td>{{ $t('thrustPerElectricity') }}</td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.maneuver.tier1.thrustPerElectricity)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.maneuver.tier2.thrustPerElectricity)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.maneuver.tier3.thrustPerElectricity)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.triangle.tier1.thrustPerElectricity)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.triangle.tier2.thrustPerElectricity)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.triangle.tier3.thrustPerElectricity)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.box.tier1.thrustPerElectricity)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.box.tier2.thrustPerElectricity)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.box.tier3.thrustPerElectricity)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.plasma.thrustPerElectricity)"></td>
-                </tr>
-                <tr data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
-                    <td>{{ $t('thrustPerPropellant') }}</td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.maneuver.tier1.thrustPerPropellant)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.maneuver.tier2.thrustPerPropellant)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.maneuver.tier3.thrustPerPropellant)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.triangle.tier1.thrustPerPropellant)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.triangle.tier2.thrustPerPropellant)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.triangle.tier3.thrustPerPropellant)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.box.tier1.thrustPerPropellant)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.box.tier2.thrustPerPropellant)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.box.tier3.thrustPerPropellant)"></td>
-                    <td class="text--right" v-html="numberToLocaleString(stats.plasma.thrustPerPropellant)"></td>
-                </tr>
-                <tr data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
-                    <td>{{ $t('smallPropellantTankDepletionTime') }}</td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.maneuver.tier1.propellantTankDeplectionTime.small"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.maneuver.tier2.propellantTankDeplectionTime.small"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.maneuver.tier3.propellantTankDeplectionTime.small"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.triangle.tier1.propellantTankDeplectionTime.small"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.triangle.tier2.propellantTankDeplectionTime.small"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.triangle.tier3.propellantTankDeplectionTime.small"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.box.tier1.propellantTankDeplectionTime.small"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.box.tier2.propellantTankDeplectionTime.small"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.box.tier3.propellantTankDeplectionTime.small"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.plasma.propellantTankDeplectionTime.small"/></td>
-                </tr>
-                <tr data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
-                    <td>{{ $t('mediumPropellantTankDepletionTime') }}</td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.maneuver.tier1.propellantTankDeplectionTime.medium"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.maneuver.tier2.propellantTankDeplectionTime.medium"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.maneuver.tier3.propellantTankDeplectionTime.medium"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.triangle.tier1.propellantTankDeplectionTime.medium"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.triangle.tier2.propellantTankDeplectionTime.medium"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.triangle.tier3.propellantTankDeplectionTime.medium"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.box.tier1.propellantTankDeplectionTime.medium"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.box.tier2.propellantTankDeplectionTime.medium"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.box.tier3.propellantTankDeplectionTime.medium"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.plasma.propellantTankDeplectionTime.medium"/></td>
-                </tr>
-                <tr data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
-                    <td>{{ $t('largePropellantTankDepletionTime') }}</td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.maneuver.tier1.propellantTankDeplectionTime.large"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.maneuver.tier2.propellantTankDeplectionTime.large"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.maneuver.tier3.propellantTankDeplectionTime.large"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.triangle.tier1.propellantTankDeplectionTime.large"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.triangle.tier2.propellantTankDeplectionTime.large"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.triangle.tier3.propellantTankDeplectionTime.large"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.box.tier1.propellantTankDeplectionTime.large"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.box.tier2.propellantTankDeplectionTime.large"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.box.tier3.propellantTankDeplectionTime.large"/></td>
-                    <td class="text--right"><DurationFormatter :seconds="stats.plasma.propellantTankDeplectionTime.large"/></td>
-                </tr>
-            </table>
+        <Panel>
+            <div class="x-scroll">
+                <DataTable v-if="this.rawItems.length > 0">
+                    <DataTableRow>
+                        <DataTableCell></DataTableCell>
+                        <DataTableCell>
+                            <img class="full-width" :src="items.maneuver.tier1.iconUri" />
+                        </DataTableCell>
+                        <DataTableCell>
+                            <img class="full-width" :src="items.maneuver.tier2.iconUri" />
+                        </DataTableCell>
+                        <DataTableCell>
+                            <img class="full-width" :src="items.maneuver.tier3.iconUri" />
+                        </DataTableCell>
+                        <DataTableCell>
+                            <img class="full-width" :src="items.triangle.tier1.body.iconUri" />
+                        </DataTableCell>
+                        <DataTableCell>
+                            <img class="full-width" :src="items.triangle.tier2.body.iconUri" />
+                        </DataTableCell>
+                        <DataTableCell>
+                            <img class="full-width" :src="items.triangle.tier3.body.iconUri" />
+                        </DataTableCell>
+                        <DataTableCell>
+                            <img class="full-width" :src="items.box.tier1.body.iconUri" />
+                        </DataTableCell>
+                        <DataTableCell>
+                            <img class="full-width" :src="items.box.tier2.body.iconUri" />
+                        </DataTableCell>
+                        <DataTableCell>
+                            <img class="full-width" :src="items.box.tier3.body.iconUri" />
+                        </DataTableCell>
+                        <DataTableCell>
+                            <img class="full-width" src="https://wiki.starbasegame.com/images/c/c6/Starbase_plasma_thruster.png" />
+                        </DataTableCell>
+                    </DataTableRow>
+                    <tr data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
+                        <DataTableCell></DataTableCell>
+                        <DataTableCell class="text--center">Maneuver</DataTableCell>
+                        <DataTableCell class="text--center">Maneuver</DataTableCell>
+                        <DataTableCell class="text--center">Maneuver</DataTableCell>
+                        <DataTableCell class="text--center">Triangle</DataTableCell>
+                        <DataTableCell class="text--center">Triangle</DataTableCell>
+                        <DataTableCell class="text--center">Triangle</DataTableCell>
+                        <DataTableCell class="text--center">Box</DataTableCell>
+                        <DataTableCell class="text--center">Box</DataTableCell>
+                        <DataTableCell class="text--center">Box</DataTableCell>
+                        <DataTableCell class="text--center">Plasma</DataTableCell>
+                    </tr>
+                    <DataTableRow>
+                        <DataTableCell></DataTableCell>
+                        <DataTableCell class="text--center">Tier 1</DataTableCell>
+                        <DataTableCell class="text--center">Tier 2</DataTableCell>
+                        <DataTableCell class="text--center">Tier 3</DataTableCell>
+                        <DataTableCell class="text--center">Tier 1</DataTableCell>
+                        <DataTableCell class="text--center">Tier 2</DataTableCell>
+                        <DataTableCell class="text--center">Tier 3</DataTableCell>
+                        <DataTableCell class="text--center">Tier 1</DataTableCell>
+                        <DataTableCell class="text--center">Tier 2</DataTableCell>
+                        <DataTableCell class="text--center">Tier 3</DataTableCell>
+                        <DataTableCell>
+                            <div class="flex flex--center-horizontal">
+                                <NumberAdjuster v-model="rings"/>
+                            </div>
+                        </DataTableCell>
+                    </DataTableRow>
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('mass') }}</DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.mass)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.mass)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.mass)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.mass)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.mass)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.mass)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier1.mass)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier2.mass)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier3.mass)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.mass)"></DataTableCell>
+                    </DataTableRow>
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('electricInput') }}</DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.electricInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.electricInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.electricInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.electricInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.electricInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.electricInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier1.electricInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier2.electricInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier3.electricInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.electricInput)"></DataTableCell>
+                    </DataTableRow>
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('electricInput') }} {{ $t('optimized') }}</DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.electricInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.electricInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.electricInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.electricInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.electricInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.electricInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier1.electricInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier2.electricInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier3.electricInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.electricInputOptimized)"></DataTableCell>
+                    </DataTableRow>
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('propellantInput') }}</DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.propellantInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.propellantInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.propellantInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.propellantInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.propellantInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.propellantInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier1.propellantInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier2.propellantInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier3.propellantInput)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.propellantInput)"></DataTableCell>
+                    </DataTableRow>
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('propellantInput') }} {{ $t('optimized') }}</DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.propellantInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.propellantInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.propellantInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.propellantInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.propellantInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.propellantInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier1.propellantInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier2.propellantInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier3.propellantInputOptimized)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.propellantInputOptimized)"></DataTableCell>
+                    </DataTableRow>
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('thrustPower') }}</DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.thrustPower)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.thrustPower)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.thrustPower)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.thrustPower)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.thrustPower)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.thrustPower)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier1.thrustPower)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier2.thrustPower)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier3.thrustPower)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.thrustPower)"></DataTableCell>
+                    </DataTableRow>
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('thrustPerElectricity') }}</DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.maneuver.tier1.thrustPerElectricity)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.maneuver.tier2.thrustPerElectricity)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.maneuver.tier3.thrustPerElectricity)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.triangle.tier1.thrustPerElectricity)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.triangle.tier2.thrustPerElectricity)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.triangle.tier3.thrustPerElectricity)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.box.tier1.thrustPerElectricity)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.box.tier2.thrustPerElectricity)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.box.tier3.thrustPerElectricity)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.plasma.thrustPerElectricity)"></DataTableCell>
+                    </DataTableRow>
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('thrustPerPropellant') }}</DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.maneuver.tier1.thrustPerPropellant)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.maneuver.tier2.thrustPerPropellant)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.maneuver.tier3.thrustPerPropellant)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.triangle.tier1.thrustPerPropellant)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.triangle.tier2.thrustPerPropellant)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.triangle.tier3.thrustPerPropellant)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.box.tier1.thrustPerPropellant)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.box.tier2.thrustPerPropellant)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.box.tier3.thrustPerPropellant)"></DataTableCell>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.plasma.thrustPerPropellant)"></DataTableCell>
+                    </DataTableRow>
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('smallPropellantTankDepletionTime') }}</DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier1.propellantTankDeplectionTime.small"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier2.propellantTankDeplectionTime.small"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier3.propellantTankDeplectionTime.small"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier1.propellantTankDeplectionTime.small"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier2.propellantTankDeplectionTime.small"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier3.propellantTankDeplectionTime.small"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier1.propellantTankDeplectionTime.small"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier2.propellantTankDeplectionTime.small"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier3.propellantTankDeplectionTime.small"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.plasma.propellantTankDeplectionTime.small"/></DataTableCell>
+                    </DataTableRow>
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('mediumPropellantTankDepletionTime') }}</DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier1.propellantTankDeplectionTime.medium"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier2.propellantTankDeplectionTime.medium"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier3.propellantTankDeplectionTime.medium"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier1.propellantTankDeplectionTime.medium"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier2.propellantTankDeplectionTime.medium"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier3.propellantTankDeplectionTime.medium"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier1.propellantTankDeplectionTime.medium"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier2.propellantTankDeplectionTime.medium"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier3.propellantTankDeplectionTime.medium"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.plasma.propellantTankDeplectionTime.medium"/></DataTableCell>
+                    </DataTableRow>
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('largePropellantTankDepletionTime') }}</DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier1.propellantTankDeplectionTime.large"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier2.propellantTankDeplectionTime.large"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier3.propellantTankDeplectionTime.large"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier1.propellantTankDeplectionTime.large"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier2.propellantTankDeplectionTime.large"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier3.propellantTankDeplectionTime.large"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier1.propellantTankDeplectionTime.large"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier2.propellantTankDeplectionTime.large"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier3.propellantTankDeplectionTime.large"/></DataTableCell>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.plasma.propellantTankDeplectionTime.large"/></DataTableCell>
+                    </DataTableRow>
+                </DataTable>
+            </div>
         </Panel>
     </div>
 </div>
@@ -226,6 +228,9 @@ import LoadingIndicatorBeam from '@/components/loading/LoadingIndicatorBeam.vue'
 import NumberAdjuster from '@/components/controls/NumberAdjuster.vue';
 import { numberToLocaleString } from '@/helpers';
 import DurationFormatter from '@/components/formatters/DurationFormatter.vue';
+import DataTable from '@/components/layout/dataTable/DataTable.vue';
+import DataTableRow from '@/components/layout/dataTable/DataTableRow.vue';
+import DataTableCell from '@/components/layout/dataTable/DataTableCell.vue';
 
 interface Data {
     isLoading: boolean;
@@ -306,6 +311,9 @@ function calcOptimizedInput(input: number, bonus: number): number {
 export default defineComponent({
     name: 'EngineComparison',
     components: {
+        DataTable,
+        DataTableRow,
+        DataTableCell,
         DurationFormatter,
         LoadingIndicatorBeam,
         NumberAdjuster,

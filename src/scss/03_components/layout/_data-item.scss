@@ -5,6 +5,8 @@
     align-items: center;
     display: flex;
     min-height: $input-height;
+    white-space: nowrap;
+    flex-wrap: wrap;
 
     --aug-border-bg: var(--color-secondary);
     --aug-border-left: 2px;
