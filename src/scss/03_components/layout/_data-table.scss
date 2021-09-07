@@ -10,8 +10,10 @@
         width: auto;
     }
     td {
-        padding: $spacing / 2 $spacing;
+        padding: math.div($spacing, 2) $spacing;
         white-space: nowrap;
+
+
     }
     tr {
         background: var(--color-secondary-darken-1-transparent);
@@ -29,6 +31,21 @@
             td {
                 background: var(--color-primary-darken-1-transparent);
             }
+        }
+    }
+
+    &__cell {
+        &--success {
+            color: var(--color-success) !important;
+        }
+        &--warning {
+            color: var(--color-warning) !important;
+        }
+        &--error {
+            color: var(--color-error) !important;
+        }
+        &--info {
+            color: var(--color-info) !important;
         }
     }
 }

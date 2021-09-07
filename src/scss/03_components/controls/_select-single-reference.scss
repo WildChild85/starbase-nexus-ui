@@ -3,7 +3,7 @@
 .select-single-reference {
     &__label {
         display: inline-block;
-        padding: $spacing / 4 $spacing;
+        padding: math.div($spacing, 4) $spacing;
     }
 
     &__input {

@@ -51,6 +51,10 @@ export default defineComponent({
         navItems(): NavItem[] {
             const navItems = [
                 {
+                    to: { name: 'home' },
+                    label: this.$t('Home'),
+                },
+                {
                     label: this.$t('tools'),
                 },
                 {

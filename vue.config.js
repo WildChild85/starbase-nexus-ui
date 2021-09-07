@@ -23,24 +23,24 @@ module.exports = {
         appleMobileWebAppCapable: 'yes',
         appleMobileWebAppStatusBarStyle: 'white',
 
-        // iconPaths: {
-        //     faviconSVG: 'https://res.cloudinary.com/as-good-as-pros-sports-gmbh/image/upload/v1613921166/agap-coding-01_n84ido.svg',
-        //     favicon32: 'https://res.cloudinary.com/as-good-as-pros-sports-gmbh/image/upload/v1613921166/agap-coding-01_256_ejk4l3.png',
-        //     favicon16: 'https://res.cloudinary.com/as-good-as-pros-sports-gmbh/image/upload/v1613921166/agap-coding-01_256_ejk4l3.png',
-        //     appleTouchIcon: 'https://res.cloudinary.com/as-good-as-pros-sports-gmbh/image/upload/v1613921166/agap-coding-01_256_ejk4l3.png',
-        //     maskIcon: 'https://res.cloudinary.com/as-good-as-pros-sports-gmbh/image/upload/v1613921166/agap-coding-01_n84ido.svg',
-        //     msTileImage: 'https://res.cloudinary.com/as-good-as-pros-sports-gmbh/image/upload/v1613921166/agap-coding-01_256_ejk4l3.png',
-        // },
+        iconPaths: {
+            faviconSVG: 'https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/nexus/Starbase_Nexus_Logo_animated.svg',
+            favicon32: 'https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/nexus/Starbase_Nexus_Logo.png',
+            favicon16: 'https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/nexus/Starbase_Nexus_Logo.png',
+            appleTouchIcon: 'https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/nexus/Starbase_Nexus_Logo.png',
+            maskIcon: 'https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/nexus/Starbase_Nexus_Logo_animated.svg',
+            msTileImage: 'https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/nexus/Starbase_Nexus_Logo.png',
+        },
 
-        // manifestOptions: {
-        //     icons: [
-        //         {
-        //             src: 'https://res.cloudinary.com/as-good-as-pros-sports-gmbh/image/upload/v1613921166/agap-coding-01_256_ejk4l3.png',
-        //             sizes: '256x256',
-        //             type: 'image/png',
-        //             purpose: 'any maskable',
-        //         },
-        //     ],
-        // },
+        manifestOptions: {
+            icons: [
+                {
+                    src: 'https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/nexus/Starbase_Nexus_Logo.png',
+                    sizes: '256x256',
+                    type: 'image/png',
+                    purpose: 'any maskable',
+                },
+            ],
+        },
     },
 };

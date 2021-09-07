@@ -14,6 +14,12 @@
     </Panel>
     <Panel :noPadding="true" :fitToScreen="true" class="margin-top">
         <div class="flex flex--vertical full-height">
+            <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/maps/25go7x02krl71.png')`}"></div>
+            <div div class="credit-bar">Credit: RustyDawwwg</div>
+        </div>
+    </Panel>
+    <Panel :noPadding="true" :fitToScreen="true" class="margin-top">
+        <div class="flex flex--vertical full-height">
             <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/maps/elysium_belt.png')`}"></div>
             <div div class="credit-bar">Credit: Arch#6267</div>
         </div>

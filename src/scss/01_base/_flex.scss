@@ -6,6 +6,11 @@
     &--wrap {
         flex-wrap: wrap;
     }
+    &--wrap-lg {
+        @media (max-width: $screen-lg) {
+            flex-wrap: wrap;
+        }
+    }
     &--end {
         justify-content: flex-end;
     }
@@ -18,10 +23,16 @@
     &--center-vertical {
         align-items: center;
     }
+    &--stretch-vertical {
+        align-items: stretch;
+    }
     &--space-between-children {
+        margin-left: -(math.div($spacing, 2));
+        margin-right: -(math.div($spacing, 2));
+
         .flex__item {
-            padding-left: $spacing / 2;
-            padding-right: $spacing / 2;
+            margin-left: math.div($spacing, 2);
+            margin-right: math.div($spacing, 2);
         }
     }
     &--full-width {
@@ -30,12 +41,24 @@
     &--full-height {
         height: 100%;
     }
+    &--half-padding {
+        padding: 0 math.div($spacing, 2);
+    }
     &__item {
         &--grow {
             flex-grow: 1;
         }
         &--noshrink {
             flex-shrink: 0;
+        }
+
+        &--w-50-lg {
+            width: 50%;
+
+            @media (max-width: $screen-lg) {
+                margin-top: $spacing;
+                width: 100%;
+            }
         }
     }
 }

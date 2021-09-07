@@ -6,7 +6,7 @@
     color: var(--color-text);
     background: var(--color-primary-darken-1-transparent);
     backdrop-filter: blur(15px);
-    padding: $spacing / 2 $spacing;
+    padding: math.div($spacing, 2) $spacing;
 
     border-left-color: var(--color-info);
   

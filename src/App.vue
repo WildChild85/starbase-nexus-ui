@@ -1,8 +1,8 @@
 <template>
-<video autoplay="" muted="" loop="" id="bg-video">
+<!-- <video autoplay="" muted="" loop="" id="bg-video">
     <source src="https://starbasegame.com/videos/background.webm" type="video/mp4">
     Your browser does not support HTML5 video.
-</video>
+</video> -->
 <div id="page">
     <router-view/>
 </div>

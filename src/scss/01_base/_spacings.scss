@@ -7,7 +7,7 @@
         margin-bottom: $spacing * 2 !important;
     }
     &--f2 {
-        margin-bottom: $spacing / 2 !important;
+        margin-bottom: math($spacing, 2) !important;
     }
     &--no {
         margin-bottom: 0 !important;
@@ -20,7 +20,7 @@
         margin-left: $spacing * 2 !important;
     }
     &--f2 {
-        margin-left: $spacing / 2 !important;
+        margin-left: math.div($spacing, 2) !important;
     }
     &--no {
         margin-left: 0 !important;
@@ -33,7 +33,7 @@
         margin-right: $spacing * 2 !important;
     }
     &--f2 {
-        margin-right: $spacing / 2 !important;
+        margin-right: math.div($spacing, 2) !important;
     }
     &--no {
         margin-right: 0 !important;
@@ -46,7 +46,7 @@
         margin-top: $spacing * 2 !important;
     }
     &--f2 {
-        margin-top: $spacing / 2 !important;
+        margin-top: math.div($spacing, 2) !important;
     }
     &--no {
         margin-top: 0 !important;
@@ -60,7 +60,7 @@
         padding-bottom: $spacing * 2 !important;
     }
     &--f2 {
-        padding-bottom: $spacing / 2 !important;
+        padding-bottom: math.div($spacing, 2) !important;
     }
     &--no {
         padding-bottom: 0 !important;
@@ -73,7 +73,7 @@
         padding-left: $spacing * 2 !important;
     }
     &--f2 {
-        padding-left: $spacing / 2 !important;
+        padding-left: math.div($spacing, 2) !important;
     }
     &--no {
         padding-left: 0 !important;
@@ -86,7 +86,7 @@
         padding-right: $spacing * 2 !important;
     }
     &--f2 {
-        padding-right: $spacing / 2 !important;
+        padding-right: math.div($spacing, 2) !important;
     }
     &--no {
         padding-right: 0 !important;
@@ -99,7 +99,7 @@
         padding-top: $spacing * 2 !important;
     }
     &--f2 {
-        padding-top: $spacing / 2 !important;
+        padding-top: math.div($spacing, 2) !important;
     }
     &--no {
         padding-top: 0 !important;
