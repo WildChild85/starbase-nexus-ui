@@ -3,10 +3,39 @@
 .panel {
     background: var(--color-primary-darken-1-transparent);
     backdrop-filter: blur(15px);
+    overflow: hidden;
     padding: $spacing * 2 $spacing;
 
     --aug-border-bg: var(--color-primary);
     --aug-border-all: 2px;
     // --aug-bl1: 7px;
     // --aug-tr1: 7px;
+
+    &__actions {
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        margin-top: $spacing;
+        position: sticky;
+
+        & > * {
+            margin-left: $spacing;
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+
+    &--no-padding {
+        padding: 0;
+    }
+
+    &--fit-to-screen {
+        height: calc(100vh - #{$input-height} - #{$spacing * 2});
+
+        & > * {
+            height: calc(100vh - #{$input-height} - #{$spacing * 2});
+        }
+    }
 }

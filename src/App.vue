@@ -3,21 +3,27 @@
     <source src="https://starbasegame.com/videos/background.webm" type="video/mp4">
     Your browser does not support HTML5 video.
 </video>
-<router-view/>
+<div id="page">
+    <router-view/>
+</div>
+<AppBar />
+<MainNav />
 <div id="dialogs"></div>
 <div id="loading-indicator-beam-wrapper"></div>
+<notifications position="bottom right">
+</notifications>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { JwtUser } from '@/interfaces/identity/user';
+import AppBar from '@/components/navigation/AppBar.vue';
+import MainNav from '@/components/navigation/MainNav.vue';
 
 export default defineComponent({
     name: 'App',
-    computed: {
-        user(): JwtUser | null {
-            return this.$store.getters['authentication/user'];
-        },
+    components: {
+        AppBar,
+        MainNav,
     },
     created() {
         this.$store.commit('authentication/setUser');

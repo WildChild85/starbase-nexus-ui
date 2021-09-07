@@ -1,0 +1,34 @@
+@import "../../01_base/variables";
+
+.data-table {
+    // border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+
+    img {
+        height: 100px;
+        width: auto;
+    }
+    td {
+        padding: $spacing / 2 $spacing;
+        white-space: nowrap;
+    }
+    tr {
+        background: var(--color-secondary-darken-1-transparent);
+        margin: 0 $spacing;
+
+        --aug-border-bg: var(--color-secondary);
+        --aug-border-left: 2px;
+        --aug-border-right: 2px;
+        --aug-border-top: .1px;
+        --aug-border-bottom: .11px;
+        --aug-br1: 7px;
+        --aug-tl1: 7px;
+
+        &:nth-child(odd) {
+            td {
+                background: var(--color-primary-darken-1-transparent);
+            }
+        }
+    }
+}

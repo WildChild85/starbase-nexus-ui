@@ -1,0 +1,75 @@
+@import "../../01_base/variables";
+
+.select-single-reference {
+    &__label {
+        display: inline-block;
+        padding: $spacing / 4 $spacing;
+    }
+
+    &__input {
+        background: var(--color-secondary-darken-1);
+        box-sizing: border-box;
+        height: $input-height;
+        overflow: hidden;
+
+        --aug-border-bg: var(--color-secondary);
+        --aug-border-all: 2px;
+        --aug-bl1: 7px;
+        --aug-tl1: 7px;
+        --aug-tr1: 7px;
+    }
+
+    &__value-wrapper {
+        display: flex;
+    }
+    &__value {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        height: $input-height;
+        flex-grow: 1;
+        padding: 0 $spacing;
+        text-overflow: ellipsis;
+
+        &:hover {
+            background: var(--focus-glow);
+        }
+    }
+    &__delete-value {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        flex-shrink: 0;
+        height: $input-height;
+        justify-content: center;
+        width: $input-height;
+
+        &:hover {
+            background: var(--focus-glow);
+        }
+    }
+
+    &__search {
+        padding: $spacing;
+    }
+
+    &--expanded {
+        .select-single-reference__value {
+            &:hover {
+                cursor: default;
+                background: transparent;
+            }
+        }
+        .select-single-reference__input {
+            background: var(--color-primary-darken-1);
+            height: auto;
+
+            --aug-border-bg: var(--color-primary);
+        }
+    }
+
+    &__error {
+        color: var(--color-error);
+        padding: 0 $spacing;
+    }
+}

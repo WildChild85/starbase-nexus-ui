@@ -3,8 +3,8 @@ $input-height: 50px;
 
 $spacing: 20px;
 
-$z-index-app-header: 10;
-$z-index-nav-bar: 10;
+$z-index-app-header: 9;
+$z-index-main-nav: 10;
 $z-index-sticky: 2;
 $z-index-active-control: 3;
 $z-index-dialogs: 11;
@@ -16,7 +16,7 @@ $z-index-loading-indicator: 12;
     --color-primary-darken-1-transparent: hsla(183, 94%, 5%, 0.7);
     --color-secondary: hsl(247, 55%, 59%);
     --color-secondary-darken-1: hsl(247, 55%, 5%);
-    --color-secondary-darken-1: hsla(247, 55%, 5%, 0.7);
+    --color-secondary-darken-1-transparent: hsla(247, 55%, 5%, 0.7);
 
     --color-background: hsl(0, 0%, 9%);
     --color-text: hsl(0, 0%, 95%);
@@ -26,6 +26,10 @@ $z-index-loading-indicator: 12;
     --color-disabled: hsl(0, 0%, 48%);
     --color-info: hsl(214, 100%, 56%);
     --color-warning: hsl(39, 100%, 56%);
+
+    --color-tier-1: rgb(11, 66, 247);
+    --color-tier-2: rgb(231, 17, 17);
+    --color-tier-3: rgb(255, 240, 31);
 
     --font-family-default: "Manrope", sans-serif;
 
@@ -42,4 +46,9 @@ $z-index-loading-indicator: 12;
     --spacing: $spacing;
 
     --focus-glow: linear-gradient(0deg, var(--color-secondary) 0%, var(--color-secondary-darken-1) 35%, var(--color-secondary-darken-1) 75%, var(--color-secondary) 100%);
+    --focus-glow-info: linear-gradient(0deg, var(--color-info) 0%, var(--color-secondary-darken-1) 35%, var(--color-secondary-darken-1) 75%, var(--color-info) 100%);
+    --focus-glow-success: linear-gradient(0deg, var(--color-success) 0%, var(--color-secondary-darken-1) 35%, var(--color-secondary-darken-1) 75%, var(--color-success) 100%);
+    --focus-glow-warning: linear-gradient(0deg, var(--color-warning) 0%, var(--color-secondary-darken-1) 35%, var(--color-secondary-darken-1) 75%, var(--color-warning) 100%);
+    --focus-glow-error: linear-gradient(0deg, var(--color-error) 0%, var(--color-secondary-darken-1) 35%, var(--color-secondary-darken-1) 75%, var(--color-error) 100%);
+    --focus-glow-transparent: linear-gradient(0deg, var(--color-secondary) 0%, transparent 35%, transparent 75%, var(--color-secondary) 100%);
 }
