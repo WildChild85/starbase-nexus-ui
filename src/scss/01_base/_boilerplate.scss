@@ -33,11 +33,11 @@ h1, h2, h3 {
     height: 6px;
     width: 6px;
     cursor: pointer;
-  }
+}
   
-  ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     background: var(--color-primary);
-  }
+}
 
 #bg-video {
     position: fixed;
@@ -131,7 +131,7 @@ h1, h2, h3 {
 }
 
 
-margin-top {
+.margin-top {
     margin-top: $spacing !important;
   
     &--x2 {
@@ -160,7 +160,7 @@ margin-top {
 }
 
 
-padding-left {
+.padding-left {
     padding-left: $spacing !important;
   
     &--x2 {
