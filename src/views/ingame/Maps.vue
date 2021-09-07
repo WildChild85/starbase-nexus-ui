@@ -2,25 +2,25 @@
 <div class="padding-container">
     <Panel :noPadding="true" :fitToScreen="true">
         <div class="flex flex--vertical full-height">
-            <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/maps/Origin_Layout.png')`}"></div>
+            <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://ik.imagekit.io/mcmt38yqgcy/app-assets/maps/Origin_Layout_4pKF_Zo4F.png?updatedAt=1631036269127')`}"></div>
             <div div class="credit-bar">Credit: unknown (please contact WildChild85#2691)</div>
         </div>
     </Panel>
     <Panel :noPadding="true" :fitToScreen="true" class="margin-top">
         <div class="flex flex--vertical full-height">
-            <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/maps/eos_belt.png')`}"></div>
+            <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://ik.imagekit.io/mcmt38yqgcy/app-assets/maps/eos_belt_fZtGLZpokhs.png?updatedAt=1631036270662')`}"></div>
             <div div class="credit-bar">Credit: Arch#6267</div>
         </div>
     </Panel>
     <Panel :noPadding="true" :fitToScreen="true" class="margin-top">
         <div class="flex flex--vertical full-height">
-            <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/maps/25go7x02krl71.png')`}"></div>
+            <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://ik.imagekit.io/mcmt38yqgcy/app-assets/maps/25go7x02krl71_QDsCbqPaO.png?updatedAt=1631036270507')`}"></div>
             <div div class="credit-bar">Credit: RustyDawwwg</div>
         </div>
     </Panel>
     <Panel :noPadding="true" :fitToScreen="true" class="margin-top">
         <div class="flex flex--vertical full-height">
-            <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/maps/elysium_belt.png')`}"></div>
+            <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://ik.imagekit.io/mcmt38yqgcy/app-assets/maps/elysium_belt_8d5PmCx4f.png?updatedAt=1631036270213')`}"></div>
             <div div class="credit-bar">Credit: Arch#6267</div>
         </div>
     </Panel>

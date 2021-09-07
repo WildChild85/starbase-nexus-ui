@@ -10,6 +10,27 @@
         :required="true"
         :errors="errors.name"
     />
+    <TextField
+        class="margin-top"
+        v-model.trim="properties.iconUriRaw"
+        :label="$t('iconUriRaw')"
+        :readonly="isLoading"
+        :errors="errors.iconUriRaw"
+    />
+    <TextField
+        class="margin-top"
+        v-model.trim="properties.iconUriRefined"
+        :label="$t('iconUriRefined')"
+        :readonly="isLoading"
+        :errors="errors.iconUriRefined"
+    />
+    <TextField
+        class="margin-top"
+        v-model.trim="properties.iconUriOreChunk"
+        :label="$t('iconUriOreChunk')"
+        :readonly="isLoading"
+        :errors="errors.iconUriOreChunk"
+    />
     <TextArea
         class="margin-top"
         v-model.trim="properties.description"

@@ -3,7 +3,6 @@
 .panel {
     background: var(--color-primary-darken-1-transparent);
     backdrop-filter: blur(15px);
-    overflow: hidden;
     padding: $spacing * 2 $spacing;
 
     --aug-border-bg: var(--color-primary);
