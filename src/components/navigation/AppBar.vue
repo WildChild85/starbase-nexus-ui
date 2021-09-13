@@ -2,7 +2,7 @@
 <div class="app-bar" data-augmented-ui="b-clip-x border">
     <button class="app-bar__btn" @click="openMainNav"><MenuIconOutline class="svg-icon"/></button>
     <div class="app-bar__spacer"></div>
-
+    <div class="app-bar__views">{{ views }}</div>
     <div class="app-bar__user" v-if="user">
         <div class="app-bar__user-avatar" data-augmented-ui="tl-clip tr-clip-inset br-clip bl-clip-inset border" :style="userAvatarStyle"></div>
         <div class="app-bar__user-name">{{ user.userName }}</div>
@@ -25,6 +25,9 @@ export default defineComponent({
         },
         isAdmin(): boolean {
             return this.$store.getters['authentication/hasOneRoles'](ROLE_ADMINISTRATOR);
+        },
+        views(): number {
+            return this.$store.getters['views/views'];
         },
         userAvatarStyle(): Record<string, string> {
             if (!this.user) {

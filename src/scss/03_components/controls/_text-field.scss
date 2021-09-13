@@ -25,6 +25,7 @@
             font-size: inherit;
             height: $input-height;
             line-height: $input-height;
+            min-width: $input-height * 3;
             padding: 0 $spacing;
             outline: none;
             width: 100%;
@@ -54,6 +55,14 @@
         .text-field__input, .text-area__input {
             margin-bottom: math.div($spacing, 4);
             --aug-border-bg: var(--color-error);
+        }
+    }
+    &--code {
+        input, textarea {
+            font-family: var(--font-family-mono) !important;
+        }
+        textarea {
+            min-height: $line-height-default * 20 + $spacing;
         }
     }
 }

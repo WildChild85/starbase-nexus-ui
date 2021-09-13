@@ -11,6 +11,7 @@
                 :value="modelValue"
                 :disabled="disabled"
                 :readonly="readonly"
+                spellcheck="false"
                 @input="emitInput"
                 @focus="emitFocus"
                 @blur="emitBlur"
@@ -56,6 +57,10 @@ export default defineComponent({
             type: Boolean,
             default: false,
         },
+        isCode: {
+            type: Boolean,
+            default: false,
+        },
         errors: {
             type: Array,
             default: (): string[] => [],
@@ -65,6 +70,15 @@ export default defineComponent({
         id: '',
         isFocused: false,
     }),
+    watch: {
+        modelValue(): void {
+            const target = document.getElementById(this.id) as HTMLElement;
+            if (target) {
+                // target.style.cssText = 'height:auto';
+                target.style.cssText = `height:${target.scrollHeight}px`;
+            }
+        },
+    },
     computed: {
         classes(): Record<string, boolean> {
             return {
@@ -72,14 +86,13 @@ export default defineComponent({
                 'text-area--readonly': this.readonly,
                 'text-area--error': this.errors.length > 0,
                 'text-area--focused': this.isFocused,
+                'text-area--code': this.isCode,
             };
         },
     },
     methods: {
         emitInput(event: InputEvent): void {
             const target = event.target as HTMLInputElement;
-            target.style.cssText = 'height:auto';
-            target.style.cssText = `height:${target.scrollHeight}px`;
             this.$emit('update:modelValue', target.value);
         },
         emitFocus(event: Event) {

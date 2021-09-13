@@ -3,7 +3,7 @@
     <LoadingIndicatorBeam v-if="isLoading" />
     <div class="padding-container">
         <Panel>
-            <div class="flex flex--end">
+            <div class="flex flex--end flex--wrap">
                 <TextField v-model.trim="searchTerm" :placeholder="$t('search')" @keyup.enter="refreshData"/>
                 <Button class="margin-left" :loading="isLoading" @click="refreshData">Refresh</Button>
                 <Button class="margin-left" @click="showCreate" v-if="isModerator">Create</Button>
@@ -123,10 +123,21 @@ export default defineComponent({
             }
             this.isLoading = false;
         },
+        async fixMaterials(): Promise<void> {
+            this.materials.forEach(async ({ id, name }) => {
+                await materialService.patch(id, {
+                    iconUriRaw: `https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/ingame/materials/${name}_raw.png`,
+                    iconUriRefined: `https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/ingame/materials/${name}_refined.png`,
+                    iconUriOreChunk: `https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/ingame/materials/${name}_ore-chunk.png`,
+                });
+            });
+        },
     },
     created(): void {
         this.setPageTitle([this.$t('materials'), this.$t('ingame')]);
         this.refreshData();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (window as any).fixMaterials = this.fixMaterials;
     },
 });
 </script>

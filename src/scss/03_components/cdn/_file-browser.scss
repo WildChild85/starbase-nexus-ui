@@ -1,0 +1,80 @@
+@import "../../01_base/variables";
+
+.file-explorer {
+    &__breadcrumb {
+        display: flex;
+        flex-wrap: wrap;
+
+        & > * {
+            margin: 0 math.div($spacing, 4);
+        }
+    }
+
+    &__folders, &__files {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: $spacing;
+    }
+    &__folder, &__file {
+        background: var(--color-secondary-darken-1-transparent);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        box-sizing: border-box;
+        cursor: pointer;
+        font-size: var(--font-size-small);
+        height: $input-height * 2;
+        margin: math.div($spacing, 4);
+        padding: $spacing;
+        text-overflow: ellipsis;
+        width: $input-height * 5;
+
+        --aug-border-bg: var(--color-secondary);
+        --aug-border-left: 2px;
+        --aug-border-right: 2px;
+        --aug-border-top: .1px;
+        --aug-border-bottom: .1px;
+        --aug-br1: 7px;
+        --aug-tl1: 7px;
+
+        &:hover {
+            --aug-border-bg: var(--color-primary);
+            --aug-border-left: 3px;
+            --aug-border-right: 3px;
+            --aug-border-top: .5px;
+            --aug-border-bottom: .5px;
+        }
+    }
+}
+
+.file-upload-input {
+    align-items: center;
+    background: var(--color-secondary-darken-1);
+    cursor: pointer;
+    display: flex;
+    height: $input-height;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+
+    --aug-border-bg: var(--color-secondary);
+    --aug-border-all: 2px;
+    --aug-bl1: 7px;
+    --aug-tl1: 7px;
+    --aug-tr1: 7px;
+
+    input {
+        cursor: pointer;
+        display: block;
+        height: 100%;
+        left: 0;
+        opacity: 0;
+        top: 0;
+        position: absolute;
+        width: 100%;
+    }
+
+    &:hover {
+        background: var(--focus-glow);
+    }
+}

@@ -1,0 +1,62 @@
+@import "../../01_base/variables";
+
+.select-file {
+    &__label {
+        display: inline-block;
+        padding: math.div($spacing, 4) $spacing;
+    }
+    &__selected {
+        align-items: center;
+        background: var(--color-secondary-darken-1);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        box-sizing: border-box;
+        cursor: pointer;
+        display: flex;
+        font-size: var(--font-size-small);
+        justify-content: center;
+        height: $input-height * 3;
+        max-width: $input-height * 4;
+        padding: $spacing;
+        text-align: center;
+
+
+        --aug-border-bg: var(--color-secondary);
+        --aug-border-all: 2px;
+        --aug-bl1: 7px;
+        --aug-br1: 7px;
+        --aug-tl1: 7px;
+        --aug-tr1: 7px;
+
+        --aug-t-extend1: 30%;
+        --aug-t1: 7px;
+
+        --aug-l-extend1: 30%;
+        --aug-l1: 7px;
+
+        --aug-r-extend1: 30%;
+        --aug-r1: 7px;
+
+        --aug-b-extend1: 30%;
+        --aug-b1: 7px;
+
+        &:hover {
+            --aug-border-bg: var(--color-primary);
+
+            .select-file__remove {
+                align-items: center;
+                background: var(--color-secondary-darken-1-transparent);
+                color: var(--text-color);
+                display: flex;
+                height: 100%;
+                justify-content: center;
+                padding: $spacing;
+                width: 100%;
+            }
+        }
+    }
+    &__remove {
+        display: none;
+    }
+}

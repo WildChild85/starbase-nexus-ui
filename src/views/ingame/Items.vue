@@ -3,7 +3,7 @@
     <LoadingIndicatorBeam v-if="isLoading" />
     <div class="padding-container">
         <Panel>
-            <div class="flex flex--end">
+            <div class="flex flex--end flex--wrap">
                 <TextField v-model.trim="searchTerm" :placeholder="$t('search')" @keyup.enter="refreshData"/>
                 <Button class="margin-left" :loading="isLoading" @click="refreshData">Refresh</Button>
                 <Button class="margin-left" @click="showCreate" v-if="isModerator">Create</Button>

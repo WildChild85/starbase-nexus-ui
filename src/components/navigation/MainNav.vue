@@ -55,6 +55,10 @@ export default defineComponent({
                     label: this.$t('Home'),
                 },
                 {
+                    to: { name: 'cdn_file-explorer' },
+                    label: this.$t('fileExplorer'),
+                },
+                {
                     label: this.$t('tools'),
                 },
                 {
@@ -64,6 +68,13 @@ export default defineComponent({
                 {
                     to: { name: 'tools_engine-comparison' },
                     label: this.$t('engineComparison'),
+                },
+                {
+                    label: this.$t('Yolol'),
+                },
+                {
+                    to: { name: 'yolol_yolol-projects' },
+                    label: this.$t('yololProjects'),
                 },
                 {
                     label: this.$t('dataManagement'),

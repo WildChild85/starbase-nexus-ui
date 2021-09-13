@@ -1,16 +1,19 @@
 import '@fontsource/manrope';
+import '@fontsource/source-code-pro';
 import Notifications from '@kyvg/vue3-notification';
 import { createApp } from 'vue';
 import {
     PencilIcon as PencilIconSolid,
     ChevronRightIcon as ChevronRightIconSolid,
     XIcon as XIconSolid,
+    PencilAltIcon as PencilAltIconSolid,
 } from '@heroicons/vue/solid';
 import {
     ClipboardCopyIcon as ClipboardCopyIconOutline,
     ExternalLinkIcon as ExternalLinkIconOutline,
     MenuIcon as MenuIconOutline,
 } from '@heroicons/vue/outline';
+
 import App from '@/App.vue';
 import router from '@/router';
 import store from '@/store';
@@ -27,4 +30,5 @@ createApp(App)
     .component('ClipboardCopyIconOutline', ClipboardCopyIconOutline)
     .component('ExternalLinkIconOutline', ExternalLinkIconOutline)
     .component('MenuIconOutline', MenuIconOutline)
+    .component('PencilAltIconSolid', PencilAltIconSolid)
     .mount('#app');

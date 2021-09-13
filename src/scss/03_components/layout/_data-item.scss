@@ -4,9 +4,10 @@
     background: var(--color-secondary-darken-1-transparent);
     align-items: center;
     display: flex;
-    min-height: $input-height;
-    white-space: nowrap;
     flex-wrap: wrap;
+    min-height: $input-height;
+    position: relative;
+    white-space: nowrap;
 
     --aug-border-bg: var(--color-secondary);
     --aug-border-left: 2px;
@@ -26,10 +27,12 @@
         background-size: contain;
         flex-shrink: 0;
         height: $input-height;
+        position: relative;
         width: $input-height;
     }
     &__name, &__property {
         padding: 0 $spacing;
+        position: relative;
     }
     &__property-label {
         color: var(--color-disabled);
@@ -50,6 +53,7 @@
         flex-shrink: 0;
         height: $input-height;
         justify-content: center;
+        position: relative;
         width: $input-height;
 
         &--no-icon {
@@ -73,5 +77,27 @@
         &:hover {
             background: var(--focus-glow-transparent);
         }
+    }
+
+    &__progress {
+        background: var(--color-info);
+        height: 100%;
+        left: 0;
+        opacity: 0.5;
+        position: absolute;
+        top: 0;
+    }
+
+    &--info {
+        --aug-border-bg: var(--color-info);
+    }
+    &--success {
+        --aug-border-bg: var(--color-success);
+    }
+    &--warning {
+        --aug-border-bg: var(--color-warning);
+    }
+    &--error {
+        --aug-border-bg: var(--color-error);
     }
 }

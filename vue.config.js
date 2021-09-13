@@ -24,18 +24,18 @@ module.exports = {
         appleMobileWebAppStatusBarStyle: 'white',
 
         iconPaths: {
-            faviconSVG: 'https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/nexus/Starbase_Nexus_Logo_animated.svg',
-            favicon32: 'https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/nexus/Starbase_Nexus_Logo.png',
-            favicon16: 'https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/nexus/Starbase_Nexus_Logo.png',
-            appleTouchIcon: 'https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/nexus/Starbase_Nexus_Logo.png',
-            maskIcon: 'https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/nexus/Starbase_Nexus_Logo_animated.svg',
-            msTileImage: 'https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/nexus/Starbase_Nexus_Logo.png',
+            faviconSVG: 'https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/app-assets/Starbase_Nexus_Logo_animated.svg',
+            favicon32: 'https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/app-assets/Starbase_Nexus_Logo.png',
+            favicon16: 'https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/app-assets/Starbase_Nexus_Logo.png',
+            appleTouchIcon: 'https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/app-assets/Starbase_Nexus_Logo.png',
+            maskIcon: 'https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/app-assets/Starbase_Nexus_Logo_animated.svg',
+            msTileImage: 'https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/app-assets/Starbase_Nexus_Logo.png',
         },
 
         manifestOptions: {
             icons: [
                 {
-                    src: 'https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/nexus/Starbase_Nexus_Logo.png',
+                    src: 'https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/app-assets/Starbase_Nexus_Logo.png',
                     sizes: '256x256',
                     type: 'image/png',
                     purpose: 'any maskable',

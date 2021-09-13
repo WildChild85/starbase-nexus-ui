@@ -1,6 +1,7 @@
 @import "../../01_base/variables";
 
 .dialog {
+    box-sizing: border-box;
     left: 0;
     position: fixed;
     top: 0;
@@ -17,5 +18,12 @@
         padding: $spacing * 2;
         position: relative;
         width: 50vw;
+    }
+
+    &--full-width {
+        .dialog__content {
+            max-width: none;
+            width: 100%;
+        }
     }
 }

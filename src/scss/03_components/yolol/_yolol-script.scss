@@ -1,0 +1,35 @@
+@import "../../01_base/variables";
+
+.yolol-script {
+    &__code {
+        background: var(--color-secondary-darken-1);
+        overflow-x: hidden;
+        overflow-y: auto;
+        margin: $spacing 0;
+        padding: 0 $spacing;
+        white-space: nowrap;
+
+        --aug-border-bg: var(--color-secondary);
+        --aug-border-all: 2px;
+        --aug-bl1: 7px;
+        --aug-br1: 7px;
+        --aug-tl1: 7px;
+        --aug-tr1: 7px;
+
+        --aug-t-extend1: 30%;
+        --aug-t1: 7px;
+
+        --aug-l-extend1: 30%;
+        --aug-l1: 7px;
+
+        --aug-r-extend1: 30%;
+        --aug-r1: 7px;
+
+        --aug-b-extend1: 30%;
+        --aug-b1: 7px;
+    }
+    &__last-update {
+        margin-top: $spacing;
+        text-align: right;
+    }
+}

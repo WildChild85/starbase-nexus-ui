@@ -3,7 +3,9 @@
 .panel {
     background: var(--color-primary-darken-1-transparent);
     backdrop-filter: blur(15px);
+    box-sizing: border-box;
     padding: $spacing * 2 $spacing;
+    width: 100%;
 
     --aug-border-bg: var(--color-primary);
     --aug-border-all: 2px;

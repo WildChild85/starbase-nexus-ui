@@ -45,6 +45,8 @@
         padding: 0 math.div($spacing, 2);
     }
     &__item {
+        box-sizing: border-box;
+
         &--grow {
             flex-grow: 1;
         }

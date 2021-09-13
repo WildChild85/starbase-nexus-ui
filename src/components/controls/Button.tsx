@@ -44,6 +44,7 @@ export default defineComponent({
                 'button--secondary': this.type === 'secondary',
                 'button--success': this.type === 'success',
                 'button--warning': this.type === 'warning',
+                'button--error': this.type === 'error',
                 'button--info': this.type === 'info',
                 'button--loading': this.loading,
                 'button--disabled': this.disabled,

@@ -22,6 +22,6 @@ export const getMultipleByIds = async (
 export const getOneOrDefault = async (
     id: string,
     params?: ShapingParameters,
-): Promise<AxiosResponse<PublicUser[]>> => (
+): Promise<AxiosResponse<PublicUser>> => (
     authorizedApiClient.get(`${BASE_PATH}/${id}`, { params })
 );

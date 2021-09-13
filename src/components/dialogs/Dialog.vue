@@ -1,6 +1,6 @@
 <template>
 <teleport to="#dialogs">
-    <div class="dialog">
+    <div class="dialog" :class="classes">
         <Overlay />
         <div class="dialog__content">
             <slot></slot>
@@ -24,11 +24,16 @@ export default defineComponent({
             type: String,
             default: null,
         },
+        fullWidth: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
         classes(): Record<string, boolean> {
             return {
                 'dialog--pull-left': this.position === 'left',
+                'dialog--full-width': this.fullWidth,
             };
         },
     },

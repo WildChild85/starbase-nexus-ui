@@ -1,4 +1,9 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import {
+    createRouter, createWebHistory, RouteLocationNormalized, RouteRecordRaw,
+} from 'vue-router';
+
+import store from '@/store';
+import * as signalR from '@/signalR';
 
 const Home = () => import('@/views/Home.vue');
 const Users = () => import('@/views/identity/Users.vue');
@@ -10,6 +15,9 @@ const ItemCategories = () => import('@/views/ingame/ItemCategories.vue');
 const Items = () => import('@/views/ingame/Items.vue');
 const EngineComparison = () => import('@/views/tools/EngineComparison.vue');
 const Maps = () => import('@/views/ingame/Maps.vue');
+const FileExplorerView = () => import('@/views/cdn/FileExplorerView.vue');
+const YololProjects = () => import('@/views/yolol/YololProjects.vue');
+const YololProject = () => import('@/views/yolol/YololProject.vue');
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -62,11 +70,60 @@ const routes: Array<RouteRecordRaw> = [
         name: 'tools_engine-comparison',
         component: EngineComparison,
     },
+    {
+        path: '/cdn/file-explorer',
+        name: 'cdn_file-explorer',
+        component: FileExplorerView,
+    },
+    {
+        path: '/yolol/yolol-projects',
+        name: 'yolol_yolol-projects',
+        component: YololProjects,
+    },
+    {
+        path: '/yolol/yolol-project/create',
+        name: 'yolol_yolol-project_create',
+        component: YololProject,
+    },
+    {
+        path: '/yolol/yolol-project/:yololProjectId?',
+        name: 'yolol_yolol-project',
+        component: YololProject,
+        props: true,
+    },
 ];
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes,
+});
+
+// eslint-disable-next-line consistent-return
+router.beforeEach((to: RouteLocationNormalized, from: RouteLocationNormalized): RouteLocationNormalized | boolean | void => {
+    if (to.name !== from.name) {
+        window.scrollTo({
+            top: 0,
+        });
+    }
+    try {
+        if (signalR.isConnected()) {
+            signalR.notify();
+        } else {
+            signalR.startConnection();
+        }
+    } catch (_) {
+        // do nothing;
+    }
+    if (to.meta) {
+        if (to.meta.onlySignedOff && store.getters['authentication/user']) {
+            // TODO: comment this line out
+            // return false;
+        }
+        if (to.meta.onlySignedIn && !store.getters['authentication/user']) {
+            // TODO: comment this line out
+            // return false;
+        }
+    }
 });
 
 export default router;

@@ -1,7 +1,7 @@
 @import "../01_base/variables";
 
 body {
-    background: var(--color-background) url('https://cdn.hyperion-corporation.de/userstorages/519b6d95-b854-43cf-b2c3-6cbd0dca9ebc/starbase/starbase-shuttles-pcgh.jpg');
+    background: var(--color-background) url('https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/app-assets/starbase-shuttles-pcgh.jpg');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -18,8 +18,11 @@ body {
 body, h1, h2, h3, p, a, li, div {
     text-rendering: geometricPrecision;
 }
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
+    color: var(--color-primary);
+    font-family: var(--font-family-title);
     font-size: var(--font-size-title);
+    font-weight: normal;
     line-height: var(--line-height-title);
     margin: 0;
 }
@@ -27,6 +30,17 @@ a, a:visited, a:active {
     color: var(--color-primary);
     font-weight: bold;
     text-decoration: none;
+}
+th {
+    background: var(--color-secondary);
+    padding: math.div($spacing, 2) $spacing;
+}
+td {
+    background: var(--color-secondary-darken-1-transparent);
+    padding: math.div($spacing, 2) $spacing;
+}
+pre, code {
+    font-family: var(--font-family-mono) !important;
 }
 
 /* WebKit and Blink */

@@ -62,4 +62,10 @@
             background: var(--focus-glow-transparent);
         }
     }
+    &__views {
+        align-items: center;
+        display: flex;
+        font-size: var(--font-size-title);
+        padding: 0 $spacing;
+    }
 }

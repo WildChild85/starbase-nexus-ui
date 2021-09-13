@@ -20,83 +20,90 @@
                 </ul>
                 <p>For any contributions, please contact <span class="text--primary text--bold">WildChild85#2691</span> and I will give you an instruction on how you can participate.</p>
                 <h2>Private Data and Login</h2>
-                <p>We don't use any tracker nor do we save any private data currently. The login is handled via discord oauth 2 and we only save the discord user id, so we don't save or request and email address or anything personal. You can validate this by checking the source code in the repositories liked above.</p>
+                <p>We don't use any tracker nor do we save any private data currently. The login is handled via discord oauth 2 and we only save the discord user id, so we don't save or request an email address or anything personal. You can validate this by checking the source code in the repositories linked above.</p>
                 <p>You currently don't need a user account to use any of the tools on this website. This will maybe change in the future. Some features maybe need data to be stored on the server, that is connected to your user account, so only you have the rigtht to view or edit it.</p>
             </Panel>
             <Panel class="flex__item flex__item--w-50-lg">
                 <h2>Feature Roadmap</h2>
-                <DataTable class="margin-top full-width">
-                    <DataTableRow>
-                        <DataTableCell>Extendable Open Api</DataTableCell>
-                        <DataTableCell>WildChild85#2691</DataTableCell>
-                        <DataTableCell type="success">done</DataTableCell>
-                    </DataTableRow>
-                    <DataTableRow>
-                        <DataTableCell>Extendable Frontend Framework</DataTableCell>
-                        <DataTableCell>WildChild85#2691</DataTableCell>
-                        <DataTableCell type="success">done</DataTableCell>
-                    </DataTableRow>
-                    <DataTableRow>
-                        <DataTableCell>Ingame Data Management</DataTableCell>
-                        <DataTableCell>WildChild85#2691</DataTableCell>
-                        <DataTableCell type="success">done</DataTableCell>
-                    </DataTableRow>
-                    <DataTableRow>
-                        <DataTableCell>Engine Comparison</DataTableCell>
-                        <DataTableCell>WildChild85#2691</DataTableCell>
-                        <DataTableCell type="success">done</DataTableCell>
-                    </DataTableRow>
-                    <DataTableRow>
-                        <DataTableCell>Maps</DataTableCell>
-                        <DataTableCell>Arch#6267, RustyDawwwg</DataTableCell>
-                        <DataTableCell type="success">done</DataTableCell>
-                    </DataTableRow>
-                    <DataTableRow>
-                        <DataTableCell>Ship Calculator</DataTableCell>
-                        <DataTableCell>PoLLi#4969</DataTableCell>
-                        <DataTableCell type="warning">development</DataTableCell>
-                    </DataTableRow>
-                    <DataTableRow>
-                        <DataTableCell>Yolol Library</DataTableCell>
-                        <DataTableCell>WildChild85#2691</DataTableCell>
-                        <DataTableCell type="warning">development</DataTableCell>
-                    </DataTableRow>
-                    <DataTableRow>
-                        <DataTableCell>Animations</DataTableCell>
-                        <DataTableCell>WildChild85#2691</DataTableCell>
-                        <DataTableCell type="info">planned</DataTableCell>
-                    </DataTableRow>
-                    <DataTableRow>
-                        <DataTableCell>CDN for Images</DataTableCell>
-                        <DataTableCell>WildChild85#2691</DataTableCell>
-                        <DataTableCell type="info">planned</DataTableCell>
-                    </DataTableRow>
-                    <DataTableRow>
-                        <DataTableCell>Ship Shop</DataTableCell>
-                        <DataTableCell>WildChild85#2691</DataTableCell>
-                        <DataTableCell type="info">planned</DataTableCell>
-                    </DataTableRow>
-                    <DataTableRow>
-                        <DataTableCell>Tutorial Library</DataTableCell>
-                        <DataTableCell>WildChild85#2691</DataTableCell>
-                        <DataTableCell type="info">planned</DataTableCell>
-                    </DataTableRow>
-                    <DataTableRow>
-                        <DataTableCell>3D-Map</DataTableCell>
-                        <DataTableCell><span class="text--error">open</span></DataTableCell>
-                        <DataTableCell type="info">planned</DataTableCell>
-                    </DataTableRow>
-                    <DataTableRow>
-                        <DataTableCell>Bounty-System</DataTableCell>
-                        <DataTableCell><span class="text--error">open</span></DataTableCell>
-                        <DataTableCell type="info">planned</DataTableCell>
-                    </DataTableRow>
-                    <DataTableRow>
-                        <DataTableCell>InGame Events Announcements</DataTableCell>
-                        <DataTableCell><span class="text--error">open</span></DataTableCell>
-                        <DataTableCell type="info">planned</DataTableCell>
-                    </DataTableRow>
-                </DataTable>
+                <div class="x-scroll">
+                    <DataTable class="margin-top full-width">
+                        <DataTableRow>
+                            <DataTableCell>Extendable Open Api</DataTableCell>
+                            <DataTableCell>WildChild85#2691</DataTableCell>
+                            <DataTableCell type="success">done</DataTableCell>
+                        </DataTableRow>
+                        <DataTableRow>
+                            <DataTableCell>Extendable Frontend Framework</DataTableCell>
+                            <DataTableCell>WildChild85#2691</DataTableCell>
+                            <DataTableCell type="success">done</DataTableCell>
+                        </DataTableRow>
+                        <DataTableRow>
+                            <DataTableCell>Ingame Data Management</DataTableCell>
+                            <DataTableCell>WildChild85#2691</DataTableCell>
+                            <DataTableCell type="success">done</DataTableCell>
+                        </DataTableRow>
+                        <DataTableRow>
+                            <DataTableCell>Engine Comparison</DataTableCell>
+                            <DataTableCell>WildChild85#2691</DataTableCell>
+                            <DataTableCell type="success">done</DataTableCell>
+                        </DataTableRow>
+                        <DataTableRow>
+                            <DataTableCell>Maps</DataTableCell>
+                            <DataTableCell>Arch#6267, RustyDawwwg</DataTableCell>
+                            <DataTableCell type="success">done</DataTableCell>
+                        </DataTableRow>
+                        <DataTableRow>
+                            <DataTableCell>Ship Calculator</DataTableCell>
+                            <DataTableCell>PoLLi#4969</DataTableCell>
+                            <DataTableCell type="warning">development</DataTableCell>
+                        </DataTableRow>
+                        <DataTableRow>
+                            <DataTableCell>Yolol Library</DataTableCell>
+                            <DataTableCell>WildChild85#2691</DataTableCell>
+                            <DataTableCell type="success">done</DataTableCell>
+                        </DataTableRow>
+                        <DataTableRow>
+                            <DataTableCell>Animations</DataTableCell>
+                            <DataTableCell>WildChild85#2691</DataTableCell>
+                            <DataTableCell type="info">planned</DataTableCell>
+                        </DataTableRow>
+                        <DataTableRow>
+                            <DataTableCell>CDN for Images</DataTableCell>
+                            <DataTableCell>WildChild85#2691</DataTableCell>
+                            <DataTableCell type="success">done</DataTableCell>
+                        </DataTableRow>
+                        <DataTableRow>
+                            <DataTableCell>Ship Shop</DataTableCell>
+                            <DataTableCell>WildChild85#2691</DataTableCell>
+                            <DataTableCell type="info">planned</DataTableCell>
+                        </DataTableRow>
+                        <DataTableRow>
+                            <DataTableCell>Tutorial Library</DataTableCell>
+                            <DataTableCell>WildChild85#2691</DataTableCell>
+                            <DataTableCell type="info">planned</DataTableCell>
+                        </DataTableRow>
+                        <DataTableRow>
+                            <DataTableCell>3D-Map</DataTableCell>
+                            <DataTableCell><span class="text--error">open</span></DataTableCell>
+                            <DataTableCell type="info">planned</DataTableCell>
+                        </DataTableRow>
+                        <DataTableRow>
+                            <DataTableCell>Bounty-System</DataTableCell>
+                            <DataTableCell><span class="text--error">open</span></DataTableCell>
+                            <DataTableCell type="info">planned</DataTableCell>
+                        </DataTableRow>
+                        <DataTableRow>
+                            <DataTableCell>InGame Events Announcements</DataTableCell>
+                            <DataTableCell><span class="text--error">open</span></DataTableCell>
+                            <DataTableCell type="info">planned</DataTableCell>
+                        </DataTableRow>
+                        <DataTableRow>
+                            <DataTableCell>InGame Organizations Register</DataTableCell>
+                            <DataTableCell><span class="text--error">open</span></DataTableCell>
+                            <DataTableCell type="info">planned</DataTableCell>
+                        </DataTableRow>
+                    </DataTable>
+                </div>
             </Panel>
         </div>
     </div>
@@ -124,7 +131,7 @@ export default defineComponent({
     }),
     computed: {
     },
-    created(): void {
+    async created(): Promise<void> {
         this.setPageTitle(['InGame', 'Items']);
     },
 });

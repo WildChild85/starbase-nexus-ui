@@ -1,6 +1,6 @@
 @import "../../01_base/_variables.scss";
 
-.button {
+.button, a.button {
     background: var(--color-secondary-darken-1);
     border: none;
     box-sizing: border-box;
