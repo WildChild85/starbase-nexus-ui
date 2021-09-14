@@ -7,8 +7,15 @@
                 <p>This is an open-source community project to combine all tools and informations out there about the game Starbase at one source, so users don't have to search around the internet.</p>
                 <p>It is an ongoing project, which will be extended with more features in the future. Any tool and information you find in this project may change depending on the development of the project and the game.</p>
                 <p>Currently Frozenbyte doesn't give us any secure and up to date ressource for ingame data like an open api or data dumps in the logs, which maybe changes in the future. Until then the only source for the data is the <a href="https://wiki.starbasegame.com" target="_blank"> official wiki page</a>, ingame toolstips and measurements made by players.</p>
-                <p>We invite everybody to contribute to this project. On the top left side you will find the menu with all currently available informations and tools.</p>
-                <p>If you want to participate into this project, there are several ways to do it:</p>
+                <p>On the top left side you will find the <span class="text--primary"><MenuIconOutline class="svg-icon svg-icon--middle"/> menu</span> with all currently available informations and tools.</p>
+                <p>If you want to post <span class="text--primary">feature requests</span> or <span class="text--primary">bug reports</span>, please join our disord:</p>
+                <div class="flex flex--center-horizontal">
+                    <Button href="https://discord.gg/5uXwMK5D">
+                        <img src="https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/app-assets/Discord-Logo-White.svg" class="svg-icon margin-right--f2"/>
+                        Discord
+                    </Button>
+                </div>
+                <p>We invite everybody to contribute to this project. If you want to participate into this project, there are several ways to do it:</p>
                 <ul>
                     <li><span class="text--secondary text--bold">Data Management:</span> Currently there are no ways to automatically get data about items f. e. out of the game. If you want to help to gather informations you will get the rights for the ingame data management.</li>
                     <li class="margin-top"><span class="text--secondary text--bold">Coding:</span> If you want to include new tools or features into this project, the whole code is open source.</li>
@@ -102,6 +109,11 @@
                             <DataTableCell><span class="text--error">open</span></DataTableCell>
                             <DataTableCell type="info">planned</DataTableCell>
                         </DataTableRow>
+                        <DataTableRow>
+                            <DataTableCell>Discord</DataTableCell>
+                            <DataTableCell>{{ nukNuk }}</DataTableCell>
+                            <DataTableCell type="success">done</DataTableCell>
+                        </DataTableRow>
                     </DataTable>
                 </div>
             </Panel>
@@ -117,10 +129,12 @@ import ViewMixin from '@/mixins/ViewMixin';
 import DataTable from '@/components/layout/dataTable/DataTable.vue';
 import DataTableRow from '@/components/layout/dataTable/DataTableRow.vue';
 import DataTableCell from '@/components/layout/dataTable/DataTableCell.vue';
+import Button from '@/components/controls/Button';
 
 export default defineComponent({
     name: 'Home',
     components: {
+        Button,
         DataTable,
         DataTableRow,
         DataTableCell,
@@ -130,6 +144,9 @@ export default defineComponent({
     data: () => ({
     }),
     computed: {
+        nukNuk(): string {
+            return ',̶̀̾-̵͋̇*̵̛͊.̵̽̒≮͕́~̶̔̓-̸̓̽#1695';
+        },
     },
     async created(): Promise<void> {
         this.setPageTitle(['InGame', 'Items']);

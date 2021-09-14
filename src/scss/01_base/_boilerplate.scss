@@ -87,6 +87,10 @@ pre, code {
 
 .svg-icon {
     height: var(--line-height-default);
+
+    &--middle {
+        vertical-align: middle;
+    }
 }
 
 .full-width {

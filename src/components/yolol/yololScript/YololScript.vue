@@ -7,13 +7,15 @@
     >
         <div class="yolol-script__last-update">
             <div class="flex flex--center-vertical">
-                <div v-if="editRights"><Button @click="showEdit = true"><PencilAltIconSolid class="svg-icon"/></Button></div>
+                <div v-if="editRights" class="margin-right--f2"><Button @click="showEdit = true"><PencilAltIconSolid class="svg-icon"/></Button></div>
+                <Button type="info" :title="$t('copyIdToClipboard')" @click="copyToClipboard(yololScript.code)"><ClipboardCopyIconOutline class="svg-icon"/></Button>
                 <div class="flex__item flex__item--grow">
                     {{ $t('lastUpdate')}}: <span class="text--primary"><DateTimeFormatter :isoString="yololScript.updatedAt ? yololScript.updatedAt : yololScript.createdAt" /></span>
                 </div>
             </div>
         </div>
         <pre>{{ yololScript.code }}</pre>
+        <textarea class="input-copy-to-clipboard" :id="clipboardInputId" :value="textToCopy" />
     </div>
     <EditYololScript
         v-else
@@ -30,9 +32,11 @@ import { YololScript } from '@/interfaces/yolol/yololScript';
 import EditYololScript from '@/components/yolol/yololScript/EditYololScript.vue';
 import DateTimeFormatter from '@/components/formatters/DateTimeFormatter.vue';
 import Button from '@/components/controls/Button';
+import { uniqueId } from '@/helpers';
 
 interface Data {
     showEdit: boolean;
+    textToCopy: string;
 }
 
 export default defineComponent({
@@ -55,13 +59,36 @@ export default defineComponent({
     },
     data: (): Data => ({
         showEdit: false,
+        textToCopy: '',
     }),
     computed: {
         typedYololScript(): YololScript {
             return this.yololScript as YololScript;
         },
+        clipboardInputId(): string {
+            return `clipboardInput_${this.yololScript.id}_${uniqueId}}`;
+        },
     },
     methods: {
+        copyToClipboard(text: string): void {
+            this.textToCopy = text;
+            const input = document.getElementById(this.clipboardInputId) as HTMLInputElement;
+
+            this.$nextTick(() => {
+                /* Select the text field */
+                input.select();
+                /* For mobile devices */
+                input.setSelectionRange(0, 99999);
+
+                document.execCommand('copy');
+
+                this.$notify({
+                    title: this.$t('copied'),
+                    text: this.$t('codeCopied'),
+                    type: 'success',
+                });
+            });
+        },
         handlePatched(): void {
             this.showEdit = false;
             this.$emit('patched');

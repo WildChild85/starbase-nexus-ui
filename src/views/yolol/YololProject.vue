@@ -19,12 +19,18 @@
                             data-augmented-ui="tl-clip t-clip-x tr-clip r-clip-y br-clip b-clip-x bl-clip l-clip-y border"
                             :style="previewImageStyle"
                         ></div>
-                        <div class="yolol-project__name">
+                        <div class="yolol-project__meta">
                             <h1>{{ yololProject ? yololProject.name : '' }}</h1>
                             <p v-if="creator">{{ $t('by')}} <span class="text--title text--primary">{{ creator.userName }}</span></p>
                             <p class="margin-top--no" v-if="yololProject">{{ $t('lastUpdate')}}: <span class="text--primary"><DateTimeFormatter :isoString="yololProject.updatedAt ? yololProject.updatedAt : yololProject.createdAt" /></span></p>
+                            <div class="flex"><HeartIconSolid class="svg-icon text--error margin-right--f2"/> {{ likes.length }}</div>
                         </div>
-                        <Button v-if="hasEditRights" @click="showEdit = true"><PencilAltIconSolid class="svg-icon"/></Button>
+                        <Button v-if="hasEditRights" :title="$t('edit')" @click="showEdit = true"><PencilAltIconSolid class="svg-icon"/></Button>
+                        <template v-else>
+                            <Button type="info" v-if="!user" :title="$t('loginToLike')" @click="redirectToDiscord"><HeartIconOutline class="svg-icon"/></Button>
+                            <Button type="info" v-else-if="currentUserLike" :title="$t('unlike')" @click="unlike(currentUserLike.id)"><HeartIconSolid class="svg-icon"/></Button>
+                            <Button type="info" v-else :title="$t('like')" @click="like"><HeartIconOutline class="svg-icon"/></Button>
+                        </template>
                     </div>
                     <div
                         class="yolol-project__youtube-video"
@@ -104,6 +110,7 @@ import ViewMixin from '@/mixins/ViewMixin';
 import * as yololProjectService from '@/services/yolol/yololProjectService';
 import * as yololScriptService from '@/services/yolol/yololScriptService';
 import * as publicUserService from '@/services/social/publicUserService';
+import * as likeService from '@/services/social/likeService';
 import { YololProject } from '@/interfaces/yolol/yololProject';
 import LoadingIndicatorBeam from '@/components/loading/LoadingIndicatorBeam.vue';
 import EditYololProject from '@/components/yolol/yololProject/EditYololProject.vue';
@@ -116,6 +123,8 @@ import Button from '@/components/controls/Button';
 import { PublicUser } from '@/interfaces/social/publicUser';
 import { YololScript } from '@/interfaces/yolol/yololScript';
 import DateTimeFormatter from '@/components/formatters/DateTimeFormatter.vue';
+import { Like } from '@/interfaces/social/like';
+import { redirectToDiscord } from '@/helpers/index';
 
 interface Data {
     searchTerm: string;
@@ -125,6 +134,7 @@ interface Data {
     creator: PublicUser | null;
     yololScripts: YololScript[];
     showCreateYololScript: boolean;
+    likes: Like[];
 }
 
 export default defineComponent({
@@ -155,6 +165,7 @@ export default defineComponent({
         creator: null,
         yololScripts: [],
         showCreateYololScript: false,
+        likes: [],
     }),
     watch: {
         yololProjectId(): void {
@@ -170,6 +181,12 @@ export default defineComponent({
         },
         user(): JwtUser | null {
             return this.$store.getters['authentication/user'];
+        },
+        currentUserLike(): Like | undefined {
+            if (this.user) {
+                return this.likes.find(({ userId }) => this.user && this.user.id === userId);
+            }
+            return undefined;
         },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         markdownPlugins(): Record<string, any>[] {
@@ -202,6 +219,7 @@ export default defineComponent({
         },
     },
     methods: {
+        redirectToDiscord,
         handleScriptCreated(): void {
             this.showCreateYololScript = false;
             this.loadYololScripts();
@@ -225,6 +243,7 @@ export default defineComponent({
             await this.loadYololProject();
             await this.loadCreator();
             await this.loadYololScripts();
+            await this.loadLikes();
         },
         async loadYololProject(): Promise<void> {
             if (!this.yololProjectId) {
@@ -234,6 +253,7 @@ export default defineComponent({
             try {
                 const response = await yololProjectService.getOneOrDefault(this.yololProjectId);
                 this.yololProject = response.data;
+                this.setPageTitle([this.yololProject.name, this.$t('yololLibrary'), this.$t('yolol')]);
             } catch (_) {
                 // do nothing
             }
@@ -267,6 +287,64 @@ export default defineComponent({
                 // do nothing
             }
             this.isLoading = false;
+        },
+        async loadLikes(): Promise<void> {
+            if (!this.yololProjectId) {
+                return;
+            }
+            this.isLoading = true;
+            try {
+                const response = await likeService.getMultiple({
+                    yololProjectIds: this.yololProjectId,
+                    pageSize: -1,
+                });
+                this.likes = response.data;
+            } catch (_) {
+                // do nothing
+            }
+            this.isLoading = false;
+        },
+        async like(): Promise<void> {
+            if (!this.yololProjectId) {
+                return;
+            }
+            this.isLoading = true;
+            try {
+                await likeService.create({
+                    yololProjectId: this.yololProjectId,
+                });
+                this.$notify({
+                    type: 'success',
+                    title: this.$t('thankYou'),
+                });
+            } catch (_) {
+                this.$notify({
+                    type: 'error',
+                    title: this.$t('likingFailed'),
+                });
+            }
+            this.isLoading = false;
+            this.loadLikes();
+        },
+        async unlike(id: string): Promise<void> {
+            if (!this.yololProjectId) {
+                return;
+            }
+            this.isLoading = true;
+            try {
+                await likeService.deleteSingle(id);
+                this.$notify({
+                    type: 'success',
+                    title: this.$t('thatsSad'),
+                });
+            } catch (_) {
+                this.$notify({
+                    type: 'error',
+                    title: this.$t('unlikingFailed'),
+                });
+            }
+            this.isLoading = false;
+            this.loadLikes();
         },
     },
     created(): void {

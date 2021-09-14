@@ -39,10 +39,29 @@
         font-weight: normal;
         padding: math.div($spacing, 2) $spacing;
     }
+    &__meta {
+        align-items: center;
+        display: flex;
+    }
     &__creator {
         color: var(--color-text);
+        flex-grow: 1;
         font-weight: normal;
         padding: math.div($spacing, 2) $spacing;
+    }
+    &__likes {
+        align-items: center;
+        color: var(--color-text);
+        display: flex;
+        font-weight: normal;
+        padding-right: $spacing;
+
+        .svg-icon {
+            color: var(--color-error);
+            margin-right: math.div($spacing, 8);
+            height: var(--line-height-small);
+            width: var(--line-height-small);
+        }
     }
 }
 
@@ -86,13 +105,13 @@
         --aug-b-extend1: 30%;
         --aug-b1: 7px;
     }
-    &__name {
+    &__meta {
         align-items: flex-start;
         display: flex;
         flex-direction: column;
         flex-grow: 1;
         justify-content: center;
-        padding: $spacing $spacing * 2;
+        padding: 0 $spacing * 2;
     }
     &__youtube-video {
         background: var(--color-secondary-darken-1);

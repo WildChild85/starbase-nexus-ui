@@ -15,6 +15,7 @@
                     :key="yololProject.id"
                     :yololProject="yololProject"
                     :creator="publicUsers.find(({ id }) => id === yololProject.creatorId)"
+                    :likes="projectLikes[yololProject.id] || 0"
                     class="margin-top--f2"
                 >
                 </YololProjectListItem>
@@ -35,13 +36,16 @@ import { YololProject } from '@/interfaces/yolol/yololProject';
 import LoadingIndicatorBeam from '@/components/loading/LoadingIndicatorBeam.vue';
 import YololProjectListItem from '@/components/yolol/yololProject/YololProjectListItem.vue';
 import * as publicUserService from '@/services/social/publicUserService';
+import * as likeService from '@/services/social/likeService';
 import { PublicUser } from '@/interfaces/social/publicUser';
+import { Like } from '@/interfaces/social/like';
 
 interface Data {
     searchTerm: string;
     isLoading: boolean;
     yololProjects: YololProject[];
     publicUsers: PublicUser[];
+    likes: Like[];
 }
 
 export default defineComponent({
@@ -59,16 +63,29 @@ export default defineComponent({
         isLoading: false,
         yololProjects: [],
         publicUsers: [],
+        likes: [],
     }),
     computed: {
         creatorIds(): string[] {
             return [...new Set(this.yololProjects.map(({ creatorId }) => creatorId))];
+        },
+        yololProjectIds(): string[] {
+            return this.yololProjects.map(({ id }) => id);
+        },
+        projectLikes(): Record<string, number> {
+            const projectLikes: Record<string, number> = {};
+            this.yololProjects.forEach(({ id }) => {
+                projectLikes[id] = this.likes.filter(({ yololProjectId }) => yololProjectId === id).length;
+            });
+
+            return projectLikes;
         },
     },
     methods: {
         async refreshData(): Promise<void> {
             await this.loadYololProjects();
             await this.loadPublicUsers();
+            await this.loadLikes();
         },
         async loadYololProjects(): Promise<void> {
             this.isLoading = true;
@@ -91,6 +108,22 @@ export default defineComponent({
             try {
                 const response = await publicUserService.getMultipleByIds(this.creatorIds);
                 this.publicUsers = response.data;
+            } catch (_) {
+                // do nothing
+            }
+            this.isLoading = false;
+        },
+        async loadLikes(): Promise<void> {
+            if (!this.yololProjectIds.length) {
+                return;
+            }
+            this.isLoading = true;
+            try {
+                const response = await likeService.getMultiple({
+                    yololProjectIds: this.yololProjectIds.join(','),
+                    pageSize: -1,
+                });
+                this.likes = response.data;
             } catch (_) {
                 // do nothing
             }

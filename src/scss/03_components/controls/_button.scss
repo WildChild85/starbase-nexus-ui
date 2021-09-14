@@ -1,12 +1,13 @@
 @import "../../01_base/_variables.scss";
 
 .button, a.button {
+    align-items: center;
     background: var(--color-secondary-darken-1);
     border: none;
     box-sizing: border-box;
     color: var(--color-text);
     cursor: pointer;
-    display: block;
+    display: flex;
     font-family: inherit;
     font-size: var(--font-size-default);
     font-weight: bold;

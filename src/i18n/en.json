@@ -117,5 +117,13 @@
     "editYololScript": "Edit yolol script",
     "createYololScript": "Create yolol script",
     "code": "Code",
-    "lastUpdate": "Last update"
+    "lastUpdate": "Last update",
+    "codeCopied": "Code copied",
+    "like": "Like",
+    "unlike": "unlike",
+    "likingFailed": "Liking failed",
+    "thankYou": "Thank you! :)",
+    "thatsSad": "That's sad :'(",
+    "unlikingFailed": "Unliking failed",
+    "loginToLike": "Login first to like"
 }

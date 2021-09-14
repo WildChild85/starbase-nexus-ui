@@ -7,11 +7,13 @@ import {
     ChevronRightIcon as ChevronRightIconSolid,
     XIcon as XIconSolid,
     PencilAltIcon as PencilAltIconSolid,
+    HeartIcon as HeartIconSolid,
 } from '@heroicons/vue/solid';
 import {
     ClipboardCopyIcon as ClipboardCopyIconOutline,
     ExternalLinkIcon as ExternalLinkIconOutline,
     MenuIcon as MenuIconOutline,
+    HeartIcon as HeartIconOutline,
 } from '@heroicons/vue/outline';
 
 import App from '@/App.vue';
@@ -31,4 +33,6 @@ createApp(App)
     .component('ExternalLinkIconOutline', ExternalLinkIconOutline)
     .component('MenuIconOutline', MenuIconOutline)
     .component('PencilAltIconSolid', PencilAltIconSolid)
+    .component('HeartIconSolid', HeartIconSolid)
+    .component('HeartIconOutline', HeartIconOutline)
     .mount('#app');

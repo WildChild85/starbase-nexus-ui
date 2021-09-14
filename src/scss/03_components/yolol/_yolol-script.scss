@@ -8,6 +8,8 @@
         margin: $spacing 0;
         padding: 0 $spacing;
         white-space: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
 
         --aug-border-bg: var(--color-secondary);
         --aug-border-all: 2px;

@@ -6,7 +6,10 @@
     :style="previewImageStyle"
 >
     <div class="yolol-project-list-item__name">{{ yololProject.name }}</div>
-    <div class="yolol-project-list-item__creator" v-if="creator">by {{ creator.userName }}</div>
+    <div class="yolol-project-list-item__meta">
+        <div class="yolol-project-list-item__creator" v-if="creator">by {{ creator.userName }}</div>
+        <div class="yolol-project-list-item__likes"><HeartIconSolid class="svg-icon"/> {{ likes }}</div>
+    </div>
 
 </router-link>
 </template>
@@ -26,6 +29,10 @@ export default defineComponent({
         creator: {
             type: Object,
             default: null,
+        },
+        likes: {
+            type: Number,
+            default: 0,
         },
     },
     computed: {
