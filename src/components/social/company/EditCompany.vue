@@ -109,11 +109,9 @@ Your long term vision of the game. What will you do in a year maybe.
 ## Special Achievements
 Did your group something awesome? :)
 
-Take the two yolol scripts and put them in Yolol Chips.
+## Parameters
 
-Look at the item, press "U" and rename the left fields to:
-
-| from | to |
+|||
 | ------ | ------ |
 | Founded | 2021-09-16 |
 | Leader | Player A |
