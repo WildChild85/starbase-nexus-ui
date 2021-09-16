@@ -18,6 +18,8 @@ const Maps = () => import('@/views/ingame/Maps.vue');
 const FileExplorerView = () => import('@/views/cdn/FileExplorerView.vue');
 const YololProjects = () => import('@/views/yolol/YololProjects.vue');
 const YololProject = () => import('@/views/yolol/YololProject.vue');
+const Companies = () => import('@/views/social/Companies.vue');
+const Company = () => import('@/views/social/Company.vue');
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -86,9 +88,25 @@ const routes: Array<RouteRecordRaw> = [
         component: YololProject,
     },
     {
-        path: '/yolol/yolol-project/:yololProjectId?',
+        path: '/yolol/yolol-project/:yololProjectId',
         name: 'yolol_yolol-project',
         component: YololProject,
+        props: true,
+    },
+    {
+        path: '/social/companies',
+        name: 'social_companies',
+        component: Companies,
+    },
+    {
+        path: '/social/company/create',
+        name: 'social_company_create',
+        component: Company,
+    },
+    {
+        path: '/social/company/:companyId',
+        name: 'social_company',
+        component: Company,
         props: true,
     },
 ];

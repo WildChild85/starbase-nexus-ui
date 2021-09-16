@@ -58,6 +58,7 @@ export default defineComponent({
                     to: { name: 'cdn_file-explorer' },
                     label: this.$t('fileExplorer'),
                 },
+
                 {
                     label: this.$t('tools'),
                 },
@@ -69,6 +70,7 @@ export default defineComponent({
                     to: { name: 'tools_engine-comparison' },
                     label: this.$t('engineComparison'),
                 },
+
                 {
                     label: this.$t('Yolol'),
                 },
@@ -76,6 +78,15 @@ export default defineComponent({
                     to: { name: 'yolol_yolol-projects' },
                     label: this.$t('yololProjects'),
                 },
+
+                {
+                    label: this.$t('social'),
+                },
+                {
+                    to: { name: 'social_companies' },
+                    label: this.$t('companies'),
+                },
+
                 {
                     label: this.$t('dataManagement'),
                 },

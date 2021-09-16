@@ -125,5 +125,17 @@
     "thankYou": "Thank you! :)",
     "thatsSad": "That's sad :'(",
     "unlikingFailed": "Unliking failed",
-    "loginToLike": "Login first to like"
+    "loginToLike": "Login first to like",
+    "editCompany": "Edit company",
+    "createCompany": "Create company",
+    "logo": "Logo",
+    "discordUri": "Discord Uri",
+    "websiteUri": "Website Uri",
+    "youtubeUri": "Youtube Uri",
+    "twitchUri": "Twitch Uri",
+    "aboutUs": "About us (markdown)",
+    "companies": "Companies",
+    "social": "Social",
+    "company": "Company",
+    "preview": "Preview"
 }

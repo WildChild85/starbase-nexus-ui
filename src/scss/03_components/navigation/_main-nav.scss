@@ -15,9 +15,12 @@
         box-sizing: border-box;
         left: -2px;
         padding: $spacing * 2 0;
+        overflow-x: hidden;
+        overflow-y: auto;
         position: relative;
         position: fixed;
         top: -2px;
+        direction:rtl;
 
         --aug-border-bg: var(--color-primary);
         --aug-border-all: 2px;
@@ -25,18 +28,11 @@
         --aug-r1: 7px;
         --aug-r2: 7px;
     }
-    &__items {
-        bottom: -2px;
-        left: -2px;
-        overflow-y: auto;
-        overflow-x: hidden;
-        position: absolute;
-        top: -2px;
-    }
     &__item {
         color: inherit;
         display: block;
         padding: math.div($spacing, 2) $spacing * 2;
+        text-align: left;
         text-decoration: none;
 
         &:hover {
@@ -48,6 +44,7 @@
         font-weight: bold;
         margin: $spacing $spacing $spacing $spacing;
         padding: math.div($spacing, 2) $spacing;
+        text-align: left;
         text-transform: uppercase;
 
         --aug-border-bg: var(--color-secondary);

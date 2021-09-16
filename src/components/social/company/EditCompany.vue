@@ -1,7 +1,7 @@
 <template>
 <div>
     <LoadingIndicatorBeam v-if="isLoading"/>
-    <h2 class="text--primary margin-left--f2 margin-right--f2">{{ yololProjectId ? $t('editYololProject') : $t('createYololProject') }}</h2>
+    <h2 class="text--primary margin-left--f2 margin-right--f2">{{ companyId ? $t('editCompany') : $t('createCompany') }}</h2>
     <TextField
         class="margin-top"
         v-model.trim="properties.name"
@@ -12,24 +12,46 @@
     />
     <SelectFile
         class="margin-top"
-        :label="$t('Preview image')"
-        v-model="properties.previewImageUri"
+        :label="$t('logo')"
+        v-model="properties.logoUri"
     />
     <TextField
         class="margin-top"
-        v-model.trim="properties.youtubeVideoUri"
-        :label="$t('youtubeVideoUri')"
+        v-model.trim="properties.discordUri"
+        :label="$t('discordUri')"
         :readonly="isLoading"
-        :errors="errors.youtubeVideoUri"
+        :errors="errors.discordUri"
+    />
+    <TextField
+        class="margin-top"
+        v-model.trim="properties.websiteUri"
+        :label="$t('websiteUri')"
+        :readonly="isLoading"
+        :errors="errors.websiteUri"
+    />
+    <TextField
+        class="margin-top"
+        v-model.trim="properties.youtubeUri"
+        :label="$t('youtubeUri')"
+        :readonly="isLoading"
+        :errors="errors.youtubeUri"
+    />
+    <TextField
+        class="margin-top"
+        v-model.trim="properties.twitchUri"
+        :label="$t('twitchUri')"
+        :readonly="isLoading"
+        :errors="errors.twitchUri"
     />
     <TextArea
         class="margin-top"
-        v-model="properties.documentation"
-        :label="$t('documentation')"
+        v-model="properties.aboutUs"
+        :label="$t('aboutUs')"
         :readonly="isLoading"
         :required="true"
         :isCode="true"
-        :errors="errors.documentation"
+        :errors="errors.aboutUs"
+        @input="$emit('update:aboutUs', properties.aboutUs);"
     />
 
     <div class="panel__actions">
@@ -51,8 +73,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { CreateYololProject, YololProject, PatchYololProject } from '@/interfaces/yolol/yololProject';
-import * as yololProjectService from '@/services/yolol/yololProjectService';
+import { CreateCompany, Company, PatchCompany } from '@/interfaces/social/company';
+import * as companyService from '@/services/social/companyService';
 import TextField from '@/components/controls/TextField.vue';
 import TextArea from '@/components/controls/TextArea.vue';
 import Button from '@/components/controls/Button';
@@ -61,54 +83,59 @@ import SelectFile from '@/components/controls/SelectFile.vue';
 
 interface Properties {
     name: string;
-    documentation: string;
-    previewImageUri: string | null;
-    youtubeVideoUri: string | null;
+    aboutUs: string;
+    logoUri?: string | null;
+    discordUri?: string | null;
+    websiteUri?: string | null;
+    youtubeUri?: string | null;
+    twitchUri?: string | null;
 }
 
 interface Data {
-    yololProject: YololProject | null;
+    company: Company | null;
     isLoading: boolean;
     errors: Record<string, string[]>;
     properties: Properties;
 }
 
-const defaultMarkdown = `This script is an extension of the original script from **some player name**.
+const defaultMarkdown = `The folowing text is a default template. Change it as you like :) There is no required structure or content. Just write something.
 
-## Installation
+## Who we are
+A description of who you are, what you are doing in the game.
 
-Take the yolol script and put it in a Yolol Chip.
+## Vision
+Your long term vision of the game. What will you do in a year maybe.
+
+## Special Achievements
+Did your group something awesome? :)
+
+Take the two yolol scripts and put them in Yolol Chips.
 
 Look at the item, press "U" and rename the left fields to:
 
 | from | to |
 | ------ | ------ |
-| Property1 | Prop1 |
-| Property2 | Prop2 |
-| Property3 | Prop3 |
-| Property4 | Prop4 |
-| Property5 | Prop5 |
+| Founded | 2021-09-16 |
+| Leader | Player A |
+| Founders | Player A, Player B, Placer C |
+| Members | 999 |
+| Main Origin | 01 |
 
-Put two Text Panels in your cockpit and rename the **PanelValue** like this:
-
-* Text Panel Property for Prop1: **Prop1**
-* Text Panel Property for Prop2: **Prop2**
-
-Add a button to your cockpit and rename the **ButtonValue** property to **Prop5**.
-
-You can find the project on Github: [link text](http://example.com).
-If you need support check out our [Discord](http://example.com).
+Some additional link: [link text](http://example.com).
 `;
 
 const getEmptyProperties = ():Properties => ({
-    documentation: defaultMarkdown,
     name: '',
-    previewImageUri: null,
-    youtubeVideoUri: null,
+    aboutUs: defaultMarkdown,
+    logoUri: null,
+    discordUri: null,
+    websiteUri: null,
+    youtubeUri: null,
+    twitchUri: null,
 });
 
 export default defineComponent({
-    name: 'EditYololProject',
+    name: 'EditCompany',
     components: {
         Button,
         LoadingIndicatorBeam,
@@ -116,31 +143,34 @@ export default defineComponent({
         TextField,
         TextArea,
     },
-    emits: ['created', 'patched', 'cancelled', 'update:documentation'],
+    emits: ['created', 'patched', 'cancelled', 'update:aboutUs'],
     props: {
-        yololProjectId: {
+        companyId: {
             type: String,
             default: null,
         },
     },
     data: (): Data => ({
-        yololProject: null,
+        company: null,
         isLoading: false,
         errors: {},
         properties: getEmptyProperties(),
     }),
     watch: {
-        yololProjectId(): void {
+        companyId(): void {
             this.refreshData();
+        },
+        properties(): void {
+            this.$emit('update:aboutUs', this.properties.aboutUs);
         },
     },
     computed: {
-        changedProperties(): PatchYololProject {
-            const changed: PatchYololProject = {};
-            if (this.yololProject !== null) {
+        changedProperties(): PatchCompany {
+            const changed: PatchCompany = {};
+            if (this.company !== null) {
                 Object.keys(this.properties).forEach((key: string) => {
-                    if ((this.yololProject as YololProject)[key as keyof YololProject] !== (this.properties as PatchYololProject)[key as keyof PatchYololProject]) {
-                        changed[key as keyof PatchYololProject] = (this.properties as PatchYololProject)[key as keyof PatchYololProject] as never;
+                    if ((this.company as Company)[key as keyof Company] !== (this.properties as PatchCompany)[key as keyof PatchCompany]) {
+                        changed[key as keyof PatchCompany] = (this.properties as PatchCompany)[key as keyof PatchCompany] as never;
                     }
                 });
             }
@@ -149,33 +179,33 @@ export default defineComponent({
     },
     methods: {
         mapToProperties(): void {
-            if (!this.yololProject) {
+            if (!this.company) {
                 return;
             }
             Object.keys(this.properties).forEach((key) => {
-                (this.properties as PatchYololProject)[key as keyof PatchYololProject] = (this.yololProject as YololProject)[key as keyof YololProject] as never;
+                (this.properties as PatchCompany)[key as keyof PatchCompany] = (this.company as Company)[key as keyof Company] as never;
             });
         },
         async saveChanges(): Promise<void> {
-            if (this.yololProjectId) {
+            if (this.companyId) {
                 if (await this.patch()) {
-                    this.$emit('patched', this.yololProject);
+                    this.$emit('patched', this.company);
                 }
             } else if (await this.create()) {
-                this.$emit('created', this.yololProject);
+                this.$emit('created', this.company);
             }
         },
         refreshData(): void {
             this.properties = getEmptyProperties();
-            this.loadYololProject();
+            this.loadCompany();
         },
-        async loadYololProject(): Promise<void> {
-            if (!this.yololProjectId) {
+        async loadCompany(): Promise<void> {
+            if (!this.companyId) {
                 return;
             }
             this.isLoading = true;
             try {
-                this.yololProject = (await yololProjectService.getOneOrDefault(this.yololProjectId)).data;
+                this.company = (await companyService.getOneOrDefault(this.companyId)).data;
                 this.mapToProperties();
             } catch (_) {
                 // do nothing
@@ -186,7 +216,7 @@ export default defineComponent({
             this.isLoading = true;
             this.errors = {};
             try {
-                this.yololProject = (await yololProjectService.create(this.properties as CreateYololProject)).data;
+                this.company = (await companyService.create(this.properties as CreateCompany)).data;
                 this.$notify({
                     type: 'success',
                     text: this.$t('saved'),
@@ -210,8 +240,8 @@ export default defineComponent({
             this.isLoading = true;
             this.errors = {};
             try {
-                this.yololProject = (await yololProjectService.patch(
-                    this.yololProjectId,
+                this.company = (await companyService.patch(
+                    this.companyId,
                     this.changedProperties,
                 )).data;
                 this.$notify({
