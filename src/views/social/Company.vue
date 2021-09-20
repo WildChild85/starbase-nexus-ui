@@ -47,7 +47,7 @@
                     <h2 class="text--primary">Rules for creating a company</h2>
                     <ol>
                         <li>Only create a company, if you are in the leadership of the company or got permission from the leadership of the company.</li>
-                        <li>This website es a neutral space. If you create fake companies or create the company record where rule #1 doesn't match, the entry will be deleted.</li>
+                        <li>This website is a neutral space. If you create fake companies or create the company record where rule #1 doesn't match, the entry will be deleted.</li>
                         <li>Don't use your company record to talk bad about other companies or players.</li>
                         <li>The about us supports markdown (<a href="https://en.wikipedia.org/wiki/Markdown" target="_blank">Wikipedia</a>).</li>
                     </ol>
@@ -182,6 +182,9 @@ export default defineComponent({
         },
         handleCancelled(): void {
             this.showEdit = false;
+            if (!this.companyId) {
+                this.$router.push({ name: 'social_companies' });
+            }
         },
         async refreshData(): Promise<void> {
             await this.loadCompany();

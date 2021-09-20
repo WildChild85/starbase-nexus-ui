@@ -38,7 +38,7 @@
                             <img class="full-width" src="https://wiki.starbasegame.com/images/c/c6/Starbase_plasma_thruster.png" />
                         </DataTableCell>
                     </DataTableRow>
-                    <tr data-augmented-ui="tl-clip tr-clip br-clip bl-clip border">
+                    <DataTableRow>
                         <DataTableCell></DataTableCell>
                         <DataTableCell class="text--center">Maneuver</DataTableCell>
                         <DataTableCell class="text--center">Maneuver</DataTableCell>
@@ -50,7 +50,7 @@
                         <DataTableCell class="text--center">Box</DataTableCell>
                         <DataTableCell class="text--center">Box</DataTableCell>
                         <DataTableCell class="text--center">Plasma</DataTableCell>
-                    </tr>
+                    </DataTableRow>
                     <DataTableRow>
                         <DataTableCell></DataTableCell>
                         <DataTableCell class="text--center">Tier 1</DataTableCell>
@@ -68,148 +68,419 @@
                             </div>
                         </DataTableCell>
                     </DataTableRow>
+
                     <DataTableRow>
                         <DataTableCell>{{ $t('mass') }}</DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.mass)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.mass)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.mass)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.mass)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.mass)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.mass)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier1.mass)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier2.mass)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier3.mass)"></DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(calculated[type][tier].mass)"></DataTableCell>
+                            </template>
+                        </template>
                         <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.mass)"></DataTableCell>
                     </DataTableRow>
+
                     <DataTableRow>
                         <DataTableCell>{{ $t('electricInput') }}</DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.electricInput)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.electricInput)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.electricInput)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.electricInput)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.electricInput)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.electricInput)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier1.electricInput)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier2.electricInput)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier3.electricInput)"></DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(calculated[type][tier].electricInput)"></DataTableCell>
+                            </template>
+                        </template>
                         <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.electricInput)"></DataTableCell>
                     </DataTableRow>
+
                     <DataTableRow>
-                        <DataTableCell>{{ $t('electricInput') }} {{ $t('optimized') }}</DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.electricInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.electricInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.electricInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.electricInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.electricInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.electricInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier1.electricInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier2.electricInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier3.electricInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.electricInputOptimized)"></DataTableCell>
+                        <DataTableCell>{{ $t('electricInput') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(calculated[type][tier].electricInputOptimized)"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"></DataTableCell>
                     </DataTableRow>
+
                     <DataTableRow>
                         <DataTableCell>{{ $t('propellantInput') }}</DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.propellantInput)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.propellantInput)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.propellantInput)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.propellantInput)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.propellantInput)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.propellantInput)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier1.propellantInput)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier2.propellantInput)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier3.propellantInput)"></DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(calculated[type][tier].propellantInput)"></DataTableCell>
+                            </template>
+                        </template>
                         <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.propellantInput)"></DataTableCell>
                     </DataTableRow>
+
                     <DataTableRow>
-                        <DataTableCell>{{ $t('propellantInput') }} {{ $t('optimized') }}</DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.propellantInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.propellantInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.propellantInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.propellantInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.propellantInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.propellantInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier1.propellantInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier2.propellantInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier3.propellantInputOptimized)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.propellantInputOptimized)"></DataTableCell>
+                        <DataTableCell>{{ $t('propellantInput') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(calculated[type][tier].propellantInputOptimized)"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"></DataTableCell>
                     </DataTableRow>
+
                     <DataTableRow>
                         <DataTableCell>{{ $t('thrustPower') }}</DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier1.thrustPower)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier2.thrustPower)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.maneuver.tier3.thrustPower)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier1.thrustPower)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier2.thrustPower)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.triangle.tier3.thrustPower)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier1.thrustPower)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier2.thrustPower)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.box.tier3.thrustPower)"></DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(calculated[type][tier].thrustPower)"></DataTableCell>
+                            </template>
+                        </template>
                         <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.thrustPower)"></DataTableCell>
                     </DataTableRow>
+
                     <DataTableRow>
                         <DataTableCell>{{ $t('thrustPerElectricity') }}</DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.maneuver.tier1.thrustPerElectricity)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.maneuver.tier2.thrustPerElectricity)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.maneuver.tier3.thrustPerElectricity)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.triangle.tier1.thrustPerElectricity)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.triangle.tier2.thrustPerElectricity)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.triangle.tier3.thrustPerElectricity)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.box.tier1.thrustPerElectricity)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.box.tier2.thrustPerElectricity)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.box.tier3.thrustPerElectricity)"></DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(stats[type][tier].thrustPerElectricity)"></DataTableCell>
+                            </template>
+                        </template>
                         <DataTableCell class="text--right" v-html="numberToLocaleString(stats.plasma.thrustPerElectricity)"></DataTableCell>
                     </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('thrustPerElectricity') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(stats[type][tier].thrustPerElectricityOptimized)"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"></DataTableCell>
+                    </DataTableRow>
+
                     <DataTableRow>
                         <DataTableCell>{{ $t('thrustPerPropellant') }}</DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.maneuver.tier1.thrustPerPropellant)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.maneuver.tier2.thrustPerPropellant)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.maneuver.tier3.thrustPerPropellant)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.triangle.tier1.thrustPerPropellant)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.triangle.tier2.thrustPerPropellant)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.triangle.tier3.thrustPerPropellant)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.box.tier1.thrustPerPropellant)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.box.tier2.thrustPerPropellant)"></DataTableCell>
-                        <DataTableCell class="text--right" v-html="numberToLocaleString(stats.box.tier3.thrustPerPropellant)"></DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(stats[type][tier].thrustPerPropellant)"></DataTableCell>
+                            </template>
+                        </template>
                         <DataTableCell class="text--right" v-html="numberToLocaleString(stats.plasma.thrustPerPropellant)"></DataTableCell>
                     </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('thrustPerPropellant') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(stats[type][tier].thrustPerPropellantOptimized)"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"></DataTableCell>
+                    </DataTableRow>
+
                     <DataTableRow>
                         <DataTableCell>{{ $t('smallPropellantTankDepletionTime') }}</DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier1.propellantTankDeplectionTime.small"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier2.propellantTankDeplectionTime.small"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier3.propellantTankDeplectionTime.small"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier1.propellantTankDeplectionTime.small"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier2.propellantTankDeplectionTime.small"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier3.propellantTankDeplectionTime.small"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier1.propellantTankDeplectionTime.small"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier2.propellantTankDeplectionTime.small"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier3.propellantTankDeplectionTime.small"/></DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right"><DurationFormatter :seconds="stats[type][tier].propellantTankDeplectionTime.small"/></DataTableCell>
+                            </template>
+                        </template>
                         <DataTableCell class="text--right"><DurationFormatter :seconds="stats.plasma.propellantTankDeplectionTime.small"/></DataTableCell>
                     </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('smallPropellantTankDepletionTime') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right"><DurationFormatter v-if="type !== 'maneuver'" :seconds="stats[type][tier].propellantTankDeplectionTimeOptimized.small"/></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"></DataTableCell>
+                    </DataTableRow>
+
                     <DataTableRow>
                         <DataTableCell>{{ $t('mediumPropellantTankDepletionTime') }}</DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier1.propellantTankDeplectionTime.medium"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier2.propellantTankDeplectionTime.medium"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier3.propellantTankDeplectionTime.medium"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier1.propellantTankDeplectionTime.medium"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier2.propellantTankDeplectionTime.medium"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier3.propellantTankDeplectionTime.medium"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier1.propellantTankDeplectionTime.medium"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier2.propellantTankDeplectionTime.medium"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier3.propellantTankDeplectionTime.medium"/></DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right"><DurationFormatter :seconds="stats[type][tier].propellantTankDeplectionTime.medium"/></DataTableCell>
+                            </template>
+                        </template>
                         <DataTableCell class="text--right"><DurationFormatter :seconds="stats.plasma.propellantTankDeplectionTime.medium"/></DataTableCell>
                     </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('mediumPropellantTankDepletionTime') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right"><DurationFormatter v-if="type !== 'maneuver'" :seconds="stats[type][tier].propellantTankDeplectionTimeOptimized.medium"/></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"></DataTableCell>
+                    </DataTableRow>
+
                     <DataTableRow>
                         <DataTableCell>{{ $t('largePropellantTankDepletionTime') }}</DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier1.propellantTankDeplectionTime.large"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier2.propellantTankDeplectionTime.large"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.maneuver.tier3.propellantTankDeplectionTime.large"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier1.propellantTankDeplectionTime.large"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier2.propellantTankDeplectionTime.large"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.triangle.tier3.propellantTankDeplectionTime.large"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier1.propellantTankDeplectionTime.large"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier2.propellantTankDeplectionTime.large"/></DataTableCell>
-                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.box.tier3.propellantTankDeplectionTime.large"/></DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right"><DurationFormatter :seconds="stats[type][tier].propellantTankDeplectionTime.large"/></DataTableCell>
+                            </template>
+                        </template>
                         <DataTableCell class="text--right"><DurationFormatter :seconds="stats.plasma.propellantTankDeplectionTime.large"/></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('largePropellantTankDepletionTime') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right"><DurationFormatter v-if="type !== 'maneuver'" :seconds="stats[type][tier].propellantTankDeplectionTimeOptimized.large"/></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('fullSpeedRangeSmallTank') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(maxSpeedRanges[type][tier].small / 1000)"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(maxSpeedRanges.plasma.small / 1000)"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('fullSpeedRangeSmallTank') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="type !== 'maneuver' ? numberToLocaleString(maxSpeedRangesOptimized[type][tier].small / 1000) : ''"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('fullSpeedRangeMediumTank') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(maxSpeedRanges[type][tier].medium / 1000)"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(maxSpeedRanges.plasma.medium / 1000)"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('fullSpeedRangeMediumTank') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="type !== 'maneuver' ? numberToLocaleString(maxSpeedRangesOptimized[type][tier].medium / 1000) : ''"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('fullSpeedRangeLargeTank') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(maxSpeedRanges[type][tier].large / 1000)"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(maxSpeedRanges.plasma.large / 1000)"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('fullSpeedRangeLargeTank') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="type !== 'maneuver' ? numberToLocaleString(maxSpeedRangesOptimized[type][tier].large / 1000) : ''"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell :colspan="11" class="text--center">{{ $t('plasmaComparisonExplanation') }}</DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('requiredAmountForPlasma') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(comparedAmount[type][tier])"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right" >-</DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('mass') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(comparedCalculated[type][tier].mass)"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.mass)"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('electricInput') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(comparedCalculated[type][tier].electricInput)"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.electricInput)"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('electricInput') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(comparedCalculated[type][tier].electricInputOptimized)"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.electricInputOptimized)"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('propellantInput') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(comparedCalculated[type][tier].propellantInput)"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.propellantInput)"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('propellantInput') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(comparedCalculated[type][tier].propellantInputOptimized)"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.propellantInputOptimized)"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('thrustPower') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(comparedCalculated[type][tier].thrustPower)"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(calculated.plasma.thrustPower)"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('smallPropellantTankDepletionTime') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right"><DurationFormatter :seconds="comparedStats[type][tier].propellantTankDeplectionTime.small"/></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.plasma.propellantTankDeplectionTime.small"/></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('smallPropellantTankDepletionTime') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right"><DurationFormatter v-if="type !== 'maneuver'" :seconds="comparedStats[type][tier].propellantTankDeplectionTimeOptimized.small"/></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('mediumPropellantTankDepletionTime') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right"><DurationFormatter :seconds="comparedStats[type][tier].propellantTankDeplectionTime.medium"/></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.plasma.propellantTankDeplectionTime.medium"/></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('mediumPropellantTankDepletionTime') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right"><DurationFormatter v-if="type !== 'maneuver'" :seconds="comparedStats[type][tier].propellantTankDeplectionTimeOptimized.medium"/></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('largePropellantTankDepletionTime') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right"><DurationFormatter :seconds="comparedStats[type][tier].propellantTankDeplectionTime.large"/></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"><DurationFormatter :seconds="stats.plasma.propellantTankDeplectionTime.large"/></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('largePropellantTankDepletionTime') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right"><DurationFormatter v-if="type !== 'maneuver'" :seconds="comparedStats[type][tier].propellantTankDeplectionTimeOptimized.large"/></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('fullSpeedRangeSmallTank') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(comparedMaxSpeedRanges[type][tier].small / 1000)"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(maxSpeedRanges.plasma.small / 1000)"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('fullSpeedRangeSmallTank') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="type !== 'maneuver' ? numberToLocaleString(comparedMaxSpeedRangesOptimized[type][tier].small / 1000) : ''"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('fullSpeedRangeMediumTank') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(comparedMaxSpeedRanges[type][tier].medium / 1000)"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(maxSpeedRanges.plasma.medium / 1000)"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('fullSpeedRangeMediumTank') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="type !== 'maneuver' ? numberToLocaleString(comparedMaxSpeedRangesOptimized[type][tier].medium / 1000) : ''"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('fullSpeedRangeLargeTank') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="numberToLocaleString(comparedMaxSpeedRanges[type][tier].large / 1000)"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right" v-html="numberToLocaleString(maxSpeedRanges.plasma.large / 1000)"></DataTableCell>
+                    </DataTableRow>
+
+                    <DataTableRow>
+                        <DataTableCell>{{ $t('fullSpeedRangeLargeTank') }} {{ $t('withConverter') }}</DataTableCell>
+                        <template v-for="type in thrusterTypes" :key="type">
+                            <template v-for="tier in tiers" :key="tier">
+                                <DataTableCell class="text--right" v-html="type !== 'maneuver' ? numberToLocaleString(comparedMaxSpeedRangesOptimized[type][tier].large / 1000) : ''"></DataTableCell>
+                            </template>
+                        </template>
+                        <DataTableCell class="text--right"></DataTableCell>
                     </DataTableRow>
                 </DataTable>
             </div>
@@ -231,6 +502,7 @@ import DurationFormatter from '@/components/formatters/DurationFormatter.vue';
 import DataTable from '@/components/layout/dataTable/DataTable.vue';
 import DataTableRow from '@/components/layout/dataTable/DataTableRow.vue';
 import DataTableCell from '@/components/layout/dataTable/DataTableCell.vue';
+import { MAX_SPEED } from '@/constants/ingame';
 
 interface Data {
     isLoading: boolean;
@@ -305,7 +577,7 @@ interface Items {
 }
 
 function calcOptimizedInput(input: number, bonus: number): number {
-    return input - (input * bonus);
+    return input * bonus;
 }
 
 export default defineComponent({
@@ -323,369 +595,254 @@ export default defineComponent({
     data: (): Data => ({
         isLoading: false,
         rawItems: [],
-        rings: 0,
+        rings: 1,
     }),
     computed: {
+        thrusterTypes(): string[] {
+            return ['maneuver', 'triangle', 'box'];
+        },
+        tiers(): string[] {
+            return ['tier1', 'tier2', 'tier3'];
+        },
+        tankSizes(): string[] {
+            return ['small', 'medium', 'large'];
+        },
+        comparedMaxSpeedRanges() {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const comparedMaxSpeedRanges: any = {};
+            this.thrusterTypes.forEach((type) => {
+                comparedMaxSpeedRanges[type] = {};
+                this.tiers.forEach((tier) => {
+                    comparedMaxSpeedRanges[type][tier] = {};
+                    this.tankSizes.forEach((tankSize) => {
+                        comparedMaxSpeedRanges[type][tier][tankSize] = this.comparedStats[type][tier].propellantTankDeplectionTime[tankSize] * MAX_SPEED;
+                    });
+                });
+            });
+            return comparedMaxSpeedRanges;
+        },
+        comparedMaxSpeedRangesOptimized() {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const comparedMaxSpeedRanges: any = {};
+            this.thrusterTypes.forEach((type) => {
+                if (type === 'maneuver') {
+                    return;
+                }
+                comparedMaxSpeedRanges[type] = {};
+                this.tiers.forEach((tier) => {
+                    comparedMaxSpeedRanges[type][tier] = {};
+                    this.tankSizes.forEach((tankSize) => {
+                        comparedMaxSpeedRanges[type][tier][tankSize] = this.comparedStats[type][tier].propellantTankDeplectionTimeOptimized[tankSize] * MAX_SPEED;
+                    });
+                });
+            });
+            return comparedMaxSpeedRanges;
+        },
+        comparedStats() {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const comparedStats: any = {};
+            this.thrusterTypes.forEach((type) => {
+                comparedStats[type] = {};
+                this.tiers.forEach((tier) => {
+                    comparedStats[type][tier] = {};
+                    comparedStats[type][tier].propellantTankDeplectionTime = {};
+                    this.tankSizes.forEach((tankSize) => {
+                        comparedStats[type][tier].propellantTankDeplectionTime[tankSize] = (this.items.propellantTanks[tankSize].propellantCapacity as number) / this.comparedCalculated[type][tier].propellantInput;
+                    });
+                    comparedStats[type][tier].propellantTankDeplectionTimeOptimized = {};
+                    if (type !== 'maneuver') {
+                        this.tankSizes.forEach((tankSize) => {
+                            comparedStats[type][tier].propellantTankDeplectionTimeOptimized[tankSize] = (this.items.propellantTanks[tankSize].propellantCapacity as number) / this.comparedCalculated[type][tier].propellantInputOptimized;
+                        });
+                    }
+                });
+            });
+            return comparedStats;
+        },
+        comparedCalculated() {
+            const comparedCalculated: any = {};
+            this.thrusterTypes.forEach((type) => {
+                comparedCalculated[type] = {};
+                this.tiers.forEach((tier) => {
+                    comparedCalculated[type][tier] = {
+                        mass: this.calculated[type][tier].mass * this.comparedAmount[type][tier],
+                        electricInput: this.calculated[type][tier].electricInput * this.comparedAmount[type][tier],
+                        propellantInput: this.calculated[type][tier].propellantInput * this.comparedAmount[type][tier],
+                        thrustPower: this.calculated[type][tier].thrustPower * this.comparedAmount[type][tier],
+                    };
+                    if (type !== 'maneuver') {
+                        comparedCalculated[type][tier].electricInputOptimized = this.calculated[type][tier].electricInputOptimized * this.comparedAmount[type][tier];
+                        comparedCalculated[type][tier].propellantInputOptimized = this.calculated[type][tier].propellantInputOptimized * this.comparedAmount[type][tier];
+                    }
+                });
+            });
+            return comparedCalculated;
+        },
+        comparedAmount() {
+            const comparedAmounts = {};
+            this.thrusterTypes.forEach((type) => {
+                comparedAmounts[type] = {};
+                this.tiers.forEach((tier) => {
+                    comparedAmounts[type][tier] = this.calculated.plasma.thrustPower / this.calculated[type][tier].thrustPower;
+                });
+            });
+            return comparedAmounts;
+        },
+        maxSpeedRanges() {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const maxSpeedRanges: any = {};
+            this.thrusterTypes.forEach((type) => {
+                maxSpeedRanges[type] = {};
+                this.tiers.forEach((tier) => {
+                    maxSpeedRanges[type][tier] = {};
+                    this.tankSizes.forEach((tankSize) => {
+                        maxSpeedRanges[type][tier][tankSize] = this.stats[type][tier].propellantTankDeplectionTime[tankSize] * MAX_SPEED;
+                    });
+                });
+            });
+            maxSpeedRanges.plasma = {};
+            this.tankSizes.forEach((tankSize) => {
+                maxSpeedRanges.plasma[tankSize] = this.stats.plasma.propellantTankDeplectionTime[tankSize] * MAX_SPEED;
+            });
+            return maxSpeedRanges;
+        },
+        maxSpeedRangesOptimized() {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const maxSpeedRanges: any = {};
+            this.thrusterTypes.forEach((type) => {
+                if (type === 'maneuver') {
+                    return;
+                }
+                maxSpeedRanges[type] = {};
+                this.tiers.forEach((tier) => {
+                    maxSpeedRanges[type][tier] = {};
+                    this.tankSizes.forEach((tankSize) => {
+                        maxSpeedRanges[type][tier][tankSize] = this.stats[type][tier].propellantTankDeplectionTimeOptimized[tankSize] * MAX_SPEED;
+                    });
+                });
+            });
+            maxSpeedRanges.plasma = {};
+            this.tankSizes.forEach((tankSize) => {
+                maxSpeedRanges.plasma[tankSize] = this.stats.plasma.propellantTankDeplectionTime[tankSize] * MAX_SPEED;
+            });
+            return maxSpeedRanges;
+        },
         stats() {
-            return {
-                maneuver: {
-                    tier1: {
-                        thrustPerElectricity: this.calculated.maneuver.tier1.thrustPower / this.calculated.maneuver.tier1.electricInput,
-                        thrustPerPropellant: this.calculated.maneuver.tier1.thrustPower / this.calculated.maneuver.tier1.propellantInput,
-                        propellantTankDeplectionTime: {
-                            small: (this.items.propellantTanks.small.propellantCapacity as number) / this.calculated.maneuver.tier1.propellantInput,
-                            medium: (this.items.propellantTanks.medium.propellantCapacity as number) / this.calculated.maneuver.tier1.propellantInput,
-                            large: (this.items.propellantTanks.large.propellantCapacity as number) / this.calculated.maneuver.tier1.propellantInput,
-                        },
-                    },
-                    tier2: {
-                        thrustPerElectricity: this.calculated.maneuver.tier2.thrustPower / this.calculated.maneuver.tier2.electricInput,
-                        thrustPerPropellant: this.calculated.maneuver.tier2.thrustPower / this.calculated.maneuver.tier2.propellantInput,
-                        propellantTankDeplectionTime: {
-                            small: (this.items.propellantTanks.small.propellantCapacity as number) / this.calculated.maneuver.tier2.propellantInput,
-                            medium: (this.items.propellantTanks.medium.propellantCapacity as number) / this.calculated.maneuver.tier2.propellantInput,
-                            large: (this.items.propellantTanks.large.propellantCapacity as number) / this.calculated.maneuver.tier2.propellantInput,
-                        },
-                    },
-                    tier3: {
-                        thrustPerElectricity: this.calculated.maneuver.tier3.thrustPower / this.calculated.maneuver.tier3.electricInput,
-                        thrustPerPropellant: this.calculated.maneuver.tier3.thrustPower / this.calculated.maneuver.tier3.propellantInput,
-                        propellantTankDeplectionTime: {
-                            small: (this.items.propellantTanks.small.propellantCapacity as number) / this.calculated.maneuver.tier3.propellantInput,
-                            medium: (this.items.propellantTanks.medium.propellantCapacity as number) / this.calculated.maneuver.tier3.propellantInput,
-                            large: (this.items.propellantTanks.large.propellantCapacity as number) / this.calculated.maneuver.tier3.propellantInput,
-                        },
-                    },
-                },
-                triangle: {
-                    tier1: {
-                        thrustPerElectricity: this.calculated.triangle.tier1.thrustPower / this.calculated.triangle.tier1.electricInput,
-                        thrustPerPropellant: this.calculated.triangle.tier1.thrustPower / this.calculated.triangle.tier1.propellantInput,
-                        propellantTankDeplectionTime: {
-                            small: (this.items.propellantTanks.small.propellantCapacity as number) / this.calculated.triangle.tier1.propellantInput,
-                            medium: (this.items.propellantTanks.medium.propellantCapacity as number) / this.calculated.triangle.tier1.propellantInput,
-                            large: (this.items.propellantTanks.large.propellantCapacity as number) / this.calculated.triangle.tier1.propellantInput,
-                        },
-                    },
-                    tier2: {
-                        thrustPerElectricity: this.calculated.triangle.tier2.thrustPower / this.calculated.triangle.tier2.electricInput,
-                        thrustPerPropellant: this.calculated.triangle.tier2.thrustPower / this.calculated.triangle.tier2.propellantInput,
-                        propellantTankDeplectionTime: {
-                            small: (this.items.propellantTanks.small.propellantCapacity as number) / this.calculated.triangle.tier2.propellantInput,
-                            medium: (this.items.propellantTanks.medium.propellantCapacity as number) / this.calculated.triangle.tier2.propellantInput,
-                            large: (this.items.propellantTanks.large.propellantCapacity as number) / this.calculated.triangle.tier2.propellantInput,
-                        },
-                    },
-                    tier3: {
-                        thrustPerElectricity: this.calculated.triangle.tier3.thrustPower / this.calculated.triangle.tier3.electricInput,
-                        thrustPerPropellant: this.calculated.triangle.tier3.thrustPower / this.calculated.triangle.tier3.propellantInput,
-                        propellantTankDeplectionTime: {
-                            small: (this.items.propellantTanks.small.propellantCapacity as number) / this.calculated.triangle.tier3.propellantInput,
-                            medium: (this.items.propellantTanks.medium.propellantCapacity as number) / this.calculated.triangle.tier3.propellantInput,
-                            large: (this.items.propellantTanks.large.propellantCapacity as number) / this.calculated.triangle.tier3.propellantInput,
-                        },
-                    },
-                },
-                box: {
-                    tier1: {
-                        thrustPerElectricity: this.calculated.box.tier1.thrustPower / this.calculated.box.tier1.electricInput,
-                        thrustPerPropellant: this.calculated.box.tier1.thrustPower / this.calculated.box.tier1.propellantInput,
-                        propellantTankDeplectionTime: {
-                            small: (this.items.propellantTanks.small.propellantCapacity as number) / this.calculated.box.tier1.propellantInput,
-                            medium: (this.items.propellantTanks.medium.propellantCapacity as number) / this.calculated.box.tier1.propellantInput,
-                            large: (this.items.propellantTanks.large.propellantCapacity as number) / this.calculated.box.tier1.propellantInput,
-                        },
-                    },
-                    tier2: {
-                        thrustPerElectricity: this.calculated.box.tier2.thrustPower / this.calculated.box.tier2.electricInput,
-                        thrustPerPropellant: this.calculated.box.tier2.thrustPower / this.calculated.box.tier2.propellantInput,
-                        propellantTankDeplectionTime: {
-                            small: (this.items.propellantTanks.small.propellantCapacity as number) / this.calculated.box.tier2.propellantInput,
-                            medium: (this.items.propellantTanks.medium.propellantCapacity as number) / this.calculated.box.tier2.propellantInput,
-                            large: (this.items.propellantTanks.large.propellantCapacity as number) / this.calculated.box.tier2.propellantInput,
-                        },
-                    },
-                    tier3: {
-                        thrustPerElectricity: this.calculated.box.tier3.thrustPower / this.calculated.box.tier3.electricInput,
-                        thrustPerPropellant: this.calculated.box.tier3.thrustPower / this.calculated.box.tier3.propellantInput,
-                        propellantTankDeplectionTime: {
-                            small: (this.items.propellantTanks.small.propellantCapacity as number) / this.calculated.box.tier3.propellantInput,
-                            medium: (this.items.propellantTanks.medium.propellantCapacity as number) / this.calculated.box.tier3.propellantInput,
-                            large: (this.items.propellantTanks.large.propellantCapacity as number) / this.calculated.box.tier3.propellantInput,
-                        },
-                    },
-                },
-                plasma: {
-                    thrustPerElectricity: this.calculated.plasma.thrustPower / this.calculated.plasma.electricInput,
-                    thrustPerPropellant: this.calculated.plasma.thrustPower / this.calculated.plasma.propellantInput,
-                    propellantTankDeplectionTime: {
-                        small: (this.items.propellantTanks.small.propellantCapacity as number) / this.calculated.plasma.propellantInput,
-                        medium: (this.items.propellantTanks.medium.propellantCapacity as number) / this.calculated.plasma.propellantInput,
-                        large: (this.items.propellantTanks.large.propellantCapacity as number) / this.calculated.plasma.propellantInput,
-                    },
-                },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const stats: any = {};
+            this.thrusterTypes.forEach((type) => {
+                stats[type] = {};
+                this.tiers.forEach((tier) => {
+                    stats[type][tier] = {};
+                    stats[type][tier].thrustPerElectricity = this.calculated[type][tier].thrustPower / this.calculated[type][tier].electricInput;
+                    stats[type][tier].thrustPerPropellant = this.calculated[type][tier].thrustPower / this.calculated[type][tier].propellantInput;
+                    if (type !== 'maneuver') {
+                        stats[type][tier].thrustPerElectricityOptimized = this.calculated[type][tier].thrustPower / this.calculated[type][tier].electricInputOptimized;
+                        stats[type][tier].thrustPerPropellantOptimized = this.calculated[type][tier].thrustPower / this.calculated[type][tier].propellantInputOptimized;
+                    }
+                    stats[type][tier].propellantTankDeplectionTime = {};
+                    this.tankSizes.forEach((tankSize) => {
+                        stats[type][tier].propellantTankDeplectionTime[tankSize] = (this.items.propellantTanks[tankSize].propellantCapacity as number) / this.calculated[type][tier].propellantInput;
+                    });
+                    stats[type][tier].propellantTankDeplectionTimeOptimized = {};
+                    if (type !== 'maneuver') {
+                        this.tankSizes.forEach((tankSize) => {
+                            stats[type][tier].propellantTankDeplectionTimeOptimized[tankSize] = (this.items.propellantTanks[tankSize].propellantCapacity as number) / this.calculated[type][tier].propellantInputOptimized;
+                        });
+                    }
+                });
+            });
+            stats.plasma = {
+                thrustPerElectricity: this.calculated.plasma.thrustPower / this.calculated.plasma.electricInput,
+                thrustPerPropellant: this.calculated.plasma.thrustPower / this.calculated.plasma.propellantInput,
+                propellantTankDeplectionTime: {},
             };
+            this.tankSizes.forEach((tankSize) => {
+                stats.plasma.propellantTankDeplectionTime[tankSize] = (this.items.propellantTanks[tankSize].propellantCapacity as number) / this.calculated.plasma.propellantInput;
+            });
+            return stats;
         },
         calculated() {
-            return {
-                maneuver: {
-                    tier1: {
-                        mass: (this.items.maneuver.tier1.mass as number),
-                        electricInput: (this.items.maneuver.tier1.electricInput as number),
-                        propellantInput: (this.items.maneuver.tier1.propellantInput as number),
-                        thrustPower: (this.items.maneuver.tier1.thrustPower as number),
-                    },
-                    tier2: {
-                        mass: (this.items.maneuver.tier2.mass as number),
-                        electricInput: (this.items.maneuver.tier2.electricInput as number),
-                        propellantInput: (this.items.maneuver.tier2.propellantInput as number),
-                        thrustPower: (this.items.maneuver.tier2.thrustPower as number),
-                    },
-                    tier3: {
-                        mass: (this.items.maneuver.tier3.mass as number),
-                        electricInput: (this.items.maneuver.tier3.electricInput as number),
-                        propellantInput: (this.items.maneuver.tier3.propellantInput as number),
-                        thrustPower: (this.items.maneuver.tier3.thrustPower as number),
-                    },
-                },
-                triangle: {
-                    tier1: {
-                        mass: (this.items.propellantConverter.tier1.mass as number) + (this.items.electricityConverter.tier1.mass as number) + (this.items.triangle.combustionChamber.mass as number) + (this.items.triangle.tier1.body.mass as number) + (this.items.triangle.tier1.nozzle.mass as number),
+            const calculated: any = {};
+            this.thrusterTypes.forEach((type) => {
+                calculated[type] = {};
+                this.tiers.forEach((tier) => {
+                    if (type === 'maneuver') {
+                        calculated[type][tier] = {
+                            mass: (this.items[type][tier].mass as number),
+                            electricInput: (this.items[type][tier].electricInput as number),
+                            propellantInput: (this.items[type][tier].propellantInput as number),
+                            thrustPower: (this.items[type][tier].thrustPower as number),
+                        };
+                    } else {
+                        calculated[type][tier] = {
+                            mass: (this.items.propellantConverter[tier].mass as number)
+                                  + (this.items.electricityConverter[tier].mass as number)
+                                  + (this.items[type].combustionChamber.mass as number)
+                                  + (this.items[type][tier].body.mass as number)
+                                  + (this.items[type][tier].nozzle.mass as number),
 
-                        electricInput:
-                            (this.items.triangle.combustionChamber.electricInput as number)
-                            + (this.items.triangle.tier1.body.electricInput as number)
-                            + (this.items.triangle.tier1.nozzle.electricInput as number),
+                            electricInput:
+                                (this.items[type].combustionChamber.electricInput as number)
+                                + (this.items[type][tier].body.electricInput as number)
+                                + (this.items[type][tier].nozzle.electricInput as number),
 
-                        electricInputOptimized:
-                            calcOptimizedInput(
-                                (this.items.triangle.combustionChamber.electricInput as number)
-                                + (this.items.triangle.tier1.body.electricInput as number)
-                                + (this.items.triangle.tier1.nozzle.electricInput as number),
-                                this.items.electricityConverter.tier1.electricityConversionBonusFactor as number,
-                            ),
+                            electricInputOptimized:
+                                calcOptimizedInput(
+                                    (this.items[type].combustionChamber.electricInput as number)
+                                    + (this.items[type][tier].body.electricInput as number)
+                                    + (this.items[type][tier].nozzle.electricInput as number),
+                                    this.items.electricityConverter[tier].electricityConversionBonusFactor as number,
+                                ),
 
-                        propellantInput:
-                            (this.items.triangle.combustionChamber.propellantInput as number)
-                            + (this.items.triangle.tier1.body.propellantInput as number)
-                            + (this.items.triangle.tier1.nozzle.propellantInput as number),
+                            propellantInput:
+                                (this.items[type].combustionChamber.propellantInput as number)
+                                + (this.items[type][tier].body.propellantInput as number)
+                                + (this.items[type][tier].nozzle.propellantInput as number),
 
-                        propellantInputOptimized:
-                            calcOptimizedInput(
-                                (this.items.triangle.combustionChamber.propellantInput as number)
-                                + (this.items.triangle.tier1.body.propellantInput as number)
-                                + (this.items.triangle.tier1.nozzle.propellantInput as number),
-                                this.items.propellantConverter.tier1.propellantConversionBonusFactor as number,
-                            ),
+                            propellantInputOptimized:
+                                calcOptimizedInput(
+                                    (this.items[type].combustionChamber.propellantInput as number)
+                                    + (this.items[type][tier].body.propellantInput as number)
+                                    + (this.items[type][tier].nozzle.propellantInput as number),
+                                    this.items.propellantConverter[tier].propellantConversionBonusFactor as number,
+                                ),
 
-                        thrustPower:
-                            (this.items.triangle.combustionChamber.thrustPower as number)
-                            + (this.items.triangle.tier1.body.thrustPower as number)
-                            + (this.items.triangle.tier1.nozzle.thrustPower as number),
-                    },
-                    tier2: {
-                        mass: (this.items.propellantConverter.tier2.mass as number) + (this.items.electricityConverter.tier2.mass as number) + (this.items.triangle.combustionChamber.mass as number) + (this.items.triangle.tier2.body.mass as number) + (this.items.triangle.tier2.nozzle.mass as number),
+                            thrustPower:
+                                (this.items[type].combustionChamber.thrustPower as number)
+                                + (this.items[type][tier].body.thrustPower as number)
+                                + (this.items[type][tier].nozzle.thrustPower as number),
 
-                        electricInput:
-                            (this.items.triangle.combustionChamber.electricInput as number)
-                            + (this.items.triangle.tier2.body.electricInput as number)
-                            + (this.items.triangle.tier2.nozzle.electricInput as number),
+                            //
+                        };
+                    }
+                });
+            });
+            calculated.plasma = {
+                mass:
+                    ((this.items.plasma.capacitor.mass as number) * 4)
+                    + ((this.items.plasma.capacitorStruct.mass as number) * 2)
+                    + (this.items.plasma.core.mass as number)
+                    + ((this.items.plasma.engine.mass as number) * 4)
+                    + ((this.items.plasma.frame.mass as number) * 4)
+                    + ((this.items.plasma.collar.mass as number) * 2)
+                    + (((this.items.plasma.superconductor.mass as number) * 4) * this.rings)
+                    + ((this.items.plasma.nozzle.mass as number) * 2),
 
-                        electricInputOptimized:
-                            calcOptimizedInput(
-                                (this.items.triangle.combustionChamber.electricInput as number)
-                                + (this.items.triangle.tier2.body.electricInput as number)
-                                + (this.items.triangle.tier2.nozzle.electricInput as number),
-                                this.items.electricityConverter.tier2.electricityConversionBonusFactor as number,
-                            ),
+                electricInput:
+                        (this.items.plasma.core.electricInput as number)
+                        + (((this.items.plasma.superconductor.electricInput as number) * 4) * this.rings),
 
-                        propellantInput:
-                            (this.items.triangle.combustionChamber.propellantInput as number)
-                            + (this.items.triangle.tier2.body.propellantInput as number)
-                            + (this.items.triangle.tier2.nozzle.propellantInput as number),
+                propellantInput:
+                    (this.items.plasma.core.propellantInput as number)
+                    + (((this.items.plasma.superconductor.propellantInput as number) * 4) * this.rings),
 
-                        propellantInputOptimized:
-                            calcOptimizedInput(
-                                (this.items.triangle.combustionChamber.propellantInput as number)
-                                + (this.items.triangle.tier2.body.propellantInput as number)
-                                + (this.items.triangle.tier2.nozzle.propellantInput as number),
-                                this.items.propellantConverter.tier2.propellantConversionBonusFactor as number,
-                            ),
-
-                        thrustPower:
-                            (this.items.triangle.combustionChamber.thrustPower as number)
-                            + (this.items.triangle.tier2.body.thrustPower as number)
-                            + (this.items.triangle.tier2.nozzle.thrustPower as number),
-                    },
-                    tier3: {
-                        mass: (this.items.propellantConverter.tier3.mass as number) + (this.items.electricityConverter.tier2.mass as number) + (this.items.triangle.combustionChamber.mass as number) + (this.items.triangle.tier3.body.mass as number) + (this.items.triangle.tier3.nozzle.mass as number),
-
-                        electricInput:
-                            (this.items.triangle.combustionChamber.electricInput as number)
-                            + (this.items.triangle.tier3.body.electricInput as number)
-                            + (this.items.triangle.tier3.nozzle.electricInput as number),
-
-                        electricInputOptimized:
-                            calcOptimizedInput(
-                                (this.items.triangle.combustionChamber.electricInput as number)
-                                + (this.items.triangle.tier3.body.electricInput as number)
-                                + (this.items.triangle.tier3.nozzle.electricInput as number),
-                                this.items.electricityConverter.tier3.electricityConversionBonusFactor as number,
-                            ),
-
-                        propellantInput:
-                            (this.items.triangle.combustionChamber.propellantInput as number)
-                            + (this.items.triangle.tier3.body.propellantInput as number)
-                            + (this.items.triangle.tier3.nozzle.propellantInput as number),
-
-                        propellantInputOptimized:
-                            calcOptimizedInput(
-                                (this.items.triangle.combustionChamber.propellantInput as number)
-                                + (this.items.triangle.tier3.body.propellantInput as number)
-                                + (this.items.triangle.tier3.nozzle.propellantInput as number),
-                                this.items.propellantConverter.tier3.propellantConversionBonusFactor as number,
-                            ),
-
-                        thrustPower:
-                            (this.items.triangle.combustionChamber.thrustPower as number)
-                            + (this.items.triangle.tier3.body.thrustPower as number)
-                            + (this.items.triangle.tier3.nozzle.thrustPower as number),
-                    },
-                },
-                box: {
-                    tier1: {
-                        mass: (this.items.propellantConverter.tier1.mass as number) + (this.items.electricityConverter.tier1.mass as number) + (this.items.box.combustionChamber.mass as number) + (this.items.box.tier1.body.mass as number) + (this.items.box.tier1.nozzle.mass as number),
-
-                        electricInput:
-                            (this.items.box.combustionChamber.electricInput as number)
-                            + (this.items.box.tier1.body.electricInput as number)
-                            + (this.items.box.tier1.nozzle.electricInput as number),
-
-                        electricInputOptimized:
-                            calcOptimizedInput(
-                                (this.items.box.combustionChamber.electricInput as number)
-                                + (this.items.box.tier1.body.electricInput as number)
-                                + (this.items.box.tier1.nozzle.electricInput as number),
-                                this.items.electricityConverter.tier1.electricityConversionBonusFactor as number,
-                            ),
-
-                        propellantInput:
-                            (this.items.box.combustionChamber.propellantInput as number)
-                            + (this.items.box.tier1.body.propellantInput as number)
-                            + (this.items.box.tier1.nozzle.propellantInput as number),
-
-                        propellantInputOptimized:
-                            calcOptimizedInput(
-                                (this.items.box.combustionChamber.propellantInput as number)
-                                + (this.items.box.tier1.body.propellantInput as number)
-                                + (this.items.box.tier1.nozzle.propellantInput as number),
-                                this.items.propellantConverter.tier1.propellantConversionBonusFactor as number,
-                            ),
-
-                        thrustPower:
-                            (this.items.box.combustionChamber.thrustPower as number)
-                            + (this.items.box.tier1.body.thrustPower as number)
-                            + (this.items.box.tier1.nozzle.thrustPower as number),
-                    },
-                    tier2: {
-                        mass: (this.items.propellantConverter.tier2.mass as number) + (this.items.electricityConverter.tier2.mass as number) + (this.items.box.combustionChamber.mass as number) + (this.items.box.tier2.body.mass as number) + (this.items.box.tier2.nozzle.mass as number),
-
-                        electricInput:
-                            (this.items.box.combustionChamber.electricInput as number)
-                            + (this.items.box.tier2.body.electricInput as number)
-                            + (this.items.box.tier2.nozzle.electricInput as number),
-
-                        electricInputOptimized:
-                            calcOptimizedInput(
-                                (this.items.box.combustionChamber.electricInput as number)
-                                + (this.items.box.tier2.body.electricInput as number)
-                                + (this.items.box.tier2.nozzle.electricInput as number),
-                                this.items.electricityConverter.tier2.electricityConversionBonusFactor as number,
-                            ),
-
-                        propellantInput:
-                            (this.items.box.combustionChamber.propellantInput as number)
-                            + (this.items.box.tier2.body.propellantInput as number)
-                            + (this.items.box.tier2.nozzle.propellantInput as number),
-
-                        propellantInputOptimized:
-                            calcOptimizedInput(
-                                (this.items.box.combustionChamber.propellantInput as number)
-                                + (this.items.box.tier2.body.propellantInput as number)
-                                + (this.items.box.tier2.nozzle.propellantInput as number),
-                                this.items.propellantConverter.tier2.propellantConversionBonusFactor as number,
-                            ),
-
-                        thrustPower:
-                            (this.items.box.combustionChamber.thrustPower as number)
-                            + (this.items.box.tier2.body.thrustPower as number)
-                            + (this.items.box.tier2.nozzle.thrustPower as number),
-                    },
-                    tier3: {
-                        mass: (this.items.propellantConverter.tier3.mass as number) + (this.items.electricityConverter.tier2.mass as number) + (this.items.box.combustionChamber.mass as number) + (this.items.box.tier3.body.mass as number) + (this.items.box.tier3.nozzle.mass as number),
-
-                        electricInput:
-                            (this.items.box.combustionChamber.electricInput as number)
-                            + (this.items.box.tier3.body.electricInput as number)
-                            + (this.items.box.tier3.nozzle.electricInput as number),
-
-                        electricInputOptimized:
-                            calcOptimizedInput(
-                                (this.items.box.combustionChamber.electricInput as number)
-                                + (this.items.box.tier3.body.electricInput as number)
-                                + (this.items.box.tier3.nozzle.electricInput as number),
-                                this.items.electricityConverter.tier3.electricityConversionBonusFactor as number,
-                            ),
-
-                        propellantInput:
-                            (this.items.box.combustionChamber.propellantInput as number)
-                            + (this.items.box.tier3.body.propellantInput as number)
-                            + (this.items.box.tier3.nozzle.propellantInput as number),
-
-                        propellantInputOptimized:
-                            calcOptimizedInput(
-                                (this.items.box.combustionChamber.propellantInput as number)
-                                + (this.items.box.tier3.body.propellantInput as number)
-                                + (this.items.box.tier3.nozzle.propellantInput as number),
-                                this.items.propellantConverter.tier3.propellantConversionBonusFactor as number,
-                            ),
-
-                        thrustPower:
-                            (this.items.box.combustionChamber.thrustPower as number)
-                            + (this.items.box.tier3.body.thrustPower as number)
-                            + (this.items.box.tier3.nozzle.thrustPower as number),
-                    },
-                },
-                plasma: {
-                    mass:
-                        ((this.items.plasma.capacitor.mass as number) * 4)
-                        + ((this.items.plasma.capacitorStruct.mass as number) * 2)
-                        + (this.items.plasma.core.mass as number)
-                        + ((this.items.plasma.engine.mass as number) * 4)
-                        + ((this.items.plasma.frame.mass as number) * 4)
-                        + ((this.items.plasma.collar.mass as number) * 2)
-                        + (((this.items.plasma.superconductor.mass as number) * 4) * this.rings)
-                        + ((this.items.plasma.nozzle.mass as number) * 2),
-
-                    electricInput:
-                        calcOptimizedInput(
-                            ((this.items.plasma.nozzle.electricInput as number) * 2)
-                            + (((this.items.plasma.superconductor.electricInput as number) * 4) * this.rings),
-                            ((this.items.plasma.frame.electricityConversionBonusFactor as number) * 4),
-                        ),
-
-                    propellantInput:
-                        calcOptimizedInput(
-                            ((this.items.plasma.nozzle.propellantInput as number) * 2)
-                            + (((this.items.plasma.superconductor.propellantInput as number) * 4) * this.rings),
-                            ((this.items.plasma.engine.propellantConversionBonusFactor as number) * 4),
-                        ),
-
-                    thrustPower:
-                        ((this.items.plasma.nozzle.thrustPower as number) * 2)
-                        + (((this.items.plasma.superconductor.thrustPower as number) * 4) * this.rings),
-                },
+                thrustPower:
+                    ((this.items.plasma.nozzle.thrustPower as number) * 2)
+                    + (this.items.plasma.core.thrustPower as number)
+                    + (((this.items.plasma.superconductor.thrustPower as number) * 4) * this.rings),
             };
+            return calculated;
         },
         items(): Items {
             return {

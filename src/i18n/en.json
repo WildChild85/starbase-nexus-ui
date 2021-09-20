@@ -43,11 +43,11 @@
     "mass": "Mass (kg)",
     "electricInput": "Electric input (e/s)",
     "electricOutput": "Electric output (e/s)",
-    "electricityConversionBonusFactor": "Electricity Conversion Bonus Factor (30% = 0.3)",
+    "electricityConversionBonusFactor": "Electricity Conversion Bonus Factor (30% = 0.7)",
     "electricCapacity": "Electric capacity",
     "propellantInput": "Propellant input (p/s)",
     "propellantOutput": "Propellant output (p/s)",
-    "propellantConversionBonusFactor": "Propellant Conversion Bonus Factor (30% = 0.3)",
+    "propellantConversionBonusFactor": "Propellant Conversion Bonus Factor (30% = 0.7)",
     "propellantCapacity": "Propellant capacity",
     "thrustPower": "Thrust power",
     "tier": "Tier",
@@ -137,5 +137,11 @@
     "companies": "Companies",
     "social": "Social",
     "company": "Company",
-    "preview": "Preview"
+    "preview": "Preview",
+    "requiredAmountForPlasma": "Required amount to reach plasma thrust",
+    "withConverter": "with converter",
+    "fullSpeedRangeSmallTank": "Full speed range (km) / small tank",
+    "fullSpeedRangeMediumTank": "Full speed range (km) / medium tank",
+    "fullSpeedRangeLargeTank": "Full speed range (km) / large tank",
+    "plasmaComparisonExplanation": "The following values in comparison of the required amount thrusters that is necessary to reach the plasma thrust."
 }

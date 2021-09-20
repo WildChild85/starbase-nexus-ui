@@ -1,5 +1,5 @@
 <template>
-<td :class="classes">
+<td :class="classes" :colspan="colspan">
     <slot></slot>
 </td>
 </template>
@@ -10,8 +10,14 @@ import { defineComponent } from 'vue';
 export default defineComponent({
     name: 'DataTableCell',
     props: {
-        type: String,
-        default: null,
+        type: {
+            type: String,
+            default: null,
+        },
+        colspan: {
+            type: Number,
+            default: null,
+        },
     },
     computed: {
         classes(): Record<string, boolean> {

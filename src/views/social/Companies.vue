@@ -6,7 +6,8 @@
             <div class="flex flex--end flex--wrap">
                 <TextField v-model.trim="searchTerm" :placeholder="$t('search')" @keyup.enter="refreshData"/>
                 <Button class="margin-left" :loading="isLoading" @click="refreshData">Refresh</Button>
-                <Button class="margin-left" type="info" :to="{name: 'social_company_create'}">Create</Button>
+                <Button class="margin-left" v-if="user" type="info" :to="{name: 'social_company_create'}">Create</Button>
+                <Button class="margin-left" v-else type="info" @click="redirectToDiscord">Create</Button>
             </div>
 
             <div class="company-list">
@@ -33,6 +34,8 @@ import * as companyService from '@/services/social/companyService';
 import { Company } from '@/interfaces/social/company';
 import LoadingIndicatorBeam from '@/components/loading/LoadingIndicatorBeam.vue';
 import CompanyListItem from '@/components/social/company/CompanyListItem.vue';
+import { redirectToDiscord } from '@/helpers/index';
+import { JwtUser } from '@/interfaces/identity/user';
 
 interface Data {
     searchTerm: string;
@@ -55,7 +58,13 @@ export default defineComponent({
         isLoading: false,
         companies: [],
     }),
+    computed: {
+        user(): JwtUser | null {
+            return this.$store.getters['authentication/user'];
+        },
+    },
     methods: {
+        redirectToDiscord,
         async refreshData(): Promise<void> {
             await this.loadCompanys();
         },

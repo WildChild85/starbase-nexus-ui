@@ -238,6 +238,9 @@ export default defineComponent({
         },
         handleCancelled(): void {
             this.showEdit = false;
+            if (!this.yololProjectId) {
+                this.$router.push({ name: 'yolol_yolol-projects' });
+            }
         },
         async refreshData(): Promise<void> {
             await this.loadYololProject();
