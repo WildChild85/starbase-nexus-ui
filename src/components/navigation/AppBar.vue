@@ -7,10 +7,13 @@
         Join our discord
     </a>
     <div class="app-bar__views">{{ views }}</div>
-    <div class="app-bar__user" v-if="user">
-        <div class="app-bar__user-avatar" data-augmented-ui="tl-clip tr-clip-inset br-clip bl-clip-inset border" :style="userAvatarStyle"></div>
-        <div class="app-bar__user-name">{{ user.userName }}</div>
-    </div>
+    <template v-if="user">
+        <div class="app-bar__user">
+            <div class="app-bar__user-avatar" data-augmented-ui="tl-clip tr-clip-inset br-clip bl-clip-inset border" :style="userAvatarStyle"></div>
+            <div class="app-bar__user-name">{{ user.userName }}</div>
+        </div>
+        <button class="app-bar__btn padding-left--f2 padding-right--f2" @click="signOut" title="sign out"><LogoutIconOutline class="svg-icon"/></button>
+    </template>
     <button class="app-bar__btn" v-else @click="redirectToDiscord">Sign in</button>
 </div>
 </template>
@@ -46,6 +49,9 @@ export default defineComponent({
         redirectToDiscord,
         openMainNav(): void {
             this.$store.commit('mainNav/setOpen', true);
+        },
+        signOut(): void {
+            this.$store.commit('authentication/deleteUser');
         },
     },
 });

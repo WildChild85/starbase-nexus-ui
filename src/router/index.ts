@@ -13,7 +13,7 @@ const MaterialCategories = () => import('@/views/ingame/MaterialCategories.vue')
 const Materials = () => import('@/views/ingame/Materials.vue');
 const ItemCategories = () => import('@/views/ingame/ItemCategories.vue');
 const Items = () => import('@/views/ingame/Items.vue');
-const EngineComparison = () => import('@/views/tools/EngineComparison.vue');
+const ThrusterComparison = () => import('@/views/tools/ThrusterComparison.vue');
 const Maps = () => import('@/views/ingame/Maps.vue');
 const FileExplorerView = () => import('@/views/cdn/FileExplorerView.vue');
 const YololProjects = () => import('@/views/yolol/YololProjects.vue');
@@ -68,9 +68,9 @@ const routes: Array<RouteRecordRaw> = [
         component: Maps,
     },
     {
-        path: '/tools/engine-comparison',
-        name: 'tools_engine-comparison',
-        component: EngineComparison,
+        path: '/tools/thruster-comparison',
+        name: 'tools_thruster-comparison',
+        component: ThrusterComparison,
     },
     {
         path: '/cdn/file-explorer',

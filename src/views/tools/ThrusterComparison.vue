@@ -581,7 +581,7 @@ function calcOptimizedInput(input: number, bonus: number): number {
 }
 
 export default defineComponent({
-    name: 'EngineComparison',
+    name: 'ThrusterComparison',
     components: {
         DataTable,
         DataTableRow,
@@ -933,7 +933,7 @@ export default defineComponent({
         },
     },
     created(): void {
-        this.setPageTitle([this.$t('engineComparison'), this.$t('ingame')]);
+        this.setPageTitle([this.$t('thrusterComparison'), this.$t('ingame')]);
         this.refreshData();
     },
 });

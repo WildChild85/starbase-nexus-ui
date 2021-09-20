@@ -72,7 +72,6 @@
     "researchPointsGear": "Research points gear",
     "wikiUri": "Wiki uri",
     "warmupTime": "Warmup time (in seconds)",
-    "engineComparison": "Engine Comparison",
     "optimized": "optimized",
     "copied": "Copied",
     "idCopied": "Id copied",
@@ -143,5 +142,6 @@
     "fullSpeedRangeSmallTank": "Full speed range (km) / small tank",
     "fullSpeedRangeMediumTank": "Full speed range (km) / medium tank",
     "fullSpeedRangeLargeTank": "Full speed range (km) / large tank",
-    "plasmaComparisonExplanation": "The following values in comparison of the required amount thrusters that is necessary to reach the plasma thrust."
+    "plasmaComparisonExplanation": "The following values are in comparison of the required amount thrusters that is necessary to reach the plasma thrust.",
+    "thrusterComparison": "Thruster Comparison"
 }

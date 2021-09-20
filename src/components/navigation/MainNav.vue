@@ -67,8 +67,8 @@ export default defineComponent({
                     label: this.$t('maps'),
                 },
                 {
-                    to: { name: 'tools_engine-comparison' },
-                    label: this.$t('engineComparison'),
+                    to: { name: 'tools_thruster-comparison' },
+                    label: this.$t('thrusterComparison'),
                 },
 
                 {

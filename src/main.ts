@@ -14,6 +14,7 @@ import {
     ExternalLinkIcon as ExternalLinkIconOutline,
     MenuIcon as MenuIconOutline,
     HeartIcon as HeartIconOutline,
+    LogoutIcon as LogoutIconOutline,
 } from '@heroicons/vue/outline';
 
 import App from '@/App.vue';
@@ -35,4 +36,5 @@ createApp(App)
     .component('PencilAltIconSolid', PencilAltIconSolid)
     .component('HeartIconSolid', HeartIconSolid)
     .component('HeartIconOutline', HeartIconOutline)
+    .component('LogoutIconOutline', LogoutIconOutline)
     .mount('#app');
