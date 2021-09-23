@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import * as signalR from '@/signalR';
 import AppBar from '@/components/navigation/AppBar.vue';
 import MainNav from '@/components/navigation/MainNav.vue';
 
@@ -27,6 +28,13 @@ export default defineComponent({
     },
     created() {
         this.$store.commit('authentication/setUser');
+        window.setInterval(() => {
+            if (signalR.isConnected()) {
+                signalR.notify();
+            } else {
+                signalR.startConnection();
+            }
+        }, 30000);
     },
 });
 </script>

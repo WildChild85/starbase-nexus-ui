@@ -53,7 +53,7 @@
     "tier": "Tier",
     "fuelCapacity": "Fuel capacity",
     "fuelInput": "Fuel input (f/s processed)",
-    "heatGeneration": "Heat generator (h/s)",
+    "heatGeneration": "Heat generation (h/s)",
     "electricityPerShot": "Electricity per shot",
     "electricityPerRecharge": "Electricity per recharge",
     "heatGenerationPerShot": "Heat generation per shot",

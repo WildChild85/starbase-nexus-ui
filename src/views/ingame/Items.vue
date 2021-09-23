@@ -15,7 +15,7 @@
                 <div class="data-item__spacer"></div>
 
                 <template v-for="prop in Object.keys(item)">
-                    <div class="data-item__property" :key="prop" v-if="!excludedProperties.includes(prop) && item[prop] != null">
+                    <div class="data-item__property data-item__property--with-label" :key="prop" v-if="!excludedProperties.includes(prop) && item[prop] != null">
                         <div class="data-item__property-label">{{ $t(prop) }}</div>
                         <div class="data-item__property-value" v-html="numberToLocaleString(item[prop], 0, 6)"></div>
                     </div>

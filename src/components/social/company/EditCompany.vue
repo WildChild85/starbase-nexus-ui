@@ -205,6 +205,7 @@ export default defineComponent({
             try {
                 this.company = (await companyService.getOneOrDefault(this.companyId)).data;
                 this.mapToProperties();
+                this.$emit('update:aboutUs', this.properties.aboutUs);
             } catch (_) {
                 // do nothing
             }

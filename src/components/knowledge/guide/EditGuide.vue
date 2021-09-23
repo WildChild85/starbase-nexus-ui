@@ -167,6 +167,7 @@ export default defineComponent({
             try {
                 this.guide = (await guideService.getOneOrDefault(this.guideId)).data;
                 this.mapToProperties();
+                this.$emit('update:bodytext', this.properties.bodytext);
             } catch (_) {
                 // do nothing
             }

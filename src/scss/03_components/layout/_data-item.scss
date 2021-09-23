@@ -36,6 +36,11 @@
         padding: 0 $spacing;
         position: relative;
     }
+    &__property {
+        &--with-label {
+            display: block;
+        }
+    }
     &__property-label {
         color: var(--color-disabled);
         font-size: var(--font-size-tiny);

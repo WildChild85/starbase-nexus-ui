@@ -48,7 +48,7 @@
                         <li>First of all: Thank you for sharing your knowledge.</li>
                         <li>You don't have to provide a bodytext and a youtube video. One of them is enough.</li>
                         <li>You don't have to be the creator of the youtube video.</li>
-                        <li>Put only stuff here, that can be considered as a guide. A whole let's play video or a recorded stream is now a guide, even is something is explained there. Try to use the clip feature to only use the part that explains what should be considered in this guide.</li>
+                        <li>Put only stuff here, that can be considered as a guide. A whole let's play video or a recorded stream is not a guide, even if something is explained there. Try to use the clip feature to only use the part that explains what should be considered in this guide.</li>
                         <li>The bodytext supports markdown (<a href="https://en.wikipedia.org/wiki/Markdown" target="_blank">Wikipedia</a>).</li>
                     </ol>
                     <div class="guide__bodytext" style="margin-top: 35px">
