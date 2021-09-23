@@ -10,6 +10,14 @@
         flex-grow: 1;
         text-align: left;
     }
+    &__meta {
+        align-items: center;
+        display: flex;
+    }
+    &__likes {
+        align-items: center;
+        display: flex;
+    }
     &__creator {
         align-items: center;
         display: flex;

@@ -17,10 +17,20 @@
                     <div class="guide__header">
                         <h1 class="guide__name">{{ guide ? guide.title : '' }}</h1>
                         <Button v-if="hasEditRights" :title="$t('edit')" @click="showEdit = true"><PencilAltIconSolid class="svg-icon"/></Button>
+                        <template v-else>
+                            <Button type="info" v-if="!user" :title="$t('loginToLike')" @click="redirectToDiscord"><HeartIconOutline class="svg-icon"/></Button>
+                            <Button type="info" v-else-if="currentUserLike" :title="$t('unlike')" @click="unlike(currentUserLike.id)"><HeartIconSolid class="svg-icon"/></Button>
+                            <Button type="info" v-else :title="$t('like')" @click="like"><HeartIconOutline class="svg-icon"/></Button>
+                        </template>
                     </div>
-                    <div class="guide__creator" v-if="creator">
-                        <span class="margin-right">by</span>
-                        <PublicUserBadge :user="creator" />
+                    <div class="guide__meta">
+                        <div class="guide__creator" v-if="creator">
+                            <span class="margin-right">by</span>
+                            <PublicUserBadge :user="creator" />
+                        </div>
+                        <div class="guide__likes">
+                            <HeartIconSolid class="svg-icon margin-right--f2 text--error"/> {{ likes.length }}
+                        </div>
                     </div>
                     <div class="guide__bodytext">
                         <Markdown
@@ -96,6 +106,9 @@ import 'highlight.js/styles/monokai.css';
 import { JwtUser } from '@/interfaces/identity/user';
 import Button from '@/components/controls/Button';
 import { PublicUser } from '@/interfaces/social/publicUser';
+import * as likeService from '@/services/social/likeService';
+import { Like } from '@/interfaces/social/like';
+import { redirectToDiscord } from '../../helpers/index';
 
 interface Data {
     isLoading: boolean;
@@ -103,6 +116,7 @@ interface Data {
     creator: PublicUser | null;
     showEdit: boolean;
     editBodytext: string;
+    likes: Like[];
 }
 
 export default defineComponent({
@@ -129,6 +143,7 @@ export default defineComponent({
         creator: null,
         showEdit: false,
         editBodytext: '',
+        likes: [],
     }),
     watch: {
         guideId(): void {
@@ -143,6 +158,12 @@ export default defineComponent({
         },
         user(): JwtUser | null {
             return this.$store.getters['authentication/user'];
+        },
+        currentUserLike(): Like | undefined {
+            if (this.user) {
+                return this.likes.find(({ userId }) => this.user && this.user.id === userId);
+            }
+            return undefined;
         },
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         markdownPlugins(): Record<string, any>[] {
@@ -163,6 +184,7 @@ export default defineComponent({
         },
     },
     methods: {
+        redirectToDiscord,
         handleUpdateBodytext(bodytext: string): void {
             this.editBodytext = bodytext;
         },
@@ -185,8 +207,10 @@ export default defineComponent({
             }
         },
         async refreshData(): Promise<void> {
+            this.likes = [];
             await this.loadGuide();
             await this.loadCreator();
+            await this.loadLikes();
         },
         async loadGuide(): Promise<void> {
             if (!this.guideId) {
@@ -214,6 +238,64 @@ export default defineComponent({
                 // do nothing
             }
             this.isLoading = false;
+        },
+        async loadLikes(): Promise<void> {
+            if (!this.guideId) {
+                return;
+            }
+            this.isLoading = true;
+            try {
+                const response = await likeService.getMultiple({
+                    guideIds: this.guideId,
+                    pageSize: -1,
+                });
+                this.likes = response.data;
+            } catch (_) {
+                // do nothing
+            }
+            this.isLoading = false;
+        },
+        async like(): Promise<void> {
+            if (!this.guideId) {
+                return;
+            }
+            this.isLoading = true;
+            try {
+                await likeService.create({
+                    guideId: this.guideId,
+                });
+                this.$notify({
+                    type: 'success',
+                    title: this.$t('thankYou'),
+                });
+            } catch (_) {
+                this.$notify({
+                    type: 'error',
+                    title: this.$t('likingFailed'),
+                });
+            }
+            this.isLoading = false;
+            this.loadLikes();
+        },
+        async unlike(id: string): Promise<void> {
+            if (!this.guideId) {
+                return;
+            }
+            this.isLoading = true;
+            try {
+                await likeService.deleteSingle(id);
+                this.$notify({
+                    type: 'success',
+                    title: this.$t('thatsSad'),
+                });
+            } catch (_) {
+                this.$notify({
+                    type: 'error',
+                    title: this.$t('unlikingFailed'),
+                });
+            }
+            this.isLoading = false;
+            this.loadLikes();
         },
     },
     created(): void {

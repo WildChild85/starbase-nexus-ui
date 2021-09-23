@@ -16,6 +16,7 @@
 
                     <div class="data-item__spacer"></div>
 
+                    <div class="data-item__property" :title="$t('likes')"><HeartIconSolid class="svg-icon margin-right--f2 text--error"/> {{ guideLikes[guide.id] }}</div>
                     <div class="data-item__property" v-if="guide.bodytext" :title="$t('hasBodytext')"><DocumentTextIconOutline class="svg-icon"/></div>
                     <div class="data-item__property" v-if="guide.youtubeVideoUri" :title="$t('hasYoutubeVideo')"><PlayIconSolid class="svg-icon"/></div>
                     <div class="data-item__property" v-if="creators[guide.creatorId]"><PublicUserBadge :user="creators[guide.creatorId]" /></div>
@@ -44,12 +45,15 @@ import { ROLE_ADMINISTRATOR } from '@/constants/roles';
 import * as publicUserService from '@/services/social/publicUserService';
 import { PublicUser } from '@/interfaces/social/publicUser';
 import PublicUserBadge from '@/components/social/user/PublicUserBadge.vue';
+import { Like } from '@/interfaces/social/like';
+import * as likeService from '@/services/social/likeService';
 
 interface Data {
     searchTerm: string;
     isLoading: boolean;
     guides: Guide[];
     creators: Record<string, PublicUser>;
+    likes: Like[];
 }
 
 export default defineComponent({
@@ -68,6 +72,7 @@ export default defineComponent({
         isLoading: false,
         guides: [],
         creators: {},
+        likes: [],
     }),
     computed: {
         user(): JwtUser | null {
@@ -75,6 +80,14 @@ export default defineComponent({
         },
         isAdmin(): boolean {
             return this.$store.getters['authentication/hasOneRoles'](ROLE_ADMINISTRATOR);
+        },
+        guideLikes(): Record<string, number> {
+            const guideLikes: Record<string, number> = {};
+            this.guides.forEach(({ id }) => {
+                guideLikes[id] = this.likes.filter(({ guideId }) => guideId === id).length;
+            });
+
+            return guideLikes;
         },
     },
     methods: {
@@ -97,6 +110,7 @@ export default defineComponent({
         async refreshData(): Promise<void> {
             await this.loadGuides();
             await this.loadCreators();
+            await this.loadLikes();
         },
         async loadGuides(): Promise<void> {
             this.isLoading = true;
@@ -123,6 +137,23 @@ export default defineComponent({
                 response.data.forEach((creator) => {
                     this.creators[creator.id] = creator;
                 });
+            } catch (_) {
+                // do nothing
+            }
+            this.isLoading = false;
+        },
+        async loadLikes(): Promise<void> {
+            const guideIds = [...new Set(this.guides.map(({ id }) => id))];
+            if (!guideIds.length) {
+                return;
+            }
+            this.isLoading = true;
+            try {
+                const response = await likeService.getMultiple({
+                    guideIds: guideIds.join(','),
+                    pageSize: -1,
+                });
+                this.likes = response.data;
             } catch (_) {
                 // do nothing
             }

@@ -243,6 +243,7 @@ export default defineComponent({
             }
         },
         async refreshData(): Promise<void> {
+            this.likes = [];
             await this.loadYololProject();
             await this.loadCreator();
             await this.loadYololScripts();
