@@ -143,5 +143,14 @@
     "fullSpeedRangeMediumTank": "Full speed range (km) / medium tank",
     "fullSpeedRangeLargeTank": "Full speed range (km) / large tank",
     "plasmaComparisonExplanation": "The following values are in comparison of the required amount thrusters that is necessary to reach the plasma thrust.",
-    "thrusterComparison": "Thruster Comparison"
+    "thrusterComparison": "Thruster Comparison",
+    "editGuide": "Edit guide",
+    "createGuide": "Create guide",
+    "title": "Title",
+    "bodytext": "Bodytext (markdown)",
+    "guides": "Guides",
+    "knowledge": "Knowledge",
+    "guide": "Guide",
+    "hasBodytext": "has bodytext",
+    "hasYoutubeVideo": "has youtube video"
 }

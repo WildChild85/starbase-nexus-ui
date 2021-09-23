@@ -72,6 +72,14 @@ export default defineComponent({
                 },
 
                 {
+                    label: this.$t('knowledge'),
+                },
+                {
+                    to: { name: 'knowledge_guides' },
+                    label: this.$t('guides'),
+                },
+
+                {
                     label: this.$t('Yolol'),
                 },
                 {

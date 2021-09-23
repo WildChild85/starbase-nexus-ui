@@ -1,0 +1,24 @@
+@import "../../01_base/variables";
+
+.public-user-badge {
+    align-items: center;
+    display: flex;
+    
+    &__avatar {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: $input-height - 15px;
+        width: $input-height - 15px;
+
+        --aug-border-bg: var(--color-primary);
+        --aug-border-all: 1px;
+        --aug-bl1: 3px;
+        --aug-br1: 3px;
+        --aug-tl1: 3px;
+        --aug-tr1: 3px;
+    }
+    &__name {
+        padding: 0 $spacing 0 math.div($spacing, 2);
+    }
+}

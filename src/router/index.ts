@@ -20,6 +20,8 @@ const YololProjects = () => import('@/views/yolol/YololProjects.vue');
 const YololProject = () => import('@/views/yolol/YololProject.vue');
 const Companies = () => import('@/views/social/Companies.vue');
 const Company = () => import('@/views/social/Company.vue');
+const Guides = () => import('@/views/knowledge/Guides.vue');
+const Guide = () => import('@/views/knowledge/Guide.vue');
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -107,6 +109,22 @@ const routes: Array<RouteRecordRaw> = [
         path: '/social/company/:companyId',
         name: 'social_company',
         component: Company,
+        props: true,
+    },
+    {
+        path: '/knowledge/guides',
+        name: 'knowledge_guides',
+        component: Guides,
+    },
+    {
+        path: '/knowledge/guide/create',
+        name: 'knowledge_guide_create',
+        component: Guide,
+    },
+    {
+        path: '/knowledge/guide/:guideId',
+        name: 'knowledge_guide',
+        component: Guide,
         props: true,
     },
 ];

@@ -62,5 +62,32 @@
                 width: 100%;
             }
         }
+
+        &--w-50-md {
+            width: 50%;
+
+            @media (max-width: $screen-md) {
+                margin-top: $spacing;
+                width: 100%;
+            }
+        }
+
+        &--w-50-sm {
+            width: 50%;
+
+            @media (max-width: $screen-sm) {
+                margin-top: $spacing;
+                width: 100%;
+            }
+        }
+
+        &--w-50-xs {
+            width: 50%;
+
+            @media (max-width: $screen-xs) {
+                margin-top: $spacing;
+                width: 100%;
+            }
+        }
     }
 }

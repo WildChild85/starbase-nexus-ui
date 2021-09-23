@@ -8,6 +8,7 @@ import {
     XIcon as XIconSolid,
     PencilAltIcon as PencilAltIconSolid,
     HeartIcon as HeartIconSolid,
+    PlayIcon as PlayIconSolid,
 } from '@heroicons/vue/solid';
 import {
     ClipboardCopyIcon as ClipboardCopyIconOutline,
@@ -15,6 +16,7 @@ import {
     MenuIcon as MenuIconOutline,
     HeartIcon as HeartIconOutline,
     LogoutIcon as LogoutIconOutline,
+    DocumentTextIcon as DocumentTextIconOutline,
 } from '@heroicons/vue/outline';
 
 import App from '@/App.vue';
@@ -37,4 +39,6 @@ createApp(App)
     .component('HeartIconSolid', HeartIconSolid)
     .component('HeartIconOutline', HeartIconOutline)
     .component('LogoutIconOutline', LogoutIconOutline)
+    .component('PlayIconSolid', PlayIconSolid)
+    .component('DocumentTextIconOutline', DocumentTextIconOutline)
     .mount('#app');

@@ -1,0 +1,51 @@
+@import "../../01_base/variables";
+
+.guide {
+    &__header {
+        align-items: center;
+        display: flex;
+        margin-top: $spacing;
+    }
+    &__name {
+        flex-grow: 1;
+        text-align: left;
+    }
+    &__creator {
+        align-items: center;
+        display: flex;
+    }
+    &__bodytext {
+        img {
+            display: block;
+            height: auto;
+            width: 100%;
+        }
+        strong {
+            color: var(--color-info);
+        }
+    }
+    &__youtube-video {
+        background: var(--color-secondary-darken-1);
+        display: flex;
+        justify-content: center;
+        margin-top: $spacing;
+        --aug-border-bg: var(--color-secondary);
+        --aug-border-all: 2px;
+        --aug-bl1: 7px;
+        --aug-br1: 7px;
+        --aug-tl1: 7px;
+        --aug-tr1: 7px;
+
+        --aug-t-extend1: 30%;
+        --aug-t1: 7px;
+
+        --aug-l-extend1: 30%;
+        --aug-l1: 7px;
+
+        --aug-r-extend1: 30%;
+        --aug-r1: 7px;
+
+        --aug-b-extend1: 30%;
+        --aug-b1: 7px;
+    }
+}

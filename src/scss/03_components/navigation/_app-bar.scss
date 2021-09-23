@@ -42,7 +42,7 @@
         --aug-tr1: 3px;
     }
     &__user-name {
-        padding: 0 $spacing;
+        padding: 0 $spacing 0 math.div($spacing, 2);
     }
     &__btn {
         align-items: center;
