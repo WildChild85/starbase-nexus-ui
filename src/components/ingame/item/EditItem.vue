@@ -50,6 +50,13 @@
         :serviceFunctionMultiple="getMaterials"
     />
     <TextField
+        class="margin-top"
+        v-model.trim="properties.adjacencyHeatValues"
+        :label="$t('adjacencyHeatValues')"
+        :readonly="isLoading"
+        :errors="errors.adjacencyHeatValues"
+    />
+    <TextField
         v-for="numericProperty in numericProperties"
         :key="numericProperty"
         class="margin-top"
@@ -110,12 +117,17 @@ interface Properties {
     thrustPower: number | null;
     tier: number | null;
     fuelCapacity: number | null;
-    fuelInput: number | null;
+    fuelInputRaw: number | null;
+    fuelOutputProcessed: number | null;
     heatGeneration: number | null;
     electricityPerShot: number | null;
     electricityPerRecharge: number | null;
     heatGenerationPerShot: number | null;
     heatDissipation: number | null;
+    adjacencyHeatValues: string | null;
+    coolantCapacity: number | null;
+    coolantInput: number | null;
+    coolantOutput: number | null;
     minMuzzleVelocity: number | null;
     maxMuzzleVelocity: number | null;
     rateOfFire: number | null;
@@ -158,12 +170,17 @@ const getEmptyProperties = ():Properties => ({
     thrustPower: null,
     tier: null,
     fuelCapacity: null,
-    fuelInput: null,
+    fuelInputRaw: null,
+    fuelOutputProcessed: null,
     heatGeneration: null,
     electricityPerShot: null,
     electricityPerRecharge: null,
     heatGenerationPerShot: null,
     heatDissipation: null,
+    adjacencyHeatValues: null,
+    coolantCapacity: null,
+    coolantInput: null,
+    coolantOutput: null,
     minMuzzleVelocity: null,
     maxMuzzleVelocity: null,
     rateOfFire: null,
@@ -223,12 +240,16 @@ export default defineComponent({
                 'thrustPower',
                 'tier',
                 'fuelCapacity',
-                'fuelInput',
+                'fuelInputRaw',
+                'fuelOutputProcessed',
                 'heatGeneration',
                 'electricityPerShot',
                 'electricityPerRecharge',
                 'heatGenerationPerShot',
                 'heatDissipation',
+                'coolantCapacity',
+                'coolantInput',
+                'coolantOutput',
                 'minMuzzleVelocity',
                 'maxMuzzleVelocity',
                 'rateOfFire',

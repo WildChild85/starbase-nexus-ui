@@ -2,7 +2,7 @@
 <div class="app-bar" data-augmented-ui="b-clip-x border">
     <button class="app-bar__btn" @click="openMainNav"><MenuIconOutline class="svg-icon margin-right--f2"/>Menu</button>
     <div class="app-bar__spacer"></div>
-    <a class="app-bar__btn" href="https://discord.gg/5uXwMK5D" target="_blank">
+    <a class="app-bar__btn" href="https://discord.gg/3AyaHP7aWr" target="_blank">
         <img src="https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/app-assets/Discord-Logo-White.svg" class="svg-icon margin-right--f2"/>
         Join our discord
     </a>

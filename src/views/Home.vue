@@ -11,7 +11,7 @@
                 <p>On the top left side you will find the <span class="text--primary"><MenuIconOutline class="svg-icon svg-icon--middle"/> menu</span> with all currently available informations and tools.</p>
                 <p>If you want to post <span class="text--primary">feature requests</span> or <span class="text--primary">bug reports</span>, please join our disord:</p>
                 <div class="flex flex--center-horizontal">
-                    <Button href="https://discord.gg/5uXwMK5D">
+                    <Button href="https://discord.gg/3AyaHP7aWr">
                         <img src="https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/app-assets/Discord-Logo-White.svg" class="svg-icon margin-right--f2"/>
                         Discord
                     </Button>
@@ -57,7 +57,7 @@
                         </DataTableRow>
                         <DataTableRow>
                             <DataTableCell>Maps</DataTableCell>
-                            <DataTableCell>Arch#6267, RustyDawwwg</DataTableCell>
+                            <DataTableCell>Arch#6267, OkimFB, RustyDawwwg#3468</DataTableCell>
                             <DataTableCell type="success">done</DataTableCell>
                         </DataTableRow>
                         <DataTableRow>
@@ -88,7 +88,7 @@
                         <DataTableRow>
                             <DataTableCell>Tutorial Library</DataTableCell>
                             <DataTableCell>WildChild85#2691</DataTableCell>
-                            <DataTableCell type="info">planned</DataTableCell>
+                            <DataTableCell type="success">done</DataTableCell>
                         </DataTableRow>
                         <DataTableRow>
                             <DataTableCell>3D-Map</DataTableCell>

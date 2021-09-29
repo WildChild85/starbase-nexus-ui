@@ -8,14 +8,14 @@
     </Panel>
     <Panel :noPadding="true" :fitToScreen="true" class="margin-top">
         <div class="flex flex--vertical full-height">
-            <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/maps/eos_belt.png')`}"></div>
+            <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/maps/Eos_Informational_Graph_II.png')`}"></div>
             <div div class="credit-bar">Credit: Arch#6267</div>
         </div>
     </Panel>
     <Panel :noPadding="true" :fitToScreen="true" class="margin-top">
         <div class="flex flex--vertical full-height">
             <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/maps/25go7x02krl71.png')`}"></div>
-            <div div class="credit-bar">Credit: RustyDawwwg</div>
+            <div div class="credit-bar">Credit: RustyDawwwg#3468</div>
         </div>
     </Panel>
     <Panel :noPadding="true" :fitToScreen="true" class="margin-top">

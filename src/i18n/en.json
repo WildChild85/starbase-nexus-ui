@@ -52,12 +52,16 @@
     "thrustPower": "Thrust power",
     "tier": "Tier",
     "fuelCapacity": "Fuel capacity",
-    "fuelInput": "Fuel input (f/s processed)",
+    "fuelInputRaw": "Fuel input (f/s raw)",
+    "fuelOutputProcessed": "Fuel output (f/s processed)",
     "heatGeneration": "Heat generation (h/s)",
     "electricityPerShot": "Electricity per shot",
     "electricityPerRecharge": "Electricity per recharge",
     "heatGenerationPerShot": "Heat generation per shot",
     "heatDissipation": "Heat dissipation (h/s)",
+    "coolantCapacity": "Coolant capacity",
+    "coolantInput": "Coolant input (c/s)",
+    "coolantOutput": "Coolant output (c/s)",
     "minMuzzleVelocity": "Min muzzle velocity (m/s)",
     "maxMuzzleVelocity": "Max muzzle velocity (m/s)",
     "rateOfFire": "Rate of fire (rpm)",
@@ -153,5 +157,6 @@
     "guide": "Guide",
     "hasBodytext": "has bodytext",
     "hasYoutubeVideo": "has youtube video",
-    "likes": "Likes"
+    "likes": "Likes",
+    "adjacencyHeatValues": "Adjacency heat values (comma separated)"
 }
