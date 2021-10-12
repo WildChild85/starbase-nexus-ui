@@ -1,6 +1,6 @@
 @import "../../01_base/variables";
 
-.select-single-reference {
+.select-single-reference, .select-multiple-reference {
     &__label {
         display: inline-block;
         padding: math.div($spacing, 4) $spacing;
@@ -28,12 +28,21 @@
         display: flex;
         height: $input-height;
         flex-grow: 1;
-        padding: 0 $spacing;
         text-overflow: ellipsis;
 
         &:hover {
             background: var(--focus-glow);
         }
+    }
+    &__value-icon {
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: $input-height;
+        width: $input-height;
+    }
+    &__value-name {
+        padding: 0 $spacing;
     }
     &__delete-value {
         align-items: center;
@@ -49,8 +58,14 @@
         }
     }
 
-    &__search {
+    &__search, &__values {
         padding: $spacing;
+    }
+    &__search-header {
+        display: flex;
+    }
+    &__search-term {
+        flex-grow: 1;
     }
 
     &--expanded {
@@ -60,11 +75,16 @@
                 background: transparent;
             }
         }
-        .select-single-reference__input {
+        .select-single-reference__input, .select-multiple-reference__input {
             background: var(--color-primary-darken-1);
             height: auto;
 
             --aug-border-bg: var(--color-primary);
+        }
+    }
+    &--error {
+        .select-single-reference__input, .select-multiple-reference__input {
+            --aug-border-bg: var(--color-error);
         }
     }
 

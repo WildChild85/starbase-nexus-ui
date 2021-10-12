@@ -24,6 +24,12 @@
             <div div class="credit-bar">Credit: Arch#6267</div>
         </div>
     </Panel>
+    <Panel :noPadding="true" :fitToScreen="true" class="margin-top">
+        <div class="flex flex--vertical full-height">
+            <div class="background-contain flex__item flex__item--grow" :style="{backgroundImage: `url('https://cdn.starbase-nexus.net/dd1a4bcf-140b-4bb8-906b-93a18739812d/maps/Eos_and_its_moons_by_Thugra_version_6_October_7.jpg')`}"></div>
+            <div div class="credit-bar">Credit: Rabir#7523, Thugra#0809</div>
+        </div>
+    </Panel>
 </div>
 </template>
 

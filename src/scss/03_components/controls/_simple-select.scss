@@ -1,0 +1,96 @@
+@import "../../01_base/variables";
+
+.simple-select {
+    label {
+        display: inline-block;
+        padding: math.div($spacing, 4) $spacing;
+    }
+
+    &__wrapper {
+        background: var(--color-secondary-darken-1);
+        max-height: $input-height;
+        overflow: hidden;
+
+        --aug-border-bg: var(--color-secondary);
+        --aug-border-all: 2px;
+        --aug-bl1: 7px;
+        --aug-tl1: 7px;
+        --aug-tr1: 7px;
+    }
+
+    &__value {
+        background: none;
+        border: none;
+        box-sizing: border-box;
+        color: inherit;
+        cursor: pointer;
+        display: flex;
+        font-family: inherit;
+        font-size: inherit;
+        height: $input-height;
+        line-height: $input-height;
+        min-width: $input-height * 3;
+        padding: 0;
+        text-align: left;
+        width: 100%;
+    }
+    &__value-label {
+        flex-grow: 1;
+        padding: 0 $spacing;
+    }
+    &__chevron {
+        align-items: center;
+        display: flex;
+        flex-shrink: 0;
+        height: 100%;
+        justify-content: center;
+        width: $input-height;
+    }
+    &__options {
+        padding: math.div($spacing, 2) 0;
+    }
+    &__option {
+        border: none;
+        background: none;
+        box-sizing: border-box;
+        color: inherit;
+        cursor: pointer;
+        display: block;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        padding: math.div($spacing, 8) $spacing;
+        text-align: left;
+        width: 100%;
+
+        &:hover {
+            background: var(--focus-glow);
+        }
+        &--selected {
+            cursor: default;
+            color: var(--color-disabled);
+
+            &:hover {
+                background: none;
+            }
+        }
+    }
+
+    &__error {
+        color: var(--color-error);
+        padding: 0 $spacing;
+    }
+
+    &--error {
+        .simple-select__wrapper {
+            margin-bottom: math.div($spacing, 4);
+            --aug-border-bg: var(--color-error);
+        }
+    }
+
+    &--expanded {
+        .simple-select__wrapper {
+            max-height: none;
+        }
+    }
+}

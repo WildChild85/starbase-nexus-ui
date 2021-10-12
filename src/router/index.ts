@@ -22,6 +22,10 @@ const Companies = () => import('@/views/social/Companies.vue');
 const Company = () => import('@/views/social/Company.vue');
 const Guides = () => import('@/views/knowledge/Guides.vue');
 const Guide = () => import('@/views/knowledge/Guide.vue');
+const ShipRoles = () => import('@/views/constructions/ShipRoles.vue');
+const ShipShops = () => import('@/views/ingame/shipShop/ShipShops.vue');
+const ShipShop = () => import('@/views/ingame/shipShop/ShipShop.vue');
+const Ship = () => import('@/views/constructions/Ship.vue');
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -125,6 +129,38 @@ const routes: Array<RouteRecordRaw> = [
         path: '/knowledge/guide/:guideId',
         name: 'knowledge_guide',
         component: Guide,
+        props: true,
+    },
+    {
+        path: '/ingame/ship-shops',
+        name: 'ingame_ship-shops',
+        component: ShipShops,
+    },
+    {
+        path: '/ingame/ship-shop/create',
+        name: 'ingame_ship-shop_create',
+        component: ShipShop,
+    },
+    {
+        path: '/ingame/ship-shop/:shipShopId',
+        name: 'ingame_ship-shop',
+        component: ShipShop,
+        props: true,
+    },
+    {
+        path: '/constructions/ship-roles',
+        name: 'constructions_ship-roles',
+        component: ShipRoles,
+    },
+    {
+        path: '/constructions/ship/create',
+        name: 'constructions_ship_create',
+        component: Ship,
+    },
+    {
+        path: '/constructions/ship/:shipId',
+        name: 'constructions_ship',
+        component: Ship,
         props: true,
     },
 ];

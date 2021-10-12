@@ -37,8 +37,7 @@
         :label="$t('itemCategory')"
         :readonly="isLoading"
         :errors="errors.itemCategoryId"
-        :serviceFunctionSingle="getItemCategory"
-        :serviceFunctionMultiple="getItemCategories"
+        :service="serviceItemCategory"
     />
     <SelectSingleReference
         class="margin-top"
@@ -46,8 +45,7 @@
         :label="$t('primaryMaterial')"
         :readonly="isLoading"
         :errors="errors.primaryMaterialId"
-        :serviceFunctionSingle="getMaterial"
-        :serviceFunctionMultiple="getMaterials"
+        :service="serviceMaterial"
     />
     <TextField
         class="margin-top"
@@ -276,17 +274,11 @@ export default defineComponent({
             }
             return changed;
         },
-        getItemCategory(): unknown {
-            return itemCategoryService.getOneOrDefault;
+        serviceItemCategory(): unknown {
+            return itemCategoryService;
         },
-        getItemCategories(): unknown {
-            return itemCategoryService.getMultiple;
-        },
-        getMaterial(): unknown {
-            return materialService.getOneOrDefault;
-        },
-        getMaterials(): unknown {
-            return materialService.getMultiple;
+        serviceMaterial(): unknown {
+            return materialService;
         },
     },
     methods: {

@@ -5,7 +5,7 @@
             <Panel class="flex__item flex__item--w-50-lg">
                 <h2>Welcome to the Starbase-Nexus</h2>
                 <p>Starbase-Nexus is an open-source community project designed to combine all tools and information available about Starbase in one place, so users don't have to search around the internet.</p>
-                <p>This project is not dedicated to any political situation/group in the game nor is it connected to any organization.</p>
+                <p>This project is independent of any political situation or group in the game and is it not connected to any organization.</p>
                 <p>Starbase-Nexus is an ongoing project which will be extended with more features in the future. Any tool and information you find in this project may change depending on the development of the project and the game.</p>
                 <p>Currently Frozenbyte doesn't give us any secure and up to date resource for in-game data such as an open API. Until an API is created, the only source for the data is the <a href="https://wiki.starbasegame.com" target="_blank"> official wiki page</a>, in-game toolstips and measurements made by players.</p>
                 <p>On the top left side you will find the <span class="text--primary"><MenuIconOutline class="svg-icon svg-icon--middle"/> menu</span>, where you can see the currently available information and tools.</p>
@@ -83,7 +83,7 @@
                         <DataTableRow>
                             <DataTableCell>Ship Shop</DataTableCell>
                             <DataTableCell>WildChild85#2691</DataTableCell>
-                            <DataTableCell type="info">planned</DataTableCell>
+                            <DataTableCell type="warning">development</DataTableCell>
                         </DataTableRow>
                         <DataTableRow>
                             <DataTableCell>Tutorial Library</DataTableCell>
@@ -107,7 +107,7 @@
                         </DataTableRow>
                         <DataTableRow>
                             <DataTableCell>In-Game Organizations Register</DataTableCell>
-                            <DataTableCell><span class="text--error">open</span></DataTableCell>
+                            <DataTableCell>WildChild85#2691</DataTableCell>
                             <DataTableCell type="info">planned</DataTableCell>
                         </DataTableRow>
                         <DataTableRow>

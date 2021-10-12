@@ -105,7 +105,7 @@ export default defineComponent({
             this.$emit('blur', event);
         },
     },
-    mounted() {
+    created() {
         this.id = uniqueId();
     },
 });

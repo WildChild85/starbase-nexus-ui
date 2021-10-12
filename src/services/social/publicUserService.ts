@@ -15,13 +15,15 @@ export const getMultiple = async (
 export const getMultipleByIds = async (
     ids: string[],
     params?: ShapingParameters,
+    cancelToken?: CancelTokenSource,
 ): Promise<AxiosResponse<PublicUser[]>> => (
-    authorizedApiClient.get(`${BASE_PATH}/(${ids.join(',')})`, { params })
+    authorizedApiClient.get(`${BASE_PATH}/(${ids.join(',')})`, { params, cancelToken: cancelToken ? cancelToken.token : undefined })
 );
 
 export const getOneOrDefault = async (
     id: string,
     params?: ShapingParameters,
+    cancelToken?: CancelTokenSource,
 ): Promise<AxiosResponse<PublicUser>> => (
-    authorizedApiClient.get(`${BASE_PATH}/${id}`, { params })
+    authorizedApiClient.get(`${BASE_PATH}/${id}`, { params, cancelToken: cancelToken ? cancelToken.token : undefined })
 );
