@@ -28,12 +28,21 @@
         display: flex;
         height: $input-height;
         flex-grow: 1;
-        padding: 0 $spacing;
         text-overflow: ellipsis;
 
         &:hover {
             background: var(--focus-glow);
         }
+    }
+    &__value-icon {
+        background-position: 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: $input-height;
+        width: $input-height;
+    }
+    &__value-name {
+        padding: 0 $spacing;
     }
     &__delete-value {
         align-items: center;
@@ -52,6 +61,12 @@
     &__search {
         padding: $spacing;
     }
+    &__search-header {
+        display: flex;
+    }
+    &__search-term {
+        flex-grow: 1;
+    }
 
     &--expanded {
         .select-single-reference__value {
@@ -65,6 +80,11 @@
             height: auto;
 
             --aug-border-bg: var(--color-primary);
+        }
+    }
+    &--error {
+        .select-single-reference__input {
+            --aug-border-bg: var(--color-error);
         }
     }
 

@@ -5,6 +5,7 @@ import { createApp } from 'vue';
 import {
     PencilIcon as PencilIconSolid,
     ChevronRightIcon as ChevronRightIconSolid,
+    ChevronDownIcon as ChevronDownIconSolid,
     XIcon as XIconSolid,
     PencilAltIcon as PencilAltIconSolid,
     HeartIcon as HeartIconSolid,
@@ -31,6 +32,7 @@ createApp(App)
     .use(Notifications)
     .component('PencilIconSolid', PencilIconSolid)
     .component('ChevronRightIconSolid', ChevronRightIconSolid)
+    .component('ChevronDownIconSolid', ChevronDownIconSolid)
     .component('XIconSolid', XIconSolid)
     .component('ClipboardCopyIconOutline', ClipboardCopyIconOutline)
     .component('ExternalLinkIconOutline', ExternalLinkIconOutline)

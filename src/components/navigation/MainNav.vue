@@ -60,6 +60,14 @@ export default defineComponent({
                 },
 
                 {
+                    label: this.$t('constructions'),
+                },
+                {
+                    to: { name: 'ingame_ship-shops' },
+                    label: this.$t('shipShops'),
+                },
+
+                {
                     label: this.$t('tools'),
                 },
                 {
@@ -97,6 +105,10 @@ export default defineComponent({
 
                 {
                     label: this.$t('dataManagement'),
+                },
+                {
+                    to: { name: 'constructions_ship-classes' },
+                    label: this.$t('shipClasses'),
                 },
                 {
                     to: { name: 'ingame_material-categories' },

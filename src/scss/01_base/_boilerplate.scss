@@ -42,6 +42,9 @@ td {
 pre, code {
     font-family: var(--font-family-mono) !important;
 }
+p strong {
+    color: var(--color-info);
+}
 
 /* WebKit and Blink */
 ::-webkit-scrollbar {

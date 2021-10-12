@@ -1,9 +1,11 @@
 <template>
-<div class="home">
+<div class="yolol-projects">
     <LoadingIndicatorBeam v-if="isLoading" />
     <div class="padding-container">
         <Panel>
-            <div class="flex flex--end flex--wrap">
+            <div class="flex flex--end flex--wrap flex--center-vertical">
+                <div class="margin-right--f2"><strong class="text--primary">You can post your own yolol projects.</strong> Sign in and click on create to share your knowledge.</div>
+                <div class="flex__item flex__item--grow"></div>
                 <TextField v-model.trim="searchTerm" :placeholder="$t('search')" @keyup.enter="refreshData"/>
                 <Button class="margin-left" :loading="isLoading" @click="refreshData">Refresh</Button>
                 <Button class="margin-left" type="info" :to="{name: 'yolol_yolol-project_create'}">Create</Button>

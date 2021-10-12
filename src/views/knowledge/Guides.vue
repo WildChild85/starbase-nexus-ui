@@ -3,7 +3,9 @@
     <LoadingIndicatorBeam v-if="isLoading" />
     <div class="padding-container">
         <Panel>
-            <div class="flex flex--end flex--wrap">
+            <div class="flex flex--end flex--wrap flex--center-vertical">
+                <div class="margin-right--f2"><strong class="text--primary">You can post your own guides.</strong> Sign in and click on create to share your knowledge.</div>
+                <div class="flex__item flex__item--grow"></div>
                 <TextField v-model.trim="searchTerm" :placeholder="$t('search')" @keyup.enter="refreshData"/>
                 <Button class="margin-left" :loading="isLoading" @click="refreshData">Refresh</Button>
                 <Button class="margin-left" v-if="user" type="info" @click="gotoCreate">Create</Button>
@@ -11,7 +13,7 @@
             </div>
 
             <div class="guide-list">
-                <DataItem v-for="guide in guides" :key="guide.id" class="margin-top--f2">
+                <DataItem v-for="guide in guides" :key="guide.id" class="margin-top--f2" :clickable="true" @click="gotoGuide(guide.id)">
                     <div class="data-item__name">{{ guide.title }}</div>
 
                     <div class="data-item__spacer"></div>
@@ -21,7 +23,7 @@
                     <div class="data-item__property" v-if="guide.youtubeVideoUri" :title="$t('hasYoutubeVideo')"><PlayIconSolid class="svg-icon"/></div>
                     <div class="data-item__property" v-if="creators[guide.creatorId]"><PublicUserBadge :user="creators[guide.creatorId]" /></div>
 
-                    <div class="data-item__action" :title="$t('edit')" @click="gotoGuide(guide.id)"><ChevronRightIconSolid class="svg-icon"/></div>
+                    <div class="data-item__action" :title="$t('edit')"><ChevronRightIconSolid class="svg-icon"/></div>
                 </DataItem>
             </div>
         </Panel>

@@ -23,8 +23,7 @@
         :label="$t('parent')"
         :readonly="isLoading"
         :errors="errors.parentId"
-        :serviceFunctionSingle="getParent"
-        :serviceFunctionMultiple="getItemCategories"
+        :service="serviceItemCategory"
     />
 
     <div class="panel__actions">
@@ -114,11 +113,8 @@ export default defineComponent({
             }
             return changed;
         },
-        getParent(): unknown {
-            return itemCategoryService.getOneOrDefault;
-        },
-        getItemCategories(): unknown {
-            return itemCategoryService.getMultiple;
+        serviceItemCategory(): unknown {
+            return itemCategoryService;
         },
     },
     methods: {

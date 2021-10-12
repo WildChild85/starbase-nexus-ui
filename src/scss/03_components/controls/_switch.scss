@@ -1,0 +1,64 @@
+@import "../../01_base/variables";
+
+.switch {
+    cursor: pointer;
+
+    label {
+        display: inline-block;
+        padding: math.div($spacing, 4) $spacing;
+        pointer-events: none;
+    }
+
+    &__wrapper {
+        align-items: center;
+        background: none;
+        border: none;
+        color: inherit;
+        display: flex;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        pointer-events: none;
+    }
+    &__area {
+        background: var(--color-secondary-darken-1);
+        height: $input-height * .7;
+        transition: all 0.3s;
+        width: $input-height * 1.5;
+
+        --aug-border-bg: var(--color-secondary);
+        --aug-border-all: 2px;
+        --aug-bl1: 5px;
+        --aug-br1: 10px;
+        --aug-tl1: 10px;
+        --aug-tr1: 5px;
+
+        & > * {
+            height: 100%;
+            width: 100%;
+        }
+    }
+    &__state {
+        background: var(--color-secondary);
+        box-sizing: border-box;
+        height: calc(100% - 16px);
+        margin: 8px;
+        transition: all 0.3s;
+        width: calc(60% - 16px);
+
+        --aug-bl1: 5px;
+        --aug-br1: 10px;
+        --aug-tl1: 10px;
+        --aug-tr1: 5px;
+    }
+
+    &--active {
+        .switch__area {
+            --aug-border-bg: var(--color-success);
+        }
+        .switch__state {
+            background: var(--color-success);
+            transform: translateX(100%);
+        }
+    }
+}

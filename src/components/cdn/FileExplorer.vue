@@ -85,6 +85,8 @@ interface FolderItem {
     path: string;
 }
 
+const FILE_EXPLORER_CURRENT_PATH_KEY = 'fecp';
+
 export interface FileSelection {
     name: string;
     publicUri: string;
@@ -191,6 +193,7 @@ export default defineComponent({
             }
         },
         async navigate(path: string): Promise<void> {
+            localStorage.setItem(FILE_EXPLORER_CURRENT_PATH_KEY, path);
             this.currentPath = path;
             await this.refreshData();
         },
@@ -251,7 +254,12 @@ export default defineComponent({
         },
     },
     created(): void {
-        this.currentPath = this.user ? this.user.id : '';
+        const lastPath = localStorage.getItem(FILE_EXPLORER_CURRENT_PATH_KEY);
+        if (lastPath) {
+            this.currentPath = lastPath;
+        } else {
+            this.currentPath = this.user ? this.user.id : '';
+        }
         this.refreshData();
     },
 });

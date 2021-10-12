@@ -46,8 +46,7 @@
         :readonly="isLoading"
         :required="true"
         :errors="errors.materialCategoryId"
-        :serviceFunctionSingle="getMaterialCategory"
-        :serviceFunctionMultiple="getMaterialCategories"
+        :service="serviceMaterialCategory"
     />
     <TextField
         v-for="numericProperty in numericProperties"
@@ -182,11 +181,8 @@ export default defineComponent({
             }
             return changed;
         },
-        getMaterialCategory(): unknown {
-            return materialCategoryService.getOneOrDefault;
-        },
-        getMaterialCategories(): unknown {
-            return materialCategoryService.getMultiple;
+        serviceMaterialCategory(): unknown {
+            return materialCategoryService;
         },
     },
     methods: {

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 821.47 731.17">
+    <defs>
+        <style>.ssll-1{fill:#333;}.ssll-2{fill:#fa0;}.ssll-3{fill:#fff061;}.ssll-4{fill:#ff3e3e;}.ssll-5{fill:#55ff71;}.ssll-6{fill:#5c9eff;}.ssll-7{fill:#fff;fill-opacity:0.5;stroke:#000;stroke-miterlimit:10;}</style>
+    </defs>
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="large-ship-shop">
+            <g id="large-ship-shop-2" data-name="large-ship-shop">
+                <polygon id="background" class="ssll-1" points="821.47 90 821.47 549.57 640.1 549.57 640.1 731.17 180.3 731.17 180.3 549.57 0 549.57 0 90 180.28 90 180.28 48.82 228.3 0.8 229.1 0 591.6 0 593.37 1.77 640.65 49.04 640.65 90 821.47 90"/>
+                <g id="areas">
+                    <rect class="ssll-2" x="275.24" y="184.22" width="270.91" height="270.91"/>
+                    <rect class="ssll-3" x="275.24" y="4.33" width="270.91" height="179.89"/>
+                    <rect class="ssll-4" x="185.39" y="455.13" width="450.08" height="271.42"/>
+                    <polygon class="ssll-5" points="275.24 93.93 275.24 455.13 185.39 455.13 185.39 545.7 4.04 545.7 4.04 93.93 275.24 93.93"/>
+                    <polygon class="ssll-6" points="817.24 93.93 817.24 545.7 635.47 545.7 635.47 455.13 546.04 455.13 546.04 93.93 817.24 93.93"/>
+                </g>
+                <path id="borders" d="M275.74,454.63v-111h-1v111H253v1H386.47v-1Zm270.8,0v-111h-1v111H434v1H567.47v-1ZM344,183.72v1H477.47v-1ZM274.74,3.83V18.27h1V4.83H545.65V18.27h1V3.83Zm1,450.8v-111h-1v111H253v1H386.47v-1Zm270.8,0v-111h-1v111H434v1H567.47v-1ZM344,183.72v1H477.47v-1Zm-68.29,0V71.48h-1v22H253v1h21.71V296.09h1V184.72h20.73v-1Zm0,270.91v-111h-1v111H253v1H386.47v-1Zm-90.85,0V545.2H4.54V94.43H199.82v-1H3.54V546.2H184.89v13.89h1V455.63h19.58v-1ZM622,93.43v1H816.74V545.2H636V454.63H615v1H635V560.09h1V546.2H817.74V93.43ZM635,726.06H185.89V617.13h-1V727.06H636V617.13h-1ZM546.54,454.63v-111h-1v111H434v1H567.47v-1Zm.11-361.2v-22h-1V183.72H525v1h20.51V296.09h1V94.43h22.28v-1ZM275.74,454.63v-111h-1v111H253v1H386.47v-1Zm0,0v-111h-1v111H253v1H386.47v-1Zm270.8,0v-111h-1v111H434v1H567.47v-1Z"/>
+                <g id="spots">
+                    <rect id="spot-1" class="ssll-7" x="370.43" y="9.12" width="80" height="80"/>
+                    <rect id="spot-2" class="ssll-7" x="281.68" y="89.76" width="39.99" height="39.99"/>
+                    <rect id="spot-2-2" class="ssll-7" x="281.68" y="89.76" width="39.99" height="86.99"/>
+                    <rect id="spot-3" class="ssll-7" x="281.68" y="136.76" width="39.99" height="39.99"/>
+                    <rect id="spot-4" class="ssll-7" x="499.68" y="89.76" width="39.99" height="39.99"/>
+                    <rect id="spot-4-2" class="ssll-7" x="499.68" y="89.76" width="39.99" height="86.99"/>
+                    <rect id="spot-5" class="ssll-7" x="499.68" y="136.76" width="39.99" height="39.99"/>
+                    <rect id="spot-6" class="ssll-7" x="13.43" y="189.12" width="161.25" height="80"/>
+                    <rect id="spot-6-3" class="ssll-7" x="13.43" y="189.12" width="161.25" height="261"/>
+                    <rect id="spot-7" class="ssll-7" x="13.43" y="280.12" width="161.25" height="80"/>
+                    <rect id="spot-8" class="ssll-7" x="13.43" y="370.12" width="161.25" height="80"/>
+                    <rect id="spot-9" class="ssll-7" x="9.43" y="460.12" width="80" height="80"/>
+                    <rect id="spot-9-2" class="ssll-7" x="9.43" y="460.12" width="170" height="80"/>
+                    <rect id="spot-10" class="ssll-7" x="99.43" y="460.12" width="80" height="80"/>
+                    <rect id="spot-11" class="ssll-7" x="281.68" y="212.76" width="39.99" height="39.99"/>
+                    <rect id="spot-12" class="ssll-7" x="281.68" y="400.76" width="39.99" height="39.99"/>
+                    <rect id="spot-12-2" data-name="spot-12" class="ssll-7" x="281.68" y="400.76" width="83.99" height="39.99"/>
+                    <rect id="spot-13" class="ssll-7" x="325.68" y="400.76" width="39.99" height="39.99"/>
+                    <rect id="spot-14" class="ssll-7" x="369.43" y="194.12" width="80" height="161.17"/>
+                    <rect id="spot-15" class="ssll-7" x="499.68" y="212.76" width="39.99" height="39.99"/>
+                    <rect id="spot-16" class="ssll-7" x="455.68" y="400.76" width="39.99" height="39.99"/>
+                    <rect id="spot-16-2" class="ssll-7" x="455.68" y="400.76" width="83.99" height="39.99"/>
+                    <rect id="spot-17" class="ssll-7" x="499.68" y="400.76" width="39.99" height="39.99"/>
+                    <rect id="spot-18" class="ssll-7" x="645.43" y="189.12" width="161.25" height="80"/>
+                    <rect id="spot-18-3" class="ssll-7" x="645.43" y="189.12" width="161.25" height="261"/>
+                    <rect id="spot-19" class="ssll-7" x="645.43" y="280.12" width="161.25" height="80"/>
+                    <rect id="spot-20" class="ssll-7" x="645.43" y="370.12" width="161.25" height="80"/>
+                    <rect id="spot-21" class="ssll-7" x="641.43" y="460.12" width="80" height="80"/>
+                    <rect id="spot-21-2" data-name="spot-21" class="ssll-7" x="641.43" y="460.12" width="170" height="80"/>
+                    <rect id="spot-22" class="ssll-7" x="731.43" y="460.12" width="80" height="80"/>
+                    <rect id="spot-23" class="ssll-7" x="266.43" y="471.12" width="80" height="80"/>
+                    <rect id="spot-24" class="ssll-7" x="469.43" y="471.12" width="80" height="80"/>
+                    <rect id="spot-25" class="ssll-7" x="231.43" y="631.12" width="80" height="80"/>
+                    <rect id="spot-25-2" class="ssll-7" x="231.43" y="631.12" width="171" height="80"/>
+                    <rect id="spot-25-4" class="ssll-7" x="231.43" y="631.12" width="355" height="80"/>
+                    <rect id="spot-26" class="ssll-7" x="322.43" y="631.12" width="80" height="80"/>
+                    <rect id="spot-27" class="ssll-7" x="415.43" y="631.12" width="80" height="80"/>
+                    <rect id="spot-27-2" class="ssll-7" x="415.43" y="631.12" width="171" height="80"/>
+                    <rect id="spot-28" class="ssll-7" x="506.43" y="631.12" width="80" height="80"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
