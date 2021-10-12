@@ -1,9 +1,10 @@
 import { SearchParameters, UuidViewModel } from '@/interfaces/api';
+import { ShipRoleReference } from '@/interfaces/constructions/shipRoleReference';
 
 export interface ShipSearchParameters extends SearchParameters {
     companyIds?: string | null;
     creatorIds?: string | null;
-    shipClassIds?: string | null;
+    shipRoleIds?: string | null;
     armorMaterialIds: string | null;
     minOreCrates?: number | null;
     maxOreCrates?: number | null;
@@ -72,7 +73,6 @@ export interface ShipSearchParameters extends SearchParameters {
 export interface Ship extends UuidViewModel {
     companyId: string | null;
     creatorId: string | null;
-    shipClassId: string;
     armorMaterialId: string | null;
     name: string;
     description: string;
@@ -110,11 +110,11 @@ export interface Ship extends UuidViewModel {
     turretWeaponsRailCannons: number | null;
     turretWeaponsMissileLauncher: number | null;
     turretWeaponsTorpedoLauncher: number | null;
+    shipRoles: ShipRoleReference[];
 }
 
 export interface CreateShip {
     companyId?: string | null;
-    shipClassId: string;
     armorMaterialId?: string | null;
     name: string;
     description: string;
@@ -152,12 +152,12 @@ export interface CreateShip {
     turretWeaponsRailCannons?: number | null;
     turretWeaponsMissileLauncher?: number | null;
     turretWeaponsTorpedoLauncher?: number | null;
+    shipRoleIds: string[];
     isCreator?: boolean;
 }
 
 export interface PatchShip {
     companyId?: string | null;
-    shipClassId?: string;
     armorMaterialId?: string | null;
     name?: string;
     description?: string;
@@ -195,6 +195,7 @@ export interface PatchShip {
     turretWeaponsRailCannons?: number | null;
     turretWeaponsMissileLauncher?: number | null;
     turretWeaponsTorpedoLauncher?: number | null;
+    shipRoleIds?: string[];
 }
 
 export interface ShipCreatorAssignment {

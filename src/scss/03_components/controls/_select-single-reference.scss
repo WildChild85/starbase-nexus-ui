@@ -1,6 +1,6 @@
 @import "../../01_base/variables";
 
-.select-single-reference {
+.select-single-reference, .select-multiple-reference {
     &__label {
         display: inline-block;
         padding: math.div($spacing, 4) $spacing;
@@ -58,7 +58,7 @@
         }
     }
 
-    &__search {
+    &__search, &__values {
         padding: $spacing;
     }
     &__search-header {
@@ -75,7 +75,7 @@
                 background: transparent;
             }
         }
-        .select-single-reference__input {
+        .select-single-reference__input, .select-multiple-reference__input {
             background: var(--color-primary-darken-1);
             height: auto;
 
@@ -83,7 +83,7 @@
         }
     }
     &--error {
-        .select-single-reference__input {
+        .select-single-reference__input, .select-multiple-reference__input {
             --aug-border-bg: var(--color-error);
         }
     }

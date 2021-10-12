@@ -1,7 +1,7 @@
 <template>
 <Panel>
     <LoadingIndicatorBeam v-if="isLoading"/>
-    <h2 class="text--primary margin-left--f2 margin-right--f2">{{ shipClassId ? $t('editShipClass') : $t('createShipClass') }}</h2>
+    <h2 class="text--primary margin-left--f2 margin-right--f2">{{ shipRoleId ? $t('editShipRole') : $t('createShipRole') }}</h2>
     <TextField
         class="margin-top"
         v-model.trim="properties.name"
@@ -9,16 +9,6 @@
         :readonly="isLoading"
         :required="true"
         :errors="errors.name"
-    />
-    <TextArea
-        class="margin-top"
-        v-model="properties.description"
-        :label="$t('descriptionMD')"
-        :readonly="isLoading"
-        :required="true"
-        :isCode="true"
-        :errors="errors.description"
-        @input="$emit('update:description', properties.description);"
     />
 
     <div class="panel__actions">
@@ -40,90 +30,61 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { CreateShipClass, ShipClass, PatchShipClass } from '@/interfaces/constructions/shipClass';
-import * as shipClassService from '@/services/constructions/shipClassService';
+import { CreateShipRole, ShipRole, PatchShipRole } from '@/interfaces/constructions/shipRole';
+import * as shipRoleService from '@/services/constructions/shipRoleService';
 import TextField from '@/components/controls/TextField.vue';
-import TextArea from '@/components/controls/TextArea.vue';
 import Button from '@/components/controls/Button';
 import LoadingIndicatorBeam from '@/components/loading/LoadingIndicatorBeam.vue';
 import Panel from '@/components/layout/Panel.vue';
 
 interface Properties {
     name: string;
-    description: string | null;
 }
 
 interface Data {
-    shipClass: ShipClass | null;
+    shipRole: ShipRole | null;
     isLoading: boolean;
     errors: Record<string, string[]>;
     properties: Properties;
 }
 
-const defaultMarkdown = `The folowing text is a default template. Change it as you like :) There is no required structure or content. Just write something.
-
-## This is a title
-This is a paragraph.
-
-This is another paragraph.
-
-## Second title
-More paragraphs.
-
-## Table example
-
-| Header A | Header B |
-| ------ | ------ |
-| a | b |
-| c | d |
-| e | f |
-| g | h |
-
-Some additional link: [link text](http://example.com).
-`;
-
 const getEmptyProperties = ():Properties => ({
     name: '',
-    description: defaultMarkdown,
 });
 
 export default defineComponent({
-    name: 'EditShipClass',
+    name: 'EditShipRole',
     components: {
         Button,
         LoadingIndicatorBeam,
         Panel,
         TextField,
-        TextArea,
     },
-    emits: ['created', 'patched', 'cancelled', 'update:description'],
+    emits: ['created', 'patched', 'cancelled'],
     props: {
-        shipClassId: {
+        shipRoleId: {
             type: String,
             default: null,
         },
     },
     data: (): Data => ({
-        shipClass: null,
+        shipRole: null,
         isLoading: false,
         errors: {},
         properties: getEmptyProperties(),
     }),
     watch: {
-        shipClassId(): void {
+        shipRoleId(): void {
             this.refreshData();
-        },
-        properties(): void {
-            this.$emit('update:description', this.properties.description);
         },
     },
     computed: {
-        changedProperties(): PatchShipClass {
-            const changed: PatchShipClass = {};
-            if (this.shipClass !== null) {
+        changedProperties(): PatchShipRole {
+            const changed: PatchShipRole = {};
+            if (this.shipRole !== null) {
                 Object.keys(this.properties).forEach((key: string) => {
-                    if ((this.shipClass as ShipClass)[key as keyof ShipClass] !== (this.properties as PatchShipClass)[key as keyof PatchShipClass]) {
-                        changed[key as keyof PatchShipClass] = (this.properties as PatchShipClass)[key as keyof PatchShipClass] as never;
+                    if ((this.shipRole as ShipRole)[key as keyof ShipRole] !== (this.properties as PatchShipRole)[key as keyof PatchShipRole]) {
+                        changed[key as keyof PatchShipRole] = (this.properties as PatchShipRole)[key as keyof PatchShipRole] as never;
                     }
                 });
             }
@@ -132,35 +93,34 @@ export default defineComponent({
     },
     methods: {
         mapToProperties(): void {
-            if (!this.shipClass) {
+            if (!this.shipRole) {
                 return;
             }
             Object.keys(this.properties).forEach((key) => {
-                (this.properties as PatchShipClass)[key as keyof PatchShipClass] = (this.shipClass as ShipClass)[key as keyof ShipClass] as never;
+                (this.properties as PatchShipRole)[key as keyof PatchShipRole] = (this.shipRole as ShipRole)[key as keyof ShipRole] as never;
             });
         },
         async saveChanges(): Promise<void> {
-            if (this.shipClassId) {
+            if (this.shipRoleId) {
                 if (await this.patch()) {
-                    this.$emit('patched', this.shipClass);
+                    this.$emit('patched', this.shipRole);
                 }
             } else if (await this.create()) {
-                this.$emit('created', this.shipClass);
+                this.$emit('created', this.shipRole);
             }
         },
         refreshData(): void {
             this.properties = getEmptyProperties();
-            this.loadShipClass();
+            this.loadShipRole();
         },
-        async loadShipClass(): Promise<void> {
-            if (!this.shipClassId) {
+        async loadShipRole(): Promise<void> {
+            if (!this.shipRoleId) {
                 return;
             }
             this.isLoading = true;
             try {
-                this.shipClass = (await shipClassService.getOneOrDefault(this.shipClassId)).data;
+                this.shipRole = (await shipRoleService.getOneOrDefault(this.shipRoleId)).data;
                 this.mapToProperties();
-                this.$emit('update:description', this.properties.description);
             } catch (_) {
                 // do nothing
             }
@@ -170,7 +130,7 @@ export default defineComponent({
             this.isLoading = true;
             this.errors = {};
             try {
-                this.shipClass = (await shipClassService.create(this.properties as CreateShipClass)).data;
+                this.shipRole = (await shipRoleService.create(this.properties as CreateShipRole)).data;
                 this.$notify({
                     type: 'success',
                     text: this.$t('saved'),
@@ -194,8 +154,8 @@ export default defineComponent({
             this.isLoading = true;
             this.errors = {};
             try {
-                this.shipClass = (await shipClassService.patch(
-                    this.shipClassId,
+                this.shipRole = (await shipRoleService.patch(
+                    this.shipRoleId,
                     this.changedProperties,
                 )).data;
                 this.$notify({

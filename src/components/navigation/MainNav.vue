@@ -107,8 +107,8 @@ export default defineComponent({
                     label: this.$t('dataManagement'),
                 },
                 {
-                    to: { name: 'constructions_ship-classes' },
-                    label: this.$t('shipClasses'),
+                    to: { name: 'constructions_ship-roles' },
+                    label: this.$t('shipRoles'),
                 },
                 {
                     to: { name: 'ingame_material-categories' },

@@ -52,11 +52,6 @@
 }
 
 .ship {
-    &__meta {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: $spacing;
-    }
     &__header-actions {
         align-items: flex-end;
         display: flex;
@@ -163,11 +158,12 @@
         width: 100px;
     }
     &__property-name {
+        color: var(--color-primary);
         font-size: var(--font-size-small);
         line-height: var(--line-height-small);
         margin-top: math.div($spacing, 4);
         padding: 0 math.div($spacing, 2);
-        text-align: center;
+        text-align: center;;
     }
     &__property-value {
         font-size: var(--font-size-title);

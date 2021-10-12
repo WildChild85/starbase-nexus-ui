@@ -22,7 +22,7 @@ const Companies = () => import('@/views/social/Companies.vue');
 const Company = () => import('@/views/social/Company.vue');
 const Guides = () => import('@/views/knowledge/Guides.vue');
 const Guide = () => import('@/views/knowledge/Guide.vue');
-const ShipClasses = () => import('@/views/constructions/ShipClasses.vue');
+const ShipRoles = () => import('@/views/constructions/ShipRoles.vue');
 const ShipShops = () => import('@/views/ingame/shipShop/ShipShops.vue');
 const ShipShop = () => import('@/views/ingame/shipShop/ShipShop.vue');
 const Ship = () => import('@/views/constructions/Ship.vue');
@@ -148,9 +148,9 @@ const routes: Array<RouteRecordRaw> = [
         props: true,
     },
     {
-        path: '/constructions/ship-classes',
-        name: 'constructions_ship-classes',
-        component: ShipClasses,
+        path: '/constructions/ship-roles',
+        name: 'constructions_ship-roles',
+        component: ShipRoles,
     },
     {
         path: '/constructions/ship/create',

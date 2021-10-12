@@ -9,16 +9,16 @@
                 <Button class="margin-left" v-if="isModerator" @click="showCreate">{{ $t('create') }}</Button>
             </div>
 
-            <DataItem v-for="shipClass in shipClasses" :key="shipClass.id" class="margin-top--f2">
-                <div class="data-item__name">{{ shipClass.name }}</div>
+            <DataItem v-for="shipRole in shipRolees" :key="shipRole.id" class="margin-top--f2">
+                <div class="data-item__name">{{ shipRole.name }}</div>
                 <div class="data-item__spacer"></div>
-                <div class="data-item__action" v-if="isModerator" @click="showEdit(shipClass.id)"><PencilIconSolid class="svg-icon"/></div>
+                <div class="data-item__action" v-if="isModerator" @click="showEdit(shipRole.id)"><PencilIconSolid class="svg-icon"/></div>
             </DataItem>
         </Panel>
     </div>
     <Dialog v-if="showEditDialog" @close="hideEditDialog">
-        <EditShipClass
-            :shipClassId="editId"
+        <EditShipRole
+            :shipRoleId="editId"
             @created="hideEditDialog(true)"
             @patched="hideEditDialog(true)"
             @cancelled="hideEditDialog"
@@ -34,9 +34,9 @@ import ViewMixin from '@/mixins/ViewMixin';
 import TextField from '@/components/controls/TextField.vue';
 import Button from '@/components/controls/Button';
 import Dialog from '@/components/dialogs/Dialog.vue';
-import EditShipClass from '@/components/constructions/shipClass/EditShipClass.vue';
-import * as shipClassService from '@/services/constructions/shipClassService';
-import { ShipClass } from '@/interfaces/constructions/shipClass';
+import EditShipRole from '@/components/constructions/shipRole/EditShipRole.vue';
+import * as shipRoleService from '@/services/constructions/shipRoleService';
+import { ShipRole } from '@/interfaces/constructions/shipRole';
 import LoadingIndicatorBeam from '@/components/loading/LoadingIndicatorBeam.vue';
 import DataItem from '@/components/layout/DataItem.vue';
 import { ROLE_MODERATOR } from '@/constants/roles';
@@ -46,17 +46,17 @@ interface Data {
     showEditDialog: boolean;
     editId: string | null;
     isLoading: boolean;
-    shipClasses: ShipClass[];
+    shipRolees: ShipRole[];
 }
 
 export default defineComponent({
-    name: 'ShipClasses',
+    name: 'ShipRoles',
     components: {
         Dialog,
         Button,
         Panel,
         TextField,
-        EditShipClass,
+        EditShipRole,
         LoadingIndicatorBeam,
         DataItem,
     },
@@ -66,7 +66,7 @@ export default defineComponent({
         showEditDialog: false,
         editId: null,
         isLoading: false,
-        shipClasses: [],
+        shipRolees: [],
     }),
     computed: {
         isModerator(): boolean {
@@ -86,21 +86,21 @@ export default defineComponent({
             this.showEditDialog = false;
             this.editId = null;
             if (refreshData) {
-                this.loadShipClasses();
+                this.loadShipRolees();
             }
         },
         async refreshData(): Promise<void> {
-            await this.loadShipClasses();
+            await this.loadShipRolees();
         },
-        async loadShipClasses(): Promise<void> {
+        async loadShipRolees(): Promise<void> {
             this.isLoading = true;
             try {
-                const response = await shipClassService.getMultiple({
+                const response = await shipRoleService.getMultiple({
                     pageSize: -1,
                     searchQuery: this.searchTerm,
                     orderBy: 'name asc',
                 });
-                this.shipClasses = response.data;
+                this.shipRolees = response.data;
             } catch (_) {
                 // do nothing
             }
@@ -108,7 +108,7 @@ export default defineComponent({
         },
     },
     created(): void {
-        this.setPageTitle([this.$t('shipClasses'), this.$t('constructions')]);
+        this.setPageTitle([this.$t('shipRoles'), this.$t('constructions')]);
         this.refreshData();
     },
 });

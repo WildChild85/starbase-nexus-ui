@@ -31,14 +31,13 @@
         :label="$t('galleryImages')"
         v-model="properties.imageUris"
     />
-    <SelectSingleReference
+    <SelectMultipleReference
         class="margin-top"
-        v-model="properties.shipClassId"
-        :label="$t('shipClass')"
+        v-model="properties.shipRoleIds"
+        :label="$t('shipRoles')"
         :readonly="isLoading"
-        :required="true"
-        :errors="errors.shipClassId"
-        :service="serviceShipClass"
+        :errors="errors.shipRoleIds"
+        :service="serviceShipRole"
     />
     <SelectSingleReference
         class="margin-top"
@@ -107,7 +106,7 @@ import { CreateShip, Ship, PatchShip } from '@/interfaces/constructions/ship';
 
 import * as shipService from '@/services/constructions/shipService';
 import * as companyService from '@/services/social/companyService';
-import * as shipClassService from '@/services/constructions/shipClassService';
+import * as shipRoleService from '@/services/constructions/shipRoleService';
 import * as materialService from '@/services/ingame/materialService';
 
 import TextField from '@/components/controls/TextField.vue';
@@ -117,11 +116,11 @@ import LoadingIndicatorBeam from '@/components/loading/LoadingIndicatorBeam.vue'
 import SelectFile from '@/components/controls/SelectFile.vue';
 import SelectFiles from '@/components/controls/SelectFiles.vue';
 import SelectSingleReference from '@/components/controls/SelectSingleReference.vue';
+import SelectMultipleReference from '@/components/controls/SelectMultipleReference.vue';
 import Switch from '@/components/controls/Switch.vue';
 
 interface Properties {
     companyId: string | null;
-    shipClassId: string;
     armorMaterialId: string | null;
     name: string;
     description: string;
@@ -159,6 +158,7 @@ interface Properties {
     turretWeaponsRailCannons: number | null;
     turretWeaponsMissileLauncher: number | null;
     turretWeaponsTorpedoLauncher: number | null;
+    shipRoleIds: string[],
     isCreator?: boolean;
 }
 
@@ -181,7 +181,6 @@ This ship is an awesome ship for a lot of reasons.
 
 const getEmptyProperties = ():Properties => ({
     companyId: null,
-    shipClassId: '',
     armorMaterialId: null,
     name: '',
     description: defaultMarkdown,
@@ -219,6 +218,7 @@ const getEmptyProperties = ():Properties => ({
     turretWeaponsRailCannons: null,
     turretWeaponsMissileLauncher: null,
     turretWeaponsTorpedoLauncher: null,
+    shipRoleIds: [],
     isCreator: false,
 });
 
@@ -230,6 +230,7 @@ export default defineComponent({
         SelectFile,
         SelectFiles,
         SelectSingleReference,
+        SelectMultipleReference,
         Switch,
         TextField,
         TextArea,
@@ -270,8 +271,8 @@ export default defineComponent({
         serviceCompany(): unknown {
             return companyService;
         },
-        serviceShipClass(): unknown {
-            return shipClassService;
+        serviceShipRole(): unknown {
+            return shipRoleService;
         },
         serviceMaterial(): unknown {
             return materialService;
@@ -318,7 +319,11 @@ export default defineComponent({
                 return;
             }
             Object.keys(this.properties).forEach((key) => {
-                (this.properties as PatchShip)[key as keyof PatchShip] = (this.ship as Ship)[key as keyof Ship] as never;
+                if (key === 'shipRoleIds') {
+                    this.properties.shipRoleIds = (this.ship as Ship).shipRoles.map(({ shipRoleId }) => shipRoleId);
+                } else {
+                    (this.properties as PatchShip)[key as keyof PatchShip] = (this.ship as Ship)[key as keyof Ship] as never;
+                }
             });
         },
         async saveChanges(): Promise<void> {

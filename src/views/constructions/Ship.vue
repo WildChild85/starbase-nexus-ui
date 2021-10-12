@@ -31,32 +31,21 @@
                             <PencilAltIconSolid class="svg-icon"/>
                         </Button>
                     </div>
-                    <div class="ship__meta">
-                        <div class="ship__header">
-                            <h1 class="ship__name">{{ ship ? ship.name : '' }}</h1>
-                            <div class="ship__description">
-                                <Markdown
-                                    v-if="ship && ship.description"
-                                    :source="ship.description"
-                                    :plugins="markdownPlugins"
-                                />
-                            </div>
-                        </div>
-                        <div class="ship__class">
-                            <template v-if="shipClass">
-                                <h2>{{ $t('shipClass')}}: {{ shipClass.name }}</h2>
-                                <Markdown
-                                    :source="shipClass.description"
-                                    :plugins="markdownPlugins"
-                                />
-                            </template>
+                    <div class="ship__header">
+                        <h1 class="ship__name">{{ ship ? ship.name : '' }}</h1>
+                        <div class="ship__roles">{{ shipRoles.map(({ name }) => name).join(', ') }}</div>
+                        <div class="ship__description">
+                            <Markdown
+                                v-if="ship && ship.description"
+                                :source="ship.description"
+                                :plugins="markdownPlugins"
+                            />
                         </div>
                     </div>
                     <ShipInfoMatrix
                         :ship="ship"
                         :creator="creator"
                         :armorMaterial="armorMaterial"
-                        :shipClass="shipClass"
                         :company="company"
                     />
                 </template>
@@ -124,7 +113,7 @@ import YouTube from 'vue3-youtube';
 import Panel from '@/components/layout/Panel.vue';
 import ViewMixin from '@/mixins/ViewMixin';
 import * as shipService from '@/services/constructions/shipService';
-import * as shipClassService from '@/services/constructions/shipClassService';
+import * as shipRoleService from '@/services/constructions/shipRoleService';
 import * as publicUserService from '@/services/social/publicUserService';
 import * as materialService from '@/services/ingame/materialService';
 import * as companyService from '@/services/social/companyService';
@@ -140,7 +129,7 @@ import { redirectToDiscord } from '@/helpers/index';
 import { ROLE_MODERATOR } from '@/constants/roles';
 import ShipInfoMatrix from '@/components/constructions/ship/ShipInfoMatrix.vue';
 import { Material } from '@/interfaces/ingame/material';
-import { ShipClass } from '@/interfaces/constructions/shipClass';
+import { ShipRole } from '@/interfaces/constructions/shipRole';
 import { Company } from '@/interfaces/social/company';
 import SelectSingleReference from '@/components/controls/SelectSingleReference.vue';
 
@@ -149,7 +138,7 @@ interface Data {
     ship: Ship | null;
     creator: PublicUser | null;
     armorMaterial: Material | null;
-    shipClass: ShipClass | null;
+    shipRoles: ShipRole[];
     company: Company | null;
     showEdit: boolean;
     editDescription: string;
@@ -180,7 +169,7 @@ export default defineComponent({
         ship: null,
         creator: null,
         armorMaterial: null,
-        shipClass: null,
+        shipRoles: [],
         company: null,
         showEdit: false,
         editDescription: '',
@@ -191,7 +180,7 @@ export default defineComponent({
             this.ship = null;
             this.creator = null;
             this.armorMaterial = null;
-            this.shipClass = null;
+            this.shipRoles = [];
             this.company = null;
             this.refreshData();
         },
@@ -260,7 +249,7 @@ export default defineComponent({
             await this.loadShip();
             await this.loadCreator();
             await this.loadArmorMaterial();
-            await this.loadShipClass();
+            await this.loadShipRoles();
             await this.loadCompany();
         },
         async loadShip(): Promise<void> {
@@ -304,14 +293,15 @@ export default defineComponent({
             }
             this.isLoading = false;
         },
-        async loadShipClass(): Promise<void> {
-            if (!this.ship || !this.ship.shipClassId) {
+        async loadShipRoles(): Promise<void> {
+            if (!this.ship || !this.ship.shipRoles.length) {
                 return;
             }
             this.isLoading = true;
             try {
-                const response = await shipClassService.getOneOrDefault(this.ship.shipClassId);
-                this.shipClass = response.data;
+                const shipRoleIds = this.ship.shipRoles.map(({ shipRoleId }) => shipRoleId);
+                const response = await shipRoleService.getMultipleByIds(shipRoleIds);
+                this.shipRoles = response.data;
             } catch (_) {
                 // do nothing
             }
