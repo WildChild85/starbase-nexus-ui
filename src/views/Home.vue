@@ -4,11 +4,11 @@
         <div class="flex flex--stretch-vertical flex--space-between-children flex--wrap-lg">
             <Panel class="flex__item flex__item--w-50-lg">
                 <h2>Welcome to the Starbase-Nexus</h2>
-                <p>This is an open-source community project to combine all tools and informations out there about the game Starbase at one source, so users don't have to search around the internet.</p>
-                <p>This project is independent to any political situation in the game nor is it connected to any organization.</p>
-                <p>It is an ongoing project, which will be extended with more features in the future. Any tool and information you find in this project may change depending on the development of the project and the game.</p>
-                <p>Currently Frozenbyte doesn't give us any secure and up to date ressource for ingame data like an open api or data dumps in the logs, which maybe changes in the future. Until then the only source for the data is the <a href="https://wiki.starbasegame.com" target="_blank"> official wiki page</a>, ingame toolstips and measurements made by players.</p>
-                <p>On the top left side you will find the <span class="text--primary"><MenuIconOutline class="svg-icon svg-icon--middle"/> menu</span> with all currently available informations and tools.</p>
+                <p>Starbase-Nexus is an open-source community project designed to combine all tools and information available about Starbase in one place, so users don't have to search around the internet.</p>
+                <p>This project is independent of any political situation or group in the game and is it not connected to any organization.</p>
+                <p>Starbase-Nexus is an ongoing project which will be extended with more features in the future. Any tool and information you find in this project may change depending on the development of the project and the game.</p>
+                <p>Currently Frozenbyte doesn't give us any secure and up to date resource for in-game data such as an open API. Until an API is created, the only source for the data is the <a href="https://wiki.starbasegame.com" target="_blank"> official wiki page</a>, in-game toolstips and measurements made by players.</p>
+                <p>On the top left side you will find the <span class="text--primary"><MenuIconOutline class="svg-icon svg-icon--middle"/> menu</span>, where you can see the currently available information and tools.</p>
                 <p>If you want to post <span class="text--primary">feature requests</span> or <span class="text--primary">bug reports</span>, please join our disord:</p>
                 <div class="flex flex--center-horizontal">
                     <Button href="https://discord.gg/3AyaHP7aWr">
@@ -16,9 +16,9 @@
                         Discord
                     </Button>
                 </div>
-                <p>We invite everybody to contribute to this project. If you want to participate into this project, there are several ways to do it:</p>
+                <p>We invite everybody to contribute to this project. If you would like to participate in this project, here are some areas you could help:</p>
                 <ul>
-                    <li><span class="text--secondary text--bold">Data Management:</span> Currently there are no ways to automatically get data about items f. e. out of the game. If you want to help to gather informations you will get the rights for the ingame data management.</li>
+                    <li><span class="text--secondary text--bold">Data Management:</span> Currently there are no ways to automatically extract data about items from the game. If you want to help to gather information we can give you the necessary permissions.</li>
                     <li class="margin-top"><span class="text--secondary text--bold">Coding:</span> If you want to include new tools or features into this project, the whole code is open source.</li>
                     <ul>
                         <li>API: <a href="https://github.com/WildChild85/starbase-nexus-api" target="_blank">https://github.com/WildChild85/starbase-nexus-api</a></li>
@@ -46,7 +46,7 @@
                             <DataTableCell type="success">done</DataTableCell>
                         </DataTableRow>
                         <DataTableRow>
-                            <DataTableCell>Ingame Data Management</DataTableCell>
+                            <DataTableCell>In-game Data Management</DataTableCell>
                             <DataTableCell>WildChild85#2691</DataTableCell>
                             <DataTableCell type="success">done</DataTableCell>
                         </DataTableRow>
@@ -91,24 +91,24 @@
                             <DataTableCell type="success">done</DataTableCell>
                         </DataTableRow>
                         <DataTableRow>
-                            <DataTableCell>3D-Map</DataTableCell>
+                            <DataTableCell>3D Map</DataTableCell>
                             <DataTableCell><span class="text--error">open</span></DataTableCell>
                             <DataTableCell type="info">planned</DataTableCell>
                         </DataTableRow>
                         <DataTableRow>
-                            <DataTableCell>Bounty-System</DataTableCell>
+                            <DataTableCell>Bounty System</DataTableCell>
                             <DataTableCell><span class="text--error">open</span></DataTableCell>
                             <DataTableCell type="info">planned</DataTableCell>
                         </DataTableRow>
                         <DataTableRow>
-                            <DataTableCell>InGame Events Announcements</DataTableCell>
+                            <DataTableCell>In-Game Events Announcements</DataTableCell>
                             <DataTableCell><span class="text--error">open</span></DataTableCell>
                             <DataTableCell type="info">planned</DataTableCell>
                         </DataTableRow>
                         <DataTableRow>
-                            <DataTableCell>InGame Organizations Register</DataTableCell>
+                            <DataTableCell>In-Game Organizations Register</DataTableCell>
                             <DataTableCell>WildChild85#2691</DataTableCell>
-                            <DataTableCell type="success">done</DataTableCell>
+                            <DataTableCell type="info">planned</DataTableCell>
                         </DataTableRow>
                         <DataTableRow>
                             <DataTableCell>Discord</DataTableCell>
