@@ -81,7 +81,7 @@ export default defineComponent({
             return this.$store.getters['authentication/user'];
         },
         isAdmin(): boolean {
-            return this.$store.getters['authentication/hasOneRoles'](ROLE_ADMINISTRATOR);
+            return this.$store.getters['authentication/hasOneRoles']([ROLE_ADMINISTRATOR]);
         },
         guideLikes(): Record<string, number> {
             const guideLikes: Record<string, number> = {};

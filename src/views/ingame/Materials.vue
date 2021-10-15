@@ -84,7 +84,7 @@ export default defineComponent({
     }),
     computed: {
         isModerator(): boolean {
-            return this.$store.getters['authentication/hasOneRoles'](ROLE_MODERATOR);
+            return this.$store.getters['authentication/hasOneRoles']([ROLE_MODERATOR]);
         },
         excludedProperties(): string[] {
             return ['id', 'iconUriRaw', 'iconUriRefined', 'iconUriOreChunk', 'createdAt', 'updatedAt', 'description', 'name', 'wikiUri', 'materialCategoryId', 'minArmor', 'transformability'];

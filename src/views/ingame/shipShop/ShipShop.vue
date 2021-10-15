@@ -32,6 +32,7 @@
                                 </template>
                             </div>
                             <div class="ship-shop__description">
+                                <p><strong>{{ $t('moderator') }}</strong>: {{ moderator ? moderator.userName : $t('unassigned') }}</p>
                                 <Markdown
                                     v-if="shipShop"
                                     :source="shipShop.description"
@@ -103,6 +104,7 @@ import ViewMixin from '@/mixins/ViewMixin';
 import * as shipShopService from '@/services/ingame/shipShopService';
 import * as shipShopSpotService from '@/services/ingame/shipShopSpotService';
 import * as shipService from '@/services/constructions/shipService';
+import * as publicUserService from '@/services/social/publicUserService';
 import { ShipShop } from '@/interfaces/ingame/shipShop';
 import LoadingIndicatorBeam from '@/components/loading/LoadingIndicatorBeam.vue';
 import EditShipShop from '@/components/ingame/shipShop/EditShipShop.vue';
@@ -119,10 +121,12 @@ import shipShopSpotConfigs from '@/components/ingame/shipShop/ship-shop-large-sp
 import { Ship } from '@/interfaces/constructions/ship';
 import { uniqueId } from '@/helpers';
 import Switch from '@/components/controls/Switch.vue';
+import { PublicUser } from '@/interfaces/social/publicUser';
 
 interface Data {
     isLoading: boolean;
     shipShop: ShipShop | null;
+    moderator: PublicUser | null;
     showEdit: boolean;
     editDescription: string;
     spotsEditMode: boolean;
@@ -158,6 +162,7 @@ export default defineComponent({
     data: (): Data => ({
         isLoading: false,
         shipShop: null,
+        moderator: null,
         showEdit: false,
         editDescription: '',
         spotsEditMode: false,
@@ -172,12 +177,13 @@ export default defineComponent({
     watch: {
         shipShopId(): void {
             this.shipShop = null;
+            this.moderator = null;
             this.refreshData();
         },
     },
     computed: {
         isModerator(): boolean {
-            return this.$store.getters['authentication/hasOneRoles'](ROLE_MODERATOR);
+            return this.$store.getters['authentication/hasOneRoles']([ROLE_MODERATOR]) || (this.user && this.shipShop && this.shipShop.moderatorId === this.user.id);
         },
         user(): JwtUser | null {
             return this.$store.getters['authentication/user'];
@@ -265,6 +271,7 @@ export default defineComponent({
             await this.loadShipShop();
             await this.loadShipShopSpots();
             await this.loadShips();
+            await this.loadModerator();
             const configsShipsMap: ShipShopSpotConfig[] = [];
             shipShopSpotConfigs.forEach((config) => {
                 const spot: ShipShopSpot | null = this.spots.find(({ position }) => position === config.id) || null;
@@ -291,6 +298,19 @@ export default defineComponent({
                 const response = await shipShopService.getOneOrDefault(this.shipShopId);
                 this.shipShop = response.data;
                 this.setPageTitle([this.shipShop.name, this.$t('shipShop'), this.$t('ingame')]);
+            } catch (_) {
+                // do nothing
+            }
+            this.isLoading = false;
+        },
+        async loadModerator(): Promise<void> {
+            if (!this.shipShop || !this.shipShop.moderatorId) {
+                return;
+            }
+            this.isLoading = true;
+            try {
+                const response = await publicUserService.getOneOrDefault(this.shipShop.moderatorId);
+                this.moderator = response.data;
             } catch (_) {
                 // do nothing
             }

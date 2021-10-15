@@ -7,6 +7,7 @@
                 <TextField v-model.trim="searchTerm" :placeholder="$t('search')" @keyup.enter="refreshData"/>
                 <Button class="margin-left" :loading="isLoading" @click="refreshData">{{ $t('refresh') }}</Button>
                 <Button class="margin-left" v-if="isModerator" type="info" :to="{name: 'ingame_ship-shop_create'}">{{ $t('create') }}</Button>
+                <Button class="margin-left" type="info" href="https://www.youtube.com/watch?v=WsYkklWOw-A">{{ $t('tutorial') }}</Button>
             </div>
 
             <div class="ship-shop-list">
@@ -63,7 +64,7 @@ export default defineComponent({
             return this.$store.getters['authentication/user'];
         },
         isModerator(): boolean {
-            return this.$store.getters['authentication/hasOneRoles'](ROLE_MODERATOR);
+            return this.$store.getters['authentication/hasOneRoles']([ROLE_MODERATOR]);
         },
     },
     methods: {

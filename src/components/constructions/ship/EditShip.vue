@@ -364,6 +364,7 @@ export default defineComponent({
                 });
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {
+                this.isLoading = false;
                 if (error.response && error.response.data && error.response.data.errors) {
                     this.errors = error.response.data.errors;
                 }
@@ -390,6 +391,7 @@ export default defineComponent({
                 });
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             } catch (error: any) {
+                this.isLoading = false;
                 if (error.response && error.response.data && error.response.data.errors) {
                     this.errors = error.response.data.errors;
                 }

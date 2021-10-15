@@ -117,6 +117,8 @@ import * as shipRoleService from '@/services/constructions/shipRoleService';
 import * as publicUserService from '@/services/social/publicUserService';
 import * as materialService from '@/services/ingame/materialService';
 import * as companyService from '@/services/social/companyService';
+import * as shipShopSpotService from '@/services/ingame/shipShopSpotService';
+import * as shipShopService from '@/services/ingame/shipShopService';
 import { Ship } from '@/interfaces/constructions/ship';
 import LoadingIndicatorBeam from '@/components/loading/LoadingIndicatorBeam.vue';
 import EditShip from '@/components/constructions/ship/EditShip.vue';
@@ -132,6 +134,8 @@ import { Material } from '@/interfaces/ingame/material';
 import { ShipRole } from '@/interfaces/constructions/shipRole';
 import { Company } from '@/interfaces/social/company';
 import SelectSingleReference from '@/components/controls/SelectSingleReference.vue';
+import { ShipShopSpot } from '@/interfaces/ingame/shipShopSpot';
+import { ShipShop } from '@/interfaces/ingame/shipShop';
 
 interface Data {
     isLoading: boolean;
@@ -140,6 +144,8 @@ interface Data {
     armorMaterial: Material | null;
     shipRoles: ShipRole[];
     company: Company | null;
+    spots: ShipShopSpot[];
+    shops: ShipShop[];
     showEdit: boolean;
     editDescription: string;
     newCreatorId: string | null;
@@ -171,6 +177,8 @@ export default defineComponent({
         armorMaterial: null,
         shipRoles: [],
         company: null,
+        spots: [],
+        shops: [],
         showEdit: false,
         editDescription: '',
         newCreatorId: null,
@@ -182,12 +190,17 @@ export default defineComponent({
             this.armorMaterial = null;
             this.shipRoles = [];
             this.company = null;
+            this.spots = [];
+            this.shops = [];
             this.refreshData();
         },
     },
     computed: {
+        moderatorUserIds(): string[] {
+            return [...new Set(this.shops.filter(({ moderatorId }) => moderatorId !== null).map(({ moderatorId }) => moderatorId as string))];
+        },
         isModerator(): boolean {
-            return this.$store.getters['authentication/hasOneRoles'](ROLE_MODERATOR);
+            return this.$store.getters['authentication/hasOneRoles']([ROLE_MODERATOR]) || (this.user && this.moderatorUserIds.includes(this.user.id));
         },
         hasEditRights(): boolean | null {
             return this.isModerator || (this.user && this.ship && this.user.id === this.ship.creatorId);
@@ -251,6 +264,8 @@ export default defineComponent({
             await this.loadArmorMaterial();
             await this.loadShipRoles();
             await this.loadCompany();
+            await this.loadShipShopSpots();
+            await this.loadShipShops();
         },
         async loadShip(): Promise<void> {
             if (!this.shipId) {
@@ -315,6 +330,36 @@ export default defineComponent({
             try {
                 const response = await companyService.getOneOrDefault(this.ship.companyId);
                 this.company = response.data;
+            } catch (_) {
+                // do nothing
+            }
+            this.isLoading = false;
+        },
+        async loadShipShopSpots(): Promise<void> {
+            if (!this.ship) {
+                return;
+            }
+            this.isLoading = true;
+            try {
+                const response = await shipShopSpotService.getMultiple({
+                    shipIds: this.ship.id,
+                    pageSize: -1,
+                });
+                this.spots = response.data;
+            } catch (_) {
+                // do nothing
+            }
+            this.isLoading = false;
+        },
+        async loadShipShops(): Promise<void> {
+            if (!this.spots.length) {
+                return;
+            }
+            this.isLoading = true;
+            try {
+                const shipShopIds = [...new Set(this.spots.map(({ shipShopId }) => shipShopId))];
+                const response = await shipShopService.getMultipleByIds(shipShopIds);
+                this.shops = response.data;
             } catch (_) {
                 // do nothing
             }

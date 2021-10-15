@@ -32,6 +32,17 @@
         :errors="errors.description"
         @input="$emit('update:description', properties.description);"
     />
+    <SelectSingleReference
+        class="margin-top"
+        v-model="properties.moderatorId"
+        :label="$t('moderator')"
+        :readonly="isLoading"
+        :errors="errors.moderatorId"
+        :service="servicePublicUser"
+        imageProperty="avatarUri"
+        labelProperty="userName"
+        orderBy="userName"
+    />
 
     <div class="panel__actions">
         <Button
@@ -54,6 +65,7 @@
 import { defineComponent } from 'vue';
 import { CreateShipShop, ShipShop, PatchShipShop } from '@/interfaces/ingame/shipShop';
 import * as shipShopService from '@/services/ingame/shipShopService';
+import * as publicUserService from '@/services/social/publicUserService';
 import TextField from '@/components/controls/TextField.vue';
 import TextArea from '@/components/controls/TextArea.vue';
 import Button from '@/components/controls/Button';
@@ -62,8 +74,10 @@ import SelectFile from '@/components/controls/SelectFile.vue';
 import SimpleSelect from '@/components/controls/SimpleSelect.vue';
 import { SHIP_SHOP_LAYOUT_SMALL } from '@/constants/ingame';
 import { SelectOption } from '@/interfaces/ui';
+import SelectSingleReference from '@/components/controls/SelectSingleReference.vue';
 
 interface Properties {
+    moderatorId?: string | null;
     imageUri?: string | null;
     name: string;
     description: string;
@@ -87,6 +101,7 @@ A description about the ship, like the story behind it, the faction behind it an
 `;
 
 const getEmptyProperties = ():Properties => ({
+    moderatorId: null,
     imageUri: null,
     name: '',
     description: defaultMarkdown,
@@ -103,6 +118,7 @@ export default defineComponent({
         Button,
         LoadingIndicatorBeam,
         SelectFile,
+        SelectSingleReference,
         SimpleSelect,
         TextField,
         TextArea,
@@ -145,6 +161,9 @@ export default defineComponent({
                 { value: 'small', label: this.$t('small') },
                 { value: 'large', label: this.$t('large') },
             ];
+        },
+        servicePublicUser(): unknown {
+            return publicUserService;
         },
     },
     methods: {

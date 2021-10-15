@@ -20,7 +20,7 @@
         <div class="file-explorer__folders">
             <div
                 class="file-explorer__folder"
-                v-for="folder in resolvedFolders"
+                v-for="folder in sortedFilteredResolvedFolders"
                 :key="folder"
                 data-augmented-ui="tl-clip tr-clip br-clip bl-clip border"
                 @click="navigate(folder.path)"
@@ -29,7 +29,7 @@
         <div class="file-explorer__files">
             <div
                 class="file-explorer__file"
-                v-for="file in files"
+                v-for="file in sortedFilteredFiles"
                 :key="file.name"
                 data-augmented-ui="tl-clip tr-clip br-clip bl-clip border"
                 :style="{backgroundImage: `url('${file.publicUri}')`}"
@@ -179,6 +179,24 @@ export default defineComponent({
                 };
             });
         },
+        filteredResolvedFolders(): FolderItem[] {
+            if (!this.searchTerm || !this.searchTerm.length) return this.resolvedFolders;
+            return this.resolvedFolders.filter(({ name }) => name.toLowerCase().includes(this.searchTerm));
+        },
+        sortedFilteredResolvedFolders(): FolderItem[] {
+            const toSort = [...this.filteredResolvedFolders];
+            toSort.sort((a, b) => (a < b ? 1 : -1));
+            return toSort;
+        },
+        filteredFiles(): FileResponse[] {
+            if (!this.searchTerm || !this.searchTerm.length) return this.files;
+            return this.files.filter(({ name }) => name.toLowerCase().includes(this.searchTerm));
+        },
+        sortedFilteredFiles(): FileResponse[] {
+            const toSort = [...this.filteredFiles];
+            toSort.sort((a, b) => (a < b ? 1 : -1));
+            return toSort;
+        },
     },
     methods: {
         handleFileClicked(file: FileResponse): void {
@@ -193,6 +211,7 @@ export default defineComponent({
             }
         },
         async navigate(path: string): Promise<void> {
+            this.searchTerm = '';
             localStorage.setItem(FILE_EXPLORER_CURRENT_PATH_KEY, path);
             this.currentPath = path;
             await this.refreshData();

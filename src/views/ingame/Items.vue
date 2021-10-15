@@ -90,7 +90,7 @@ export default defineComponent({
             return `clipboardInput_${uniqueId}}`;
         },
         isModerator(): boolean {
-            return this.$store.getters['authentication/hasOneRoles'](ROLE_MODERATOR);
+            return this.$store.getters['authentication/hasOneRoles']([ROLE_MODERATOR]);
         },
         textProperties(): string[] {
             return ['adjacencyHeatValues'];

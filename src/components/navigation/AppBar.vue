@@ -31,7 +31,7 @@ export default defineComponent({
             return this.$store.getters['authentication/user'];
         },
         isAdmin(): boolean {
-            return this.$store.getters['authentication/hasOneRoles'](ROLE_ADMINISTRATOR);
+            return this.$store.getters['authentication/hasOneRoles']([ROLE_ADMINISTRATOR]);
         },
         views(): number {
             return this.$store.getters['views/views'];

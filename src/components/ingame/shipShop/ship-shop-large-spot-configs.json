@@ -85,7 +85,8 @@
     {
         "id": 14, "class": "ssll-7", "x": 369.43, "y": 194.12,
         "sizes": [
-            { "size": 1, "width": 80, "height": 161.17 }
+            { "size": 1, "width": 80, "height": 80 },
+            { "size": 2, "width": 80, "height": 161.17 }
         ]
     },
     {
@@ -174,6 +175,12 @@
     },
     {
         "id": 28, "class": "ssll-7", "x": 506.43, "y": 631.12,
+        "sizes": [
+            { "size": 1, "width": 80, "height": 80 }
+        ]
+    },
+    {
+        "id": 29, "class": "ssll-7", "x": 369.43, "y": 284.12,
         "sizes": [
             { "size": 1, "width": 80, "height": 80 }
         ]

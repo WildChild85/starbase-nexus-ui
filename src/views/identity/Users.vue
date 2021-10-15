@@ -66,7 +66,7 @@ export default defineComponent({
     }),
     computed: {
         isAdmin(): boolean {
-            return this.$store.getters['authentication/hasOneRoles'](ROLE_ADMINISTRATOR);
+            return this.$store.getters['authentication/hasOneRoles']([ROLE_ADMINISTRATOR]);
         },
     },
     methods: {

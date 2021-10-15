@@ -1,6 +1,7 @@
 import { UuidViewModel } from '@/interfaces/api';
 
 export interface ShipShop extends UuidViewModel {
+    moderatorId: string | null;
     imageUri: string | null;
     name: string;
     description: string;
@@ -12,6 +13,7 @@ export interface ShipShop extends UuidViewModel {
 }
 
 export interface CreateShipShop {
+    moderatorId: string | null;
     imageUri?: string | null;
     name: string;
     description: string;
@@ -23,6 +25,7 @@ export interface CreateShipShop {
 }
 
 export interface PatchShipShop {
+    moderatorId?: string | null;
     imageUri?: string | null;
     name?: string;
     description?: string;

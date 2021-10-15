@@ -70,7 +70,7 @@ export default defineComponent({
     }),
     computed: {
         isModerator(): boolean {
-            return this.$store.getters['authentication/hasOneRoles'](ROLE_MODERATOR);
+            return this.$store.getters['authentication/hasOneRoles']([ROLE_MODERATOR]);
         },
     },
     methods: {

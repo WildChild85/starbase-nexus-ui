@@ -46,7 +46,7 @@ export default defineComponent({
             return this.$store.getters['mainNav/open'];
         },
         isAdmin(): boolean {
-            return this.$store.getters['authentication/hasOneRoles'](ROLE_ADMINISTRATOR);
+            return this.$store.getters['authentication/hasOneRoles']([ROLE_ADMINISTRATOR]);
         },
         navItems(): NavItem[] {
             const navItems = [

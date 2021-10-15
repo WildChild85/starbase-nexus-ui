@@ -231,5 +231,8 @@
     "massAndThrust": "Mass & Thrust",
     "primaryWeapons": "Primary Weapons",
     "turretWeapons": "Turret Weapons",
-    "general": "General"
+    "general": "General",
+    "tutorial": "Tutorial",
+    "moderator": "Moderator",
+    "unassigned": "unassigned"
 }
