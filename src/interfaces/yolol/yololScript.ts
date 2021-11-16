@@ -6,14 +6,22 @@ export interface YololScriptSearchParameters extends SearchParameters {
 
 export interface YololScript extends UuidViewModel {
     code: string;
+    name: string | null;
     projectId: string;
 }
 
 export interface CreateYololScript {
     code: string;
+    name?: string | null;
     projectId: string;
 }
 
 export interface PatchYololScript {
     code?: string;
+    name?: string | null;
+}
+
+export interface FetchedYololScript {
+    code: string;
+    name: string | null;
 }

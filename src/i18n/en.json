@@ -234,5 +234,11 @@
     "general": "General",
     "tutorial": "Tutorial",
     "moderator": "Moderator",
-    "unassigned": "unassigned"
+    "unassigned": "unassigned",
+    "requiredChip": "Required Yolol Chip",
+    "fetchConfigUri": "Fetch Config Uri",
+    "exampleFetchConfig": "Example Fetch Config",
+    "yololProjectDocumentationHiddenExplanation": "The documentation property is hidden because you povided a fetch config uri.",
+    "checkOnGithub": "Check on Github",
+    "back": "Back"
 }

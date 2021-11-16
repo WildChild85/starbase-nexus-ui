@@ -22,7 +22,7 @@
                     <polygon class="ship-shop-layout__area-4" points="275.24 93.93 275.24 455.13 185.39 455.13 185.39 545.7 4.04 545.7 4.04 93.93 275.24 93.93" />
                     <polygon class="ship-shop-layout__area-5" points="817.24 93.93 817.24 545.7 635.47 545.7 635.47 455.13 546.04 455.13 546.04 93.93 817.24 93.93" />
                     <text class="ship-shop-layout__area-label" x="382" y="140">Lobby</text>
-                    <text class="ship-shop-layout__area-label" x="327" y="383">Central Showroom</text>
+                    <text class="ship-shop-layout__area-label" x="327" y="389">Central Showroom</text>
                     <text class="ship-shop-layout__area-label" x="327" y="595">Scenery Showroom</text>
                     <text class="ship-shop-layout__area-label" x="50" y="145">Hangar Showroom 1</text>
                     <text class="ship-shop-layout__area-label" x="590" y="145">Hangar Showroom 2</text>

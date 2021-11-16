@@ -22,15 +22,26 @@
         :readonly="isLoading"
         :errors="errors.youtubeVideoUri"
     />
+    <TextField
+        class="margin-top"
+        v-model.trim="properties.fetchConfigUri"
+        :label="$t('fetchConfigUri')"
+        :readonly="isLoading"
+        :errors="errors.fetchConfigUri"
+    />
+    <FetchConfigCheck :fetchConfigUri="properties.fetchConfigUri" />
+
     <TextArea
+        v-if="!properties.fetchConfigUri"
         class="margin-top"
         v-model="properties.documentation"
         :label="$t('documentation')"
         :readonly="isLoading"
-        :required="true"
         :isCode="true"
         :errors="errors.documentation"
+        @input="$emit('update:documentation', properties.documentation);"
     />
+    <p v-else>{{ $t('yololProjectDocumentationHiddenExplanation') }}</p>
 
     <div class="panel__actions">
         <Button
@@ -58,10 +69,12 @@ import TextArea from '@/components/controls/TextArea.vue';
 import Button from '@/components/controls/Button';
 import LoadingIndicatorBeam from '@/components/loading/LoadingIndicatorBeam.vue';
 import SelectFile from '@/components/controls/SelectFile.vue';
+import FetchConfigCheck from '@/components/yolol/yololProject/FetchConfigCheck.vue';
 
 interface Properties {
     name: string;
-    documentation: string;
+    documentation: string | null;
+    fetchConfigUri: string | null;
     previewImageUri: string | null;
     youtubeVideoUri: string | null;
 }
@@ -102,6 +115,7 @@ If you need support check out our [Discord](http://example.com).
 
 const getEmptyProperties = ():Properties => ({
     documentation: defaultMarkdown,
+    fetchConfigUri: null,
     name: '',
     previewImageUri: null,
     youtubeVideoUri: null,
@@ -111,6 +125,7 @@ export default defineComponent({
     name: 'EditYololProject',
     components: {
         Button,
+        FetchConfigCheck,
         LoadingIndicatorBeam,
         SelectFile,
         TextField,
@@ -177,6 +192,7 @@ export default defineComponent({
             try {
                 this.yololProject = (await yololProjectService.getOneOrDefault(this.yololProjectId)).data;
                 this.mapToProperties();
+                this.$emit('update:documentation', this.properties.documentation);
             } catch (_) {
                 // do nothing
             }

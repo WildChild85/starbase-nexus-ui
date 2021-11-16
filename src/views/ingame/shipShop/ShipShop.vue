@@ -6,9 +6,8 @@
             class="flex flex--stretch-vertical"
             :class="showEdit || !shipShopId ? 'flex--space-between-children flex--wrap-lg' : ''"
         >
-            <Panel class="flex__item flex__item--w-50-lg">
+            <Panel v-if="showEdit || !shipShopId" class="flex__item flex__item--w-50-lg">
                 <EditShipShop
-                    v-if="showEdit || !shipShopId"
                     :shipShopId="shipShopId"
                     ref="editShipShop"
                     @created="handleCreated"
@@ -16,38 +15,39 @@
                     @cancelled="handleCancelled"
                     @update:description="handleUpdateDescription"
                 />
-                <template v-else>
-                    <div class="ship-shop__meta">
-                        <div
-                            class="ship-shop__image"
-                            data-augmented-ui="tl-clip t-clip-x tr-clip r-clip-y br-clip b-clip-x bl-clip l-clip-y border"
-                            :style="imageStyle"
-                        ></div>
-                        <div class="ship-shop__meta-content">
-                            <div class="ship-shop__header">
-                                <h1 class="ship-shop__name">{{ shipShop ? shipShop.name : '' }}</h1>
-                                <template v-if="isModerator">
-                                    <Switch v-model="spotsEditMode" :label="$t('editSpots')" />
-                                    <Button :title="$t('edit')" @click="showEdit = true"><PencilAltIconSolid class="svg-icon"/></Button>
-                                </template>
-                            </div>
-                            <div class="ship-shop__description">
-                                <p><strong>{{ $t('moderator') }}</strong>: {{ moderator ? moderator.userName : $t('unassigned') }}</p>
-                                <Markdown
-                                    v-if="shipShop"
-                                    :source="shipShop.description"
-                                    :plugins="markdownPlugins"
-                                />
-                            </div>
+            </Panel>
+            <Panel v-else :fullWidth="true" class="flex__item flex__item--w-50-lg">
+                <div class="ship-shop__meta">
+                    <div
+                        class="ship-shop__image"
+                        data-augmented-ui="tl-clip t-clip-x tr-clip r-clip-y br-clip b-clip-x bl-clip l-clip-y border"
+                        :style="imageStyle"
+                    ></div>
+                    <div class="ship-shop__meta-content">
+                        <div class="ship-shop__header">
+                            <h1 class="ship-shop__name">{{ shipShop ? shipShop.name : '' }}</h1>
+                            <Button :title="$t('back')" :to="{name: 'ingame_ship-shops'}"><ChevronLeftIconSolid class="svg-icon"/></Button>
+                            <template v-if="isModerator">
+                                <Switch v-model="spotsEditMode" :label="$t('editSpots')" />
+                                <Button :title="$t('edit')" @click="showEdit = true"><PencilAltIconSolid class="svg-icon"/></Button>
+                            </template>
+                        </div>
+                        <div class="ship-shop__description">
+                            <p><strong>{{ $t('moderator') }}</strong>: {{ moderator ? moderator.userName : $t('unassigned') }}</p>
+                            <Markdown
+                                v-if="shipShop"
+                                :source="shipShop.description"
+                                :plugins="markdownPlugins"
+                            />
                         </div>
                     </div>
-                    <ShipShopLayoutLarge
-                        :key="mapRerenderKey"
-                        class="margin-top"
-                        :shipShopSpotConfigs="configsShipsMap"
-                        @spotClicked="handleSpotClicked"
-                    />
-                </template>
+                </div>
+                <ShipShopLayoutLarge
+                    :key="mapRerenderKey"
+                    class="margin-top"
+                    :shipShopSpotConfigs="configsShipsMap"
+                    @spotClicked="handleSpotClicked"
+                />
             </Panel>
             <Panel class="flex__item flex__item--w-50-lg" v-if="!shipShopId || showEdit">
                 <div>

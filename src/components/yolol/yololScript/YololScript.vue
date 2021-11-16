@@ -6,12 +6,16 @@
         data-augmented-ui="tl-clip-inset t-clip-x tr-clip r-clip-y br-clip-inset b-clip-x bl-clip l-clip-y border"
     >
         <div class="yolol-script__last-update">
-            <div class="flex flex--center-vertical">
+            <div class="yolol-script__header">
                 <div v-if="editRights" class="margin-right--f2"><Button @click="showEdit = true"><PencilAltIconSolid class="svg-icon"/></Button></div>
-                <Button type="info" :title="$t('copyIdToClipboard')" @click="copyToClipboard(yololScript.code)"><ClipboardCopyIconOutline class="svg-icon"/></Button>
-                <div class="flex__item flex__item--grow">
-                    {{ $t('lastUpdate')}}: <span class="text--primary"><DateTimeFormatter :isoString="yololScript.updatedAt ? yololScript.updatedAt : yololScript.createdAt" /></span>
-                </div>
+                <Button type="info" class="margin-right" :title="$t('copyIdToClipboard')" @click="copyToClipboard(yololScript.code)"><ClipboardCopyIconOutline class="svg-icon"/></Button>
+                <span class="yolol-script__name">{{ yololScript.name }}</span>
+                <span class="yolol-script__chip" :title="$t('requiredChip')"><ChipIconSolid class="svg-icon margin-right--f2"/>{{ requiredChip }}</span>
+                <span>
+                    {{ $t('lastUpdate')}}:
+                    <DateTimeFormatter v-if="lastUpdate" :isoString="lastUpdate" />
+                    <span v-else>{{ $t('checkOnGithub')}}</span>
+                </span>
             </div>
         </div>
         <pre>{{ yololScript.code }}</pre>
@@ -32,7 +36,7 @@ import { YololScript } from '@/interfaces/yolol/yololScript';
 import EditYololScript from '@/components/yolol/yololScript/EditYololScript.vue';
 import DateTimeFormatter from '@/components/formatters/DateTimeFormatter.vue';
 import Button from '@/components/controls/Button';
-import { uniqueId } from '@/helpers';
+import { uniqueId, getRequiredYololChip } from '@/helpers';
 
 interface Data {
     showEdit: boolean;
@@ -67,6 +71,12 @@ export default defineComponent({
         },
         clipboardInputId(): string {
             return `clipboardInput_${this.yololScript.id}_${uniqueId}}`;
+        },
+        requiredChip(): string {
+            return getRequiredYololChip(this.yololScript.code);
+        },
+        lastUpdate(): string | null {
+            return this.yololScript.updatedAt ? this.yololScript.updatedAt : this.yololScript.createdAt;
         },
     },
     methods: {

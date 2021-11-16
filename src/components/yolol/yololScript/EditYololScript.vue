@@ -2,6 +2,13 @@
 <div>
     <LoadingIndicatorBeam v-if="isLoading"/>
     <h2 class="text--primary margin-left--f2 margin-right--f2">{{ yololScriptId ? $t('editYololScript') : $t('createYololScript') }}</h2>
+    <TextField
+        class="margin-top"
+        v-model.trim="properties.name"
+        :label="$t('name')"
+        :readonly="isLoading"
+        :errors="errors.name"
+    />
     <TextArea
         class="margin-top"
         v-model="properties.code"
@@ -38,9 +45,11 @@ import * as yololScriptService from '@/services/yolol/yololScriptService';
 import TextArea from '@/components/controls/TextArea.vue';
 import Button from '@/components/controls/Button';
 import LoadingIndicatorBeam from '@/components/loading/LoadingIndicatorBeam.vue';
+import TextField from '@/components/controls/TextField.vue';
 
 interface Properties {
     code: string;
+    name: string | null;
 }
 
 interface Data {
@@ -52,6 +61,7 @@ interface Data {
 
 const getEmptyProperties = ():Properties => ({
     code: '',
+    name: null,
 });
 
 export default defineComponent({
@@ -60,6 +70,7 @@ export default defineComponent({
         Button,
         LoadingIndicatorBeam,
         TextArea,
+        TextField,
     },
     emits: ['created', 'patched', 'cancelled', 'update:documentation'],
     props: {

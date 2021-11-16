@@ -9,7 +9,7 @@
         padding: 0 $spacing;
         white-space: nowrap;
         overflow-x: auto;
-        overflow-y: hidden;
+        overflow-y: auto;
 
         --aug-border-bg: var(--color-secondary);
         --aug-border-all: 2px;
@@ -30,8 +30,24 @@
         --aug-b-extend1: 30%;
         --aug-b1: 7px;
     }
+    &__header {
+        align-items: center;
+        display: flex;
+    }
     &__last-update {
         margin-top: $spacing;
-        text-align: right;
+    }
+    &__name, &__chip {
+        margin-right: $spacing;
+        padding-right: $spacing;
+    }
+    &__name {
+        border-right: 1px solid var(--color-primary);
+        flex-grow: 1;
+    }
+    &__chip {
+        align-items: center;
+        border-right: 1px solid var(--color-primary);
+        display: flex;
     }
 }

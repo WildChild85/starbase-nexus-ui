@@ -46,7 +46,7 @@ td {
 pre, code {
     font-family: var(--font-family-mono) !important;
 }
-p strong {
+p strong, li strong {
     color: var(--color-info);
 }
 

@@ -4,8 +4,10 @@
     <div class="flex flex--end">
         <TextField v-model.trim="searchTerm" :placeholder="$t('search')" @keyup.enter="refreshData"/>
         <Button class="margin-left" :loading="isLoading" @click="refreshData">Refresh</Button>
-        <Button type="info" class="margin-left" v-if="ownsCurrentPath" @click="showCreateFolder()">Create folder</Button>
-        <Button type="info" class="margin-left" v-if="ownsCurrentPath" @click="showUploadFiles()">Upload</Button>
+        <template v-if="user">
+            <Button type="info" class="margin-left" v-if="ownsCurrentPath" @click="showCreateFolder()">Create folder</Button>
+            <Button type="info" class="margin-left" v-if="ownsCurrentPath" @click="showUploadFiles()">Upload</Button>
+        </template>
         <Button type="error" class="margin-left" v-if="embedded" @click="$emit('close')">Close</Button>
     </div>
     <div class="file-explorer margin-top">

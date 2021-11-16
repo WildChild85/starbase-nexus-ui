@@ -5,8 +5,10 @@ import {
     PatchYololProject,
     YololProject,
     YololProjectSearchParameters,
+    FetchedYololProject,
 } from '@/interfaces/yolol/yololProject';
 import { PatchOperation, ShapingParameters } from '@/interfaces/api';
+import { FetchConfigRequest, FetchConfigValidationResult } from '@/interfaces/yolol/fetchConfig';
 
 const BASE_PATH = '/yolol/yololproject';
 
@@ -54,3 +56,17 @@ export const patch = async (
     });
     return authorizedApiClient.patch(`${BASE_PATH}/${id}`, patchOperations);
 };
+
+export const testFetchConfig = async (
+    payload: FetchConfigRequest,
+    cancelToken?: CancelTokenSource,
+): Promise<AxiosResponse<FetchConfigValidationResult>> => (
+    authorizedApiClient.post(`${BASE_PATH}/test-fetch-config`, payload, { cancelToken: cancelToken ? cancelToken.token : undefined })
+);
+
+export const loadByFetchConfig = async (
+    id: string,
+    cancelToken?: CancelTokenSource,
+): Promise<AxiosResponse<FetchedYololProject>> => (
+    authorizedApiClient.get(`${BASE_PATH}/${id}/by-fetch-config`, { cancelToken: cancelToken ? cancelToken.token : undefined })
+);

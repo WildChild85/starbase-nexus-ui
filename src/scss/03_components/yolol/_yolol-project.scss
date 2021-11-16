@@ -124,6 +124,7 @@
         }
     }
     &__actions {
+        margin-left: math.div($spacing, 2);
         @media (max-width: $screen-md) {
             margin-top: $spacing;
         }

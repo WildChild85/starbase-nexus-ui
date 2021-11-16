@@ -55,6 +55,7 @@
         }
 
         &--w-50-lg {
+            box-sizing: border-box;
             width: 50%;
 
             @media (max-width: $screen-lg) {

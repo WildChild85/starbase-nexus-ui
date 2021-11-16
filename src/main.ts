@@ -3,21 +3,23 @@ import '@fontsource/source-code-pro';
 import Notifications from '@kyvg/vue3-notification';
 import { createApp } from 'vue';
 import {
-    PencilIcon as PencilIconSolid,
+    ChevronLeftIcon as ChevronLeftIconSolid,
     ChevronRightIcon as ChevronRightIconSolid,
     ChevronDownIcon as ChevronDownIconSolid,
-    XIcon as XIconSolid,
-    PencilAltIcon as PencilAltIconSolid,
+    ChipIcon as ChipIconSolid,
     HeartIcon as HeartIconSolid,
+    PencilAltIcon as PencilAltIconSolid,
+    PencilIcon as PencilIconSolid,
     PlayIcon as PlayIconSolid,
+    XIcon as XIconSolid,
 } from '@heroicons/vue/solid';
 import {
     ClipboardCopyIcon as ClipboardCopyIconOutline,
-    ExternalLinkIcon as ExternalLinkIconOutline,
-    MenuIcon as MenuIconOutline,
-    HeartIcon as HeartIconOutline,
-    LogoutIcon as LogoutIconOutline,
     DocumentTextIcon as DocumentTextIconOutline,
+    ExternalLinkIcon as ExternalLinkIconOutline,
+    HeartIcon as HeartIconOutline,
+    MenuIcon as MenuIconOutline,
+    LogoutIcon as LogoutIconOutline,
 } from '@heroicons/vue/outline';
 
 import App from '@/App.vue';
@@ -30,17 +32,19 @@ createApp(App)
     .use(router)
     .use(i18n)
     .use(Notifications)
-    .component('PencilIconSolid', PencilIconSolid)
+    .component('ChevronLeftIconSolid', ChevronLeftIconSolid)
     .component('ChevronRightIconSolid', ChevronRightIconSolid)
     .component('ChevronDownIconSolid', ChevronDownIconSolid)
-    .component('XIconSolid', XIconSolid)
+    .component('ChipIconSolid', ChipIconSolid)
     .component('ClipboardCopyIconOutline', ClipboardCopyIconOutline)
+    .component('DocumentTextIconOutline', DocumentTextIconOutline)
     .component('ExternalLinkIconOutline', ExternalLinkIconOutline)
+    .component('HeartIconOutline', HeartIconOutline)
+    .component('HeartIconSolid', HeartIconSolid)
+    .component('LogoutIconOutline', LogoutIconOutline)
     .component('MenuIconOutline', MenuIconOutline)
     .component('PencilAltIconSolid', PencilAltIconSolid)
-    .component('HeartIconSolid', HeartIconSolid)
-    .component('HeartIconOutline', HeartIconOutline)
-    .component('LogoutIconOutline', LogoutIconOutline)
+    .component('PencilIconSolid', PencilIconSolid)
     .component('PlayIconSolid', PlayIconSolid)
-    .component('DocumentTextIconOutline', DocumentTextIconOutline)
+    .component('XIconSolid', XIconSolid)
     .mount('#app');

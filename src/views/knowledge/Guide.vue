@@ -16,6 +16,7 @@
                 <template v-else>
                     <div class="guide__header">
                         <h1 class="guide__name">{{ guide ? guide.title : '' }}</h1>
+                        <Button :title="$t('back')" class="margin-right--f2" :to="{name: 'knowledge_guides'}"><ChevronLeftIconSolid class="svg-icon"/></Button>
                         <Button v-if="hasEditRights" :title="$t('edit')" @click="showEdit = true"><PencilAltIconSolid class="svg-icon"/></Button>
                         <template v-else>
                             <Button type="info" v-if="!user" :title="$t('loginToLike')" @click="redirectToDiscord"><HeartIconOutline class="svg-icon"/></Button>
@@ -147,8 +148,6 @@ export default defineComponent({
     }),
     watch: {
         guideId(): void {
-            this.guide = null;
-            this.creator = null;
             this.refreshData();
         },
     },
@@ -207,6 +206,8 @@ export default defineComponent({
             }
         },
         async refreshData(): Promise<void> {
+            this.guide = null;
+            this.creator = null;
             this.likes = [];
             await this.loadGuide();
             await this.loadCreator();

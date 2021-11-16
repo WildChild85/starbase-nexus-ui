@@ -86,7 +86,7 @@
         "id": 14, "class": "ssll-7", "x": 369.43, "y": 194.12,
         "sizes": [
             { "size": 1, "width": 80, "height": 80 },
-            { "size": 2, "width": 80, "height": 161.17 }
+            { "size": 2, "width": 80, "height": 170.17, "hides": [29] }
         ]
     },
     {
