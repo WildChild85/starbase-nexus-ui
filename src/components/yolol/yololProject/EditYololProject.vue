@@ -29,7 +29,8 @@
         :readonly="isLoading"
         :errors="errors.fetchConfigUri"
     />
-    <FetchConfigCheck :fetchConfigUri="properties.fetchConfigUri" />
+    <p><strong>IMPORTANT:</strong> The uri has to be the <strong>raw uri</strong>, not the link to the github page. <strong>Click on the raw button to get the raw uri</strong>.</p>
+    <FetchConfigCheck v-if="properties.fetchConfigUri" :fetchConfigUri="properties.fetchConfigUri" />
 
     <TextArea
         v-if="!properties.fetchConfigUri"
